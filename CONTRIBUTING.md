@@ -16,4 +16,8 @@ Wij gebruiken [code conventies](https://www.conventionalcommits.org/nl/v1.0.0/) 
 - **Witregels**: FDND CONVENTIES BESCRHIJFT HIER INFO OVER>
 
  AFSRPAKEN: ELKE START VAN DE DAG EEN STAND-UP
- 
+
+ ## Team Canvas
+
+ <img width="740" height="523" alt="image" src="https://github.com/user-attachments/assets/e2a363d0-769c-4ebf-af7a-f90018cd5391" />
+

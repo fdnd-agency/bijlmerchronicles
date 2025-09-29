@@ -9,7 +9,9 @@ Wij gebruiken [code conventies](https://www.conventionalcommits.org/nl/v1.0.0/) 
 
 - **Naamgeving**: kebab-case voor classes in css, Javascript en components in svelte gebruiken wij camelCase. Altijd engels, geen afkortingen
 
-- **Comments**: Moeilijke coden uitleggen en documenten onder vedelen in stukken, dus bijvoorbeeld animaties krijgen een lange comment, voorbeeld: 
+- **Comments**: Moeilijke coden uitleggen en documenten onder vedelen in stukken, dus bijvoorbeeld animaties krijgen een lange comment, voorbeeld:
+
+- **Supports / Supporten van website op alle browsers**: @Supports gebruiken bij nieuwere functies en bij animaties.
 
 /*----------------------------------- Animatie --------------------------------------*/
 

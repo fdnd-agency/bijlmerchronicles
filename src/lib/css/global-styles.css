@@ -1,4 +1,12 @@
 
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+    color: var(--color-text);
+    background: var(--color-background);
+}
+
 /* --------------------------------------- All Typography ------------------------------------ */
 @layer typography{
 
@@ -41,19 +49,53 @@
     }
 }
 
-/* --------------------------------------- All Colors------------------------------------ */
+/* --------------------------------------- All colors accordring to our styelguide: https://www.figma.com/design/KyotJ9paNnRjecNhTAiXqC/Bijlmer-Chronicles-Project?node-id=286-2142&t=bHUCw3pYl6k9eqBt-1------------------------------------ */
 @layer colors{
 
     :root{
 
-        --main-color: lch(52.2345% 72.2 56.2);
-        --sub-main-color: lch(52.2345% 72.2 56.2);
-        --dark-main-color: lch(52.2345% 72.2 56.2);
+        /* --------------------------------------- Primary Color Family - Gold/Accent ( Typography for heading and box shadows ) ------------------------------------ */
+        
+        --color-primary: #CEBF8F;
 
-        --secondary-color: lch(52.2345% 72.2 56.2);
-        --sub-secondary-color: lch(52.2345% 72.2 56.2);
-        --dark-secondary-color: lch(52.2345% 72.2 56.2);
+        --color-primary-light: #D8CCA7;
+        --color-primary-lighter: #E0D7B8;
+        --color-primary-lightest: #EFEBDC;
 
+        --color-primary-dark: #8E7B3E;
+        --color-primary-darker: #6A5C2F;
+        --color-primary-darkest: #473D1F;
+
+        /* --------------------------------------- Secondary Color Family - Forest/Secondar ( Background for shapes / foreground text color ) ------------------------------------ */
+
+        --color-secondary: #263B1C;
+
+        --color-secondary-100: #E8F2E3;
+        --color-secondary-200: #CBE1C1;
+        --color-secondary-300: #8FBF78;
+        --color-secondary-400: #649C4A;
+        --color-secondary-500: #4E7939;
+        --color-secondary-600: #385629;
+
+        /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
+
+        --color-neutral: #EDF0EA;
+
+        --color-neutral-200: #D4DBCC;
+        --color-neutral-300: #B2BFA6;
+        --color-neutral-400: #8FA17C;
+        --color-neutral-500: #667755;
+        --color-neutral-600: #404A35;
+        --color-neutral-700: #1A1E15;
+
+        /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
+
+        --color-background: var(--color-neutral); /* Background color for our whole page */
+        --color-text: var(--color-secondary); /* Text-color used for majority of the page */
+        --color-text-light: var(--color-primary); /* Text-color used for the majority of headings */
+
+        --box-shadow-card-var-1: var(--color-primary-darkest); /* shadow color for the first card variation */
+        --box-shadow-card-var-2: var(--color-secondary); /* shadow color for the second card variation */
     }
 
 }

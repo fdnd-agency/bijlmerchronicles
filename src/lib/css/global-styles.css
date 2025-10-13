@@ -88,6 +88,10 @@ html, body{
         --color-neutral-600: #404A35;
         --color-neutral-700: #1A1E15;
 
+        /* --------------------------------------- Link styling ------------------------------------ */
+
+        --link-color: #3478FF;
+
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 
         --color-background: var(--color-neutral); /* Background color for our whole page */

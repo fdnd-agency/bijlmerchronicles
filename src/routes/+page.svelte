@@ -1,7 +1,6 @@
 <script>
-    import Mapdetailtitle from '$lib/components/Mapdetailtitle.svelte';
+    import { Mapdetailtitle } from '$lib';
 </script>
-
 
 <style>
     

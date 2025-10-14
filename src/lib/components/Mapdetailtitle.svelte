@@ -31,11 +31,14 @@
 
     @layer triangle-shape-styling{
         .shape1, .shape2 {
-            transform: translateY(20px);
+            transform: translateY(30px);
             width: 100%;
             background-color: var(--color-secondary);
             aspect-ratio: 5.389;
             position: relative;
+            @media (min-width: 600px) {
+                transform: translateY(30px);
+            }
         }
         .shape1 {
             clip-path: shape(from 100% 100%,hline to 0%,line to 26.89% 63.6%,line to 100% 0%,vline to 100%,close);
@@ -62,6 +65,7 @@
             font-size: 1.75em;
             font-weight: bold;
             text-align: center;
+            width: 50vw;
         }
         a {
             text-align: center;

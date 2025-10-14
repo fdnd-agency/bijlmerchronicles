@@ -1,6 +1,9 @@
 <script>
-    import { Mapdetailtitle } from '$lib';
+    import { Mappreview } from '$lib';
 </script>
+
+
+<Mappreview />
 
 <style>
     

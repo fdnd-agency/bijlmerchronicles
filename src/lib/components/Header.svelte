@@ -9,7 +9,7 @@
         <img src="{ logo }" alt="">
     </div>
 
-    <div class="main-nav-container">
+    <div class="links-nav-container">
         <a href="/nieuwsbrief">Nieuwsbrief</a>
         <a href="/overons">Over ons</a>
         <a href="/help">Help center</a>
@@ -29,20 +29,21 @@
 
 <style>
     :root{
-        --button-width: 7rem;
+        --button-width: 8rem;
         --button-height: 2rem;
         --border-radius: 0.4rem;
     }
     a{
         color: var(--color-secondary);
         text-decoration: none;
+        font-size: var(--paragraph-size);
         span{
             width: 100%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2;
+            z-index: 5;
             border-radius: var(--border-radius);
         }
         .login-button-border{
@@ -52,30 +53,66 @@
             border: solid 1px var(--color-primary-darker);
         }
     }
-    img{
-        width: 20vw;
-        min-width: 9.25rem;
-        max-width: 19rem;
+    .logo-container{
+        flex-grow: 3;
+        img{
+            width: 20vw;
+            min-width: 9.25rem;
+            max-width: 19rem;
+        }
     }
     nav{
         display: flex;
         align-items: center;
+        flex-direction: row;
+        justify-content: flex-start;
+        container-name: nav;
+        container-type: inline-size;
         height: 10vh;
         min-height: 9rem;
     }
 
-    .logo-container, .main-nav-container, .loginNsignup-container, .hamburger-container{
-        margin: 0 1rem 0; 
-    }
-    .main-nav-container{
-        display: flex;
-        justify-content: center;
-        gap: 5vw;
-    }
     .loginNsignup-container{
-        display: flex;
-        justify-content: center;
-        gap: 1.5vw;
+        display: none;
+    }
+
+    .links-nav-container{
+        display: none;
+    }
+
+    @container header (width > 570px) {
+        .loginNsignup-container{
+            display: flex;
+            justify-content: center;
+            gap: 1.5vw;
+        }
+    }
+
+    @container header (width > 1025px) {
+        nav{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.6rem 0;
+        }
+        .logo-container{
+            flex-grow: 1;
+        }
+        .links-nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5vw;
+            flex-grow: 2;
+            a{
+                min-width: 5.5rem;
+                max-width: 7rem;
+            }
+        }
+    }
+
+    .logo-container, .links-nav-container, .loginNsignup-container, .hamburger-container{
+        z-index: 5;
+        margin: 0 1rem 0; 
     }
 
     .login-button, .signup-button{
@@ -89,8 +126,8 @@
             position: absolute;
             top: -0.15rem;
             right: 0.1rem;
-            width: calc(var(--button-width) + 0.25rem);
-            height: calc(var(--button-height) + 0.1rem);
+            width: calc(var(--button-width) + 0.2rem);
+            height: calc(var(--button-height) + 0.15rem);
             border-radius: inherit;
             z-index: -1;
         }

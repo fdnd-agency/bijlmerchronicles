@@ -2,6 +2,7 @@
 	import favicon from '$lib/assets/logo-favicon.avif';
 	import '$lib/css/global-styles.css';
 	import { Header } from "$lib";
+	import { AmsterdamStarsSVG } from "$lib";
 
 	let { children } = $props();
 </script>
@@ -19,3 +20,10 @@
 <main>
 	{@render children?.()}
 </main>
+
+<style>
+	header{
+		container-name: header;
+        container-type: inline-size;
+	}
+</style>

@@ -5,7 +5,7 @@
 <li>
     <a href="/">
         <img src="/{imgname}.png" alt="Ga naar de Johan Cruijff Arena op de map">
-        <h2>Johan Cruijff Arena</h2>
+        <h2 aria-hidden="true">Johan Cruijff Arena</h2>
     </a>
 </li>
 

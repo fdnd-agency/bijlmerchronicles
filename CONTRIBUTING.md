@@ -68,6 +68,26 @@ Bedankt voor de mooie eindresultaat van het design.
 In het begin vond ik de tempo wat laag waardoor ik een beetje twijfelde of het wel de goede kant op ging.
 
 
+# Projectinrichting
+
+### DoR
+
+Verzameling afspraken om mte bepalen welke user stories klaar zijn om opgepakt te worden.
+
+- Design volledig af
+- Format
+- Planning poker/ MoScoW
+
+
+### DoD
+
+Checklsit die aangeeft of een user story af is
+
+- RAPPE
+- Getest
+- Feedback
+- Gecomit en verwerkt op de dev
+
 
 
 

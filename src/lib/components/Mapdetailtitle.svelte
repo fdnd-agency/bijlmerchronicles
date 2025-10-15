@@ -16,6 +16,8 @@
 
 <style>
 
+@layer map-detail-styling{
+
 /* --------------------------------------- Container styling (Gebruikt om ervoor te zorgen dat de content altijd de parent zijn grootte volgt) ------------------------------------ */
     .container {
         width: 100%;
@@ -74,4 +76,5 @@
             font-size: 1.25em;
         }
     }
+}
 </style>

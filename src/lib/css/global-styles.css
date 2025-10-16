@@ -77,6 +77,11 @@ html, body{
         --color-secondary-500: #4E7939;
         --color-secondary-600: #385629;
 
+        /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
+
+        --accent-color: #DBE6D5;
+
+
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
         --color-neutral: #EDF0EA;

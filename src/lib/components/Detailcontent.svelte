@@ -66,3 +66,20 @@
         transform: translateX(-50%);
       }
     }
+
+    /* RESPONSIVE  */
+
+    @media (min-width: 51px) and (max-width: 767px) {
+    h1 {
+        font-size: 1.6rem;
+        translate: -50% -70%;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+    }
+
+    </style>
+  
+  

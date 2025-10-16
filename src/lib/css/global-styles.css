@@ -84,6 +84,14 @@ html, body{
         --color-neutral-600: #404A35;
         --color-neutral-700: #1A1E15;
 
+        /* --------------------------------------- pop-out-color - Hover ------------------------------------ */
+
+        --pop-out-color: #3171A2;
+
+        --pop-out-color-500: #7EB1D8;
+        --pop-out-color-600: #3B89C4;
+
+
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 
         --color-background: var(--color-neutral); /* Background color for our whole page */

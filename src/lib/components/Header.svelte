@@ -6,13 +6,15 @@
 <nav>
 
     <div class="logo-container">
-        <img src="{ logo }" alt="">
+        <a href="/"><img src="{ logo }" alt=""></a>
     </div>
 
     <div class="links-nav-container">
         <a href="/nieuwsbrief">Nieuwsbrief</a>
         <a href="/overons">Over ons</a>
         <a href="/help">Help center</a>
+        <a href="/kaart">Kaart</a>
+        <a href="/wiki">Wiki</a>
     </div>
 
     <aside class="loginNsignup-container">
@@ -67,6 +69,10 @@
             text-decoration: none;
             font-size: var(--paragraph-size);
 
+            &:hover{
+                color: var(--pop-out-color-500);
+            }
+
 /* --------------------------------------- Login / 'aanmelden' Button styling ---------------------------------------  */
             span{
                 width: 100%;
@@ -100,15 +106,7 @@
     .links-nav-container{
         display: none;
 
-        a:first-child{
-            display: none;
-        }
-
-        a:nth-child(2){
-            display: none;
-        }
-
-        a:last-child{
+        a:first-child, a:nth-child(2), a:nth-child(3), a:nth-child(4), a:last-child{
             display: none;
         }
 
@@ -145,6 +143,7 @@
                     .links-nav-container{
                         gap: 5vw;
                         flex-grow: 2;
+
                         a:first-child{
                             display: block;
                         }
@@ -172,13 +171,23 @@
                                 max-width: 7rem;
                             }
 
-                            a:last-child{
+                            a:nth-child(3){
                                 display: block;
                             }
 
                         }
 
                     }
+
+                        @container header (width > 1625px) {
+                            .links-nav-container {
+                                a:nth-child(4), a:last-child{
+                                    display: block;
+                                }
+                            }
+                        }
+
+        
 
 /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
 
@@ -203,17 +212,49 @@
         
     }
 
+     /* -- Hover styling per button --  */
     .login-button{
         color: var(--color-secondary-alt);
+
         &::before{
             background-color: var(--color-secondary);
         }
+
+            &:hover{
+            color: var(--color-secondary);
+
+                .login-button-border{
+                    border-color: var(--color-secondary);
+                }
+
+
+                &::before{
+                    background-color: var(--pop-out-color-500);
+                }
+
+            }
+
     }
+    
     .signup-button{
         color: var(--color-primary-darker);
+
         &::before{
             background-color: var(--color-primary-lighter);
         }
+        
+            &:hover{
+                color: var(--pop-out-color);
+
+                .signup-button-border{
+                    border-color: var(--pop-out-color);
+                }
+
+                &::before{
+                    background-color: var(--color-secondary-alt);
+                }
+            }
+
     }
 
 </style>

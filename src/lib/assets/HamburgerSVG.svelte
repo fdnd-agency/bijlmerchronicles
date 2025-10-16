@@ -1,28 +1,39 @@
 <script>
-  import { onMount } from 'svelte';
+//codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
+    import { onMount } from 'svelte';
 
-  onMount(() => {
-    const hamburgerButton = document.querySelector('button');
+    onMount(() => {
+        const hamburgerButton = document.querySelector('button');
 
-    const topLine = document.querySelector('.line-top');
-    const middleLine = document.querySelector('.line-middle');
-    const bottomLine = document.querySelector('.line-bottom');
+        const topLine = document.querySelector('.line-top');
+        const middleLine = document.querySelector('.line-middle');
+        const bottomLine = document.querySelector('.line-bottom');
 
-    hamburgerButton.addEventListener('click', () => {
-      const animation_is_on = hamburgerButton.classList.toggle('bounce_animation');
+        const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
 
-      topLine.classList.toggle('path_animation_top', animation_is_on);
-      bottomLine.classList.toggle('path_animation_bottom', animation_is_on);
+        hamburgerButton.addEventListener('click', () => {
+        const animation_is_on = hamburgerButton.classList.toggle('animation-is-on');
 
-      // Show/hide middle line based on state
-      if (animation_is_on) {
-        middleLine.style.setProperty('display', 'none');
-      } else {
-        middleLine.style.setProperty('display', 'block');
-      }
+        hamburgerButton.classList.add('bounce_animation');
+
+        topLine.classList.toggle('path_animation_top', animation_is_on);
+        bottomLine.classList.toggle('path_animation_bottom', animation_is_on);
+
+        if (animation_is_on) {
+            middleLine.style.setProperty('display', 'none');
+        } else {
+            middleLine.style.setProperty('display', 'block');
+        }
+
+        setTimeout(() => {
+            hamburgerButton.classList.remove('bounce_animation');
+        }, animation_duration + 100);
+        });
     });
-  });
+
 </script>
+
+
 
 <button aria-haspopup="true" aria-controls="menu"> <span class="sr-only">Hamburger menu</span>
     
@@ -78,6 +89,7 @@
             .line-top{
                 transform: translateY(1px);
                 stroke-dasharray: 30 244;
+                transition: stroke-dashoffset var(--animation-duration) ease-in-out;
             }
 
             .line-middle{
@@ -87,6 +99,7 @@
             .line-bottom{
                 transform: translateY(3px);
                 stroke-dasharray: 35 244;
+                transition: stroke-dashoffset var(--animation-duration) ease-in-out;
             }
 
         }
@@ -113,6 +126,11 @@
         stroke-dashoffset: -127px; /* Bepaald waar de lijn stopt */
         transition: stroke-dashoffset var(--animation-duration) ease-in-out;
     }
+    /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'animation-is-on' kan aanspreken en deze weer kan removen*/
+    :global(.animation-is-on){
+        transform: translateX(0);
+    }
+
 
     @keyframes bounce {
         0%, 50%, 57%, 64% {

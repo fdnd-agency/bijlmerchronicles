@@ -5,14 +5,18 @@
   </script>
   
   <section>
+
     {#if image}
       <div class="image-container">
-        <img src={image} alt={title} anchor-name="--titel" />
+        <img src={image} alt="" anchor-name="--titel" />
       </div>
     {/if}
+
     <h1>{title}</h1>
     <p>{text}</p>
+
   </section>
+
   <style>
     section {
       max-width: 800px;
@@ -41,7 +45,7 @@
       top: anchor(--titel bottom);
       left: anchor(--titel center);
       translate: -50% -60%; /* verplaatst de titel iets omhoog en naar links zodat hij exact gecentreerd onderaan de afbeelding staat */
-      font-size: 2.5rem;
+      font-size: var(--wiki-heading);
       text-transform: uppercase;
       color: var(--color-neutral-700);
       text-align: center; 
@@ -51,7 +55,7 @@
 
 
     p {
-      font-size: 1rem;
+      font-size: var(--wiki-p);
       line-height: 1.6;
       color: var(--color-neutral-700);
       margin-top: 2rem;
@@ -71,12 +75,12 @@
 
     @media (min-width: 51px) and (max-width: 767px) {
     h1 {
-        font-size: 1.6rem;
+        font-size: var(--wiki-heading-mobile);
         translate: -50% -70%;
     }
 
     p {
-        font-size: 0.95rem;
+        font-size: var(--wiki-p-mobile);
     }
     }
 

@@ -56,3 +56,13 @@
       color: var(--color-neutral-700);
       margin-top: 2rem;
     }
+    
+    /* Fallback voor browsers zonder anchor positioning */
+    @supports not (position-anchor: --titel) {
+      h1 {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }

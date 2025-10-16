@@ -181,9 +181,13 @@
 
                         @container header (width > 1625px) {
                             .links-nav-container {
+
                                 a:nth-child(4), a:last-child{
+                                    min-width: 3.5rem;
+                                    max-width: 5rem;
                                     display: block;
                                 }
+
                             }
                         }
 

@@ -106,11 +106,13 @@ html, body{
 
 /* --------------------------------------- Accessibility ------------------------------------ */
 
-@layer Accessibility{
+@layer accessibility{
 
     .sr-only{
         clip: rect(1px, 1px, 1px, 1px);
         clip-path: inset(50%);
+        top: 0;
+        left: 0;
         height: 1px;
         width: 1px;
         margin: -1px;
@@ -118,5 +120,5 @@ html, body{
         padding: 0;
         position: absolute;
     }
-    
+
 }

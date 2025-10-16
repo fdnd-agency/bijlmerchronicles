@@ -1,74 +1,81 @@
 <script>
-    import { Searchicon } from '$lib';
 
-    export let type = "Searchbar";
-    let query = '';
-  
-    function handleSearchClick() {
-      console.log(`Zoeken naar: ${query}`);
-    }
-  </script>
-  
+  import { Searchicon } from '$lib';
 
-  <div class="searchbar-container">
-    <div class="searchbar-input-wrapper">
-      <input
-        class="search-input"
-        type="text"
-        bind:value={query}
-        placeholder="Waar ligt het Johan Cruijff ArenA?"
-        aria-label={type}
-      />
-    </div>
+  export let type = "Searchbar";
+  let query = '';
   
-    <button class="search-button" on:click={handleSearchClick} aria-label="Zoeken">
-      <Searchicon />
-    </button>
-  </div>
-  
-  <style>
+  function handleSearchClick() {
+    console.log(`Zoeken naar: ${query}`);
+  }
 
-    .searchbar-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      max-width: 700px;
-      width: 100%;
-    }
+</script>
   
-    .searchbar-input-wrapper {
-      background-color: var(--color-neutral-200);
-      padding: 5px;
-      border-radius: 14px;
-      border: 4px solid var(--color-secondary);
-      flex: 1;
-    }
+<form method="get" class="searchbar-container" on:submit={handleSearchClick}>
+
+  <input
+      class="search-input"
+      type="text"
+      name="query"
+      bind:value={query}
+      placeholder="Waar ligt het Johan Cruijff ArenA?"
+      aria-label={type}
+    />
+
+  <button type="submit" class="search-button" aria-label="Zoeken">
+    <Searchicon />
+  </button>
+
+</form>
   
-    .search-input {
-      width: 100%;
-      padding: 1rem;
-      font-size: 1rem;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: var(--color-secondary);
-    }
+<style>
+
+  :root{
+    --button-width: 4.375rem;
+    --button-height: 3.125rem;
+  }
+
+  .searchbar-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 600px;
+    width: 100%;
+  }
   
-    .search-input::placeholder {
-      color: var(--color-secondary);
-      opacity: 0.7;
-    }
+  .search-input {
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1.5rem;
+    border: 4px solid var(--color-secondary);
+    flex: 1;
+    border-radius: 10px;
+    background-color: var(--color-neutral-200);
+    color: var(--color-secondary);
+  }
   
-    .search-button {
-      background-color: var(--color-secondary);
-      border: 5px;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-  </style>
+  .search-input::placeholder {
+    color: var(--color-secondary);
+    opacity: 0.7;
+    text-align: center;
+  } 
+  
+  .search-button {
+    background-color: var(--color-secondary);
+    width: var(--button-width);
+    height: var(--button-height);
+    position: relative;
+    padding: 1.7rem 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 2px 1px var(--color-neutral-200);
+
+  }
+  
+</style>
   
   

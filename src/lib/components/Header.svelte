@@ -6,7 +6,7 @@
 <nav>
 
     <div class="logo-container">
-        <a href="/"><img src="{ logo }" alt=""></a>
+        <a href="/"><span class="sr-only">Home</span><img src="{ logo }" alt=""></a>
     </div>
 
     <div class="links-nav-container">

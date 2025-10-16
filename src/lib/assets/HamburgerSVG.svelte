@@ -24,7 +24,7 @@
   });
 </script>
 
-<button>
+<button aria-haspopup="true" aria-controls="menu"> <span class="sr-only">Hamburger menu</span>
     
     <svg class="hamburger-menu" width="44" height="26" viewBox="0 0 44 26">
 

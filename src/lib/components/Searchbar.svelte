@@ -18,7 +18,7 @@
       type="text"
       name="query"
       bind:value={query}
-      placeholder="Waar ligt het Johan Cruijff ArenA?"
+      placeholder="Waar ligt de Johan Cruijff ArenA?"
       aria-label={type}
     />
 

@@ -5,7 +5,7 @@
 
 <Searchbar />
 
-<h2>WIE ZIJN WIJ</h2>
+<h2>WIE ZIJN WIJ?</h2>
 <p>Wij zijn een consortium van partners geworteld in Amsterdam-Zuidoost die zich inzetten om Amsterdam-Zuidoost beter op de hoogte te brengen.</p>
 <p>We werken samen om het bestaande werk van gidsen, kenners, kunstenaars en ondernemers te versterken die de waarde van deze buurt al hebben laten zien.</p>
 
@@ -23,6 +23,7 @@
         margin-bottom: 1.5rem;
         justify-self: center;
         max-width: 70vw;
+        text-align: center;
     }
     
 </style>

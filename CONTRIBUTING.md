@@ -35,23 +35,26 @@ Wij volgen de gitflow van [gitkraken.com](https://www.gitkraken.com/learn/git/gi
 
 ### Matthijs
 Fatima: Samenwerking soepel
-Luuk:
+Luuk: Je heb altijd een ander perspectief en praat (denkt) goed mee bij ideeën die jij goed en ook minder goed lijkt, van andere, of van jezelf. Het is daarom erg fijn om met jou samen te werken.
+ 
 
 ### Luuk
-Fatima:
+Fatima: Luuk is creatief en kan goed communiceren waardoor heyt de samenwerking vergemakkelijkt.
 Matthijs:
 
 ### Fatima
-Luuk:
+Luuk: Je luistert altijd goed naar feedback, en verwerkt dit ook snel.
 Matthijs: Mooie designs, goed opgepakt met het 
 
 ## 2. The Good, the Bad and the Ugly #121
 
-The Good: Goede communicatie en samenwerking
+The Good: Al was de opdrachtgever niet heel duidelijk, vond ik het toch goed van ons dat we eruit kwamen wat ze wou. 
+We maakte goeie afspraken met de opdrachtgever waardoor we snel feedback konden verwerken. 
+Onze afspraken die we maakte, zoals bijvoorbeeld in CONTRIBUTING, waren helder en duidelijk. Goede communicatie en samenwerking.
 
-The Bad: Werktempo kan omhoog
+The Bad: We proberen soms het te snel met elkaar eens te zijn, het kan juist goed zijn om het totaal niet eens te zijn bij bijvoorbeeld een planning poker, zodat we weten wie welke taak kan oppakken, om zo de taken te verdelen. Werktempo kan omhoog. 
 
-The Ugly: Nog geen code, z.s.m beginnen met coderen.
+The Ugly: Onze afspraken zijn vaak op korte termijn bekeken. met vaak een 'doen we overmorgen wel' stand. Terwijl we vaak gewoon even wat tijd kunnen pakken om alles op een rijtje te zetten op andere dagen dan afgesproken school dagen.
 
 ## 3. Wish granted #50
 

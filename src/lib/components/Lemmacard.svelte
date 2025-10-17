@@ -18,10 +18,10 @@
         height: 100%;
         display: flex;
         &:nth-of-type(1n) {
-            background-color: #BFCFB3;
+            background-color: var(--accent-color);
         }
         &:nth-of-type(2n) {
-            background-color: #CEBF8F;
+            background-color: var(--color-primary);
         }
     }
     a {
@@ -48,7 +48,8 @@
                 opacity 0.25s ease-out,
                 transform 0.25s ease-out;
         }
-        &:hover h2 {
+        &:hover h2,
+        &:focus-within h2 {
             opacity: 1;
             transform: translateX(-50%) translateY(0) scale(1.05);
         }

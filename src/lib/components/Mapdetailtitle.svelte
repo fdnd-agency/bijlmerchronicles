@@ -58,13 +58,15 @@
         border: 4px solid var(--color-secondary);
         border-radius: 15px 15px 0 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
+        align-items: center;
         flex-direction: column;
         width: clamp(40vw, 50%, 50vw);
-        padding: 1em 2em;
+        padding: .1em 2em;
+        background-color: #EDF0EA;
         h4 {
             margin: 0;
-            font-size: 1.75em;
+            font-size: 1.5em;
             font-weight: bold;
             text-align: center;
             width: 50vw;

@@ -29,3 +29,67 @@ Wij volgen de gitflow van [gitkraken.com](https://www.gitkraken.com/learn/git/gi
 
  <img width="740" height="523" alt="image" src="https://github.com/user-attachments/assets/e2a363d0-769c-4ebf-af7a-f90018cd5391" />
 
+# Retrospective
+
+## 1. Round of Admiration #76
+
+### Matthijs
+Fatima: Samenwerking soepel
+Luuk:
+
+### Luuk
+Fatima:
+Matthijs:
+
+### Fatima
+Luuk:
+Matthijs: Mooie designs, goed opgepakt met het 
+
+## 2. The Good, the Bad and the Ugly #121
+
+The Good: Goede communicatie en samenwerking
+
+The Bad: Werktempo kan omhoog
+
+The Ugly: Nog geen code, z.s.m beginnen met coderen.
+
+## 3. Wish granted #50
+
+De wish is om de aankomende sprint vaker standups te houden. Ook zou het de werktempo versnellen als we voor elke les een stuk code hebben gecommit. 
+
+## 4. Pitch #73
+
+Matthijs: 
+Bedankt voor de mooie eindresultaat van het design.
+In het begin vond ik het wat stroef lopen, waardoor ik wat vast zat en niet verder kon gaan.
+
+Fatima: 
+Bedankt voor de mooie eindresultaat van het design.
+In het begin vond ik de tempo wat laag waardoor ik een beetje twijfelde of het wel de goede kant op ging.
+
+
+# Projectinrichting
+
+### DoR
+
+Verzameling afspraken om mte bepalen welke user stories klaar zijn om opgepakt te worden.
+
+- Design volledig af
+- Format
+- Planning poker/ MoScoW
+
+
+### DoD
+
+Checklsit die aangeeft of een user story af is
+
+- RAPPE
+- Getest
+- Feedback
+- Gecomit en verwerkt op de dev
+
+
+
+
+
+

@@ -7,6 +7,11 @@ html, body{
     background: var(--color-background);
 }
 
+body {
+    height: 100vh;
+    width: 100%;
+}
+
 /* --------------------------------------- All Typography ------------------------------------ */
 @layer typography{
 
@@ -31,14 +36,18 @@ html, body{
 
         /* --------------------------------------- Heading levels ------------------------------------ */
 
-        
         --heading-1: clamp(6.25rem, 4vw, 12.5rem);
 
-        --heading-2: clamp(1.875rem, 4vw, 4rem);
+        --heading-2: clamp(2.5rem, 4vw, 4rem);
 
         --heading-3: clamp(1.375rem, 4vw, 2.25rem);
         
         --paragraph-size: clamp(1.175rem, 1.5vw, 1.5rem);;
+
+        --heading-4: clamp(2.25rem, 4vw, 2.625rem);
+
+        --paragraph-2: clamp(1.25rem, 2.3vw, 1.425rem);
+        --paragraph-3: clamp(1.1rem, 2vw, 1.2rem);
 
     }
 }
@@ -71,7 +80,10 @@ html, body{
         --color-secondary-500: #4E7939;
         --color-secondary-600: #385629;
 
-        --color-secondary-alt: #C6DEBA;
+        /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
+
+        --accent-color: #DBE6D5;
+
 
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
@@ -83,7 +95,7 @@ html, body{
         --color-neutral-500: #667755;
         --color-neutral-600: #404A35;
         --color-neutral-700: #1A1E15;
-
+      
         /* --------------------------------------- pop-out-color - Hover ------------------------------------ */
 
         --pop-out-color: #3171A2;
@@ -91,6 +103,9 @@ html, body{
         --pop-out-color-500: #7EB1D8;
         --pop-out-color-600: #3B89C4;
 
+        /* --------------------------------------- Link styling ------------------------------------ */
+
+        --link-color: #3478FF;
 
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 
@@ -100,10 +115,14 @@ html, body{
 
         --box-shadow-card-var-1: var(--color-primary-darkest); /* shadow color for the first card variation */
         --box-shadow-card-var-2: var(--color-secondary); /* shadow color for the second card variation */
+
+        --wiki-heading: var(--heading-4);
+        --wiki-heading-mobile: var(--heading-4);
+        --wiki-p: var(--paragraph-2);
+        --wiki-p-mobile: var(--paragraph-3);
     }
 
 }
-
 /* --------------------------------------- Accessibility ------------------------------------ */
 
 @layer accessibility{

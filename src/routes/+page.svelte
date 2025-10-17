@@ -1,6 +1,7 @@
 <script>
     import { Mapdetailtitle } from '$lib';
-    import { Lemmacard } from '$lib';
+    import { Searchbar } from '$lib';
+    import { Mappreview } from '$lib';
 </script>
 
 <ul class="lemmacard-container">
@@ -11,7 +12,12 @@
     <Lemmacard imgname="lemmapngtest2"/>
     <Lemmacard imgname="lemmapngtest3"/>
 </ul>
+
 <Mapdetailtitle />
+
+<Searchbar />
+
+<Mappreview />
 
 <style>
     .lemmacard-container {

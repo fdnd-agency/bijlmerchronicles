@@ -51,6 +51,11 @@ body {
             --heading-3: clamp(1.375rem, 4vw, 2.25rem);
         }
 
+        --heading-4: clamp(2.25rem, 4vw, 2.625rem);
+
+        --paragraph-2: clamp(1.25rem, 2.3vw, 1.425rem);
+        --paragraph-3: clamp(1.1rem, 2vw, 1.2rem);
+
     }
 }
 
@@ -82,6 +87,11 @@ body {
         --color-secondary-500: #4E7939;
         --color-secondary-600: #385629;
 
+        /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
+
+        --accent-color: #DBE6D5;
+
+
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
         --color-neutral: #EDF0EA;
@@ -105,6 +115,11 @@ body {
 
         --box-shadow-card-var-1: var(--color-primary-darkest); /* shadow color for the first card variation */
         --box-shadow-card-var-2: var(--color-secondary); /* shadow color for the second card variation */
+
+        --wiki-heading: var(--heading-4);
+        --wiki-heading-mobile: var(--heading-4);
+        --wiki-p: var(--paragraph-2);
+        --wiki-p-mobile: var(--paragraph-3);
     }
 
 }

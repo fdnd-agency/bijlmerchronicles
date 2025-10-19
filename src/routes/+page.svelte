@@ -32,6 +32,8 @@
 
 <style>
 
+/* --------------------------------------- Main heading styling (h1 and background off the h1) ------------------------------------ */
+
     h1{
         font-family: var(--main-font-black);
         font-size: var(--heading-1);
@@ -65,6 +67,8 @@
         }
 
     }
+
+/* --------------------------------------- Rest heading / font styling (h2, h3 and P's) ------------------------------------ */
   
     h2,h3 {
         font-size: var(--heading-2);
@@ -76,6 +80,15 @@
         margin: 5rem 0 1.5rem 0;
     }
 
+    p {
+        font-size: var(--paragraph-3);
+        margin-bottom: 1.5rem;
+        justify-self: center;
+        max-width: 70vw;
+    }
+
+/* --------------------------------------- Search (section) container styling ------------------------------------ */
+
     .lemma-search-container{
         display: flex;
         justify-content: center;
@@ -84,14 +97,8 @@
         margin: -2rem 0rem 3rem 0;
         padding: 2vw;
     }
-  
-    p {
-        font-size: var(--paragraph-3);
-        margin-bottom: 1.5rem;
-        justify-self: center;
-        max-width: 70vw;
-    }
-    
+
+/* --------------------------------------- Lemma card/cards styling (Lemma cards en responsiveness) ------------------------------------ */
     .lemmacard-container{
         overflow: clip;
         width: 99.8%;

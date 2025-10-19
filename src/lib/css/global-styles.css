@@ -38,7 +38,7 @@ body {
 
         /* --------------------------------------- Heading levels ------------------------------------ */
 
-        --heading-1: clamp(6.25rem, 4vw, 12.5rem);
+        --heading-1: clamp(1.85rem, 4vw, 3.25rem);
 
         --heading-2: clamp(2.5rem, 4vw, 4rem);
 
@@ -49,7 +49,7 @@ body {
         --heading-4: clamp(2.25rem, 4vw, 2.625rem);
 
         --paragraph-2: clamp(1.25rem, 2.3vw, 1.425rem);
-        --paragraph-3: clamp(1.1rem, 2vw, 1.2rem);
+        --paragraph-3: clamp(1.1rem, 2vw, 1.9rem);
 
     }
 }
@@ -81,6 +81,9 @@ body {
         --color-secondary-400: #649C4A;
         --color-secondary-500: #4E7939;
         --color-secondary-600: #385629;
+
+        /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
+        --color-tertiary: #BFCFB3;
 
         /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
 
@@ -114,9 +117,6 @@ body {
         --color-background: var(--color-neutral); /* Background color for our whole page */
         --color-text: var(--color-secondary); /* Text-color used for majority of the page */
         --color-text-light: var(--color-primary); /* Text-color used for the majority of headings */
-
-        --box-shadow-card-var-1: var(--color-primary-darkest); /* shadow color for the first card variation */
-        --box-shadow-card-var-2: var(--color-secondary); /* shadow color for the second card variation */
 
         --wiki-heading: var(--heading-4);
         --wiki-heading-mobile: var(--heading-4);

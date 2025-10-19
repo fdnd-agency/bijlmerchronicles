@@ -42,8 +42,7 @@
 
 </script>
 
-
-
+<!--
 <div> 
 
     <button id="menu" aria-haspopup="true" aria-controls="menu"> <span class="sr-only">Hamburger menu</span>
@@ -54,7 +53,7 @@
         </svg>
     </button>
    
-      <menu class="hamburger-menu-nav">
+    <menu class="hamburger-menu-nav">
       <ul>
         <li><a href="#">home</a></li>
         <li><a href="#">portfolio</a></li>
@@ -65,6 +64,7 @@
    
 </div>
 
+-->
 <style>
 
     :root{

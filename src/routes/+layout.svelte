@@ -22,8 +22,20 @@
 </main>
 
 <style>
+	:root{
+		--header-height: 10vh;
+	}
+
 	header{
+		width: 100%;
+		height: var(--header-height);
+    	min-height: 9rem;
+		top: 0;
 		container-name: header;
         container-type: inline-size;
+	}
+
+	main{
+		margin-top: -7.3rem;
 	}
 </style>

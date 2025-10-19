@@ -40,12 +40,16 @@
         }
 
         nav{
+            height: var(--header-height);
+            min-height: 7.25rem;
+            width: 100%;
+            z-index: 10;
+            position: fixed;
+            top: 0;
             display: flex;
             align-items: center;
             flex-direction: row;
             justify-content: flex-start;
-            height: 10vh;
-            min-height: 9rem;
         }
 
         .logo-container{

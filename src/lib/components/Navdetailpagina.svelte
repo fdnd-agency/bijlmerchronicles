@@ -73,3 +73,10 @@
   details a:hover {
     text-decoration: underline;
   }
+
+  @media (min-width: 700px) {
+    .sidebar {
+      display: block;
+    }
+  }
+</style>

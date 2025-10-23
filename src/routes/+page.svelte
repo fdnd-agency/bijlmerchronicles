@@ -7,7 +7,6 @@
 <h1><div class="h1-background"></div>ENCYCLOPEDIE MAPPING IMAGINARIES BIJLMER AMSTERDAM - ZUIDOOST</h1>
 
 <section class="lemma-search-container">
-    <h2>ZOEK EEN LEMMA</h2>
     <Searchbar />
 </section>
 
@@ -84,6 +83,7 @@
         font-size: var(--paragraph-3);
         margin-bottom: 1.5rem;
         justify-self: center;
+        text-align: center;
         max-width: 70vw;
     }
 
@@ -123,4 +123,5 @@
             }
         }
     }
+    
 </style>

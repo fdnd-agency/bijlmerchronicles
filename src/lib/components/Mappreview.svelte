@@ -14,7 +14,7 @@
 <style>
     section {
         position: relative;
-        height: 80vh;
+        height: 40vh;
         width: 100%;
     }
     .background-shape {

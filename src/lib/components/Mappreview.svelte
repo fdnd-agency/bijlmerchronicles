@@ -16,7 +16,7 @@
     section {
         position: relative;
         margin-top: 7rem;
-        height: 80vh;
+        height: 40vh;
         width: 100%;
     }
 

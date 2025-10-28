@@ -15,7 +15,7 @@
 
 <style>
     :global(footer) {
-        background-color: #EDF0EA;
+        background-color: var(--color-neutral);
     }
     img {
         width: 15vw;

@@ -81,7 +81,7 @@
     text-decoration: underline;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 1200px) {
     .sidebar {
       display: block;
     }

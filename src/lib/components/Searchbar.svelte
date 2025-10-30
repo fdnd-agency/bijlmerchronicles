@@ -52,6 +52,11 @@
     border-radius: 10px;
     background-color: var(--color-neutral-200);
     color: var(--color-secondary);
+    &:focus {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 3px; /* kleine offset, pas aan indien nodig */
+      box-shadow: none;
+    }
   }
   
   .search-input::placeholder {
@@ -73,7 +78,11 @@
     align-items: center;
     justify-content: center;
     box-shadow: 4px 4px 2px 1px var(--color-neutral-200);
-
+    &:focus {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 3px; /* kleine offset, pas aan indien nodig */
+      box-shadow: none;
+    }
   }
   
 </style>

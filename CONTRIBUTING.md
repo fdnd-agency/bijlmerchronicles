@@ -70,6 +70,60 @@ Fatima:
 Bedankt voor de mooie eindresultaat van het design.
 In het begin vond ik de tempo wat laag waardoor ik een beetje twijfelde of het wel de goede kant op ging.
 
+# Retrospective 31/10
+
+## Why Retrospectives? (#46)
+
+Luuk: We doen een retrospect om zo te kijken wat goed ging en fout. Dit geeft ons elke keer een goed beeld om zo de volgende sprint-planning weer te kunnen voorbereiden, en zorgt ervoor dat we weten welk werk we nu mee bezig zijn.
+
+Fatima: De retrospective is om terug te kijken naar het werkprocess, wat goed ging en wat minder goed ging in de samenwerking.
+
+Matthijs:  We doen dit zodat we allemaal op een lijn blijven en we geen miscommunicatie hebben. Zodat we van elkaar op de hoogte zijn hoe het gaat en wat er nog beter kan.
+ 
+## Sailboat / Speedboat (#19)
+
+Foto: 
+
+<img width="879" height="518" alt="Screenshot 2025-10-31 at 20 17 30" src="https://github.com/user-attachments/assets/eda6cf62-5d57-4cd7-b6c2-ca1d81eea1a9" />
+
+
+## Generate insights - Wish granted (#55)
+
+### What did we do well, that if we didn’t discuss we might forget?
+Luuk: Een snelle retrospect die ervoor zorgde dat we wisten wat te maken per persoon.
+Fatima: We hebben in het begin de taken goed duidelijk verdeeld, als dat niet het geval was dan zouden we niet echt op schema zijn
+Matthijs: Taak verdeling en bij elkaar checken hoe het gaat
+
+### What did we learn?
+Luuk:  Dat we sommige taken hebben overschat, en sommige onderschat
+Fatima: We hebben geleerd dat communicatie belangrijk is om verder te kunnen.
+Matthijs: Ik heb geleerd dat je van niks toch veel kan maken nog, geen design gewoon een paar inspiratie fotos en we hebben toch iets moois al neer gezet met een goed idee.
+
+### What should we do differently next time?
+Luuk: Langer de tijd nemen voor de planning-pokers, en elkaar echt grote project geven, die dan weer worden onderverdeeld in sub-issues.
+
+Fatima: Wellicht wat meer tempo erin zetten vooral omdat we nog met dynamische data gaan werken
+Matthijs: Eerder beginnen en toch actiever de taken doen.
+
+### What still puzzles us?
+Luuk: Hoe je het werk evenredig verdeeld.
+Fatima: Dat we op een hoger tempo moeten werken.
+Matthijs: Waarom we zo laat begonnen zijn
+
+## Divide the Dollar (#72)
+
+Foto:
+
+<img width="860" height="514" alt="Screenshot 2025-10-31 at 20 16 55" src="https://github.com/user-attachments/assets/eae724d6-311a-4879-a9f9-c434e3f36fef" />
+
+
+## Know your neighbour - Closing (#109)
+
+Luuk > Matthijs:  Ik denk van wel, zeker dat hij bij de ijsberg zijn toekomstige probleem heeft kunnen beschrijven.
+
+Mathijs > Fatima: Ik gok dat Fatima dit wel handig vond, zeker de boot want daar zie je echt wat ons helpt en tegenhoud.
+
+Fatima > Matthijs: Je denkt dat het houden van een retrospective fijn is voor beter overzicht, om verder te kunnen met het project en meer duidelijkheid te krijgen over hoe we het verder kunnen gaan oppakken.
 
 # Projectinrichting
 

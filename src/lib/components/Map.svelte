@@ -6,7 +6,6 @@
     <div class="intersection-shape"></div>
     <h3><div class="background-heading"></div>Bekijk de lemma's</h3>
     <img src="/mapimage.png" alt="foto van de kaart van de bijlmer">
-    <a href="/">Ontdek meer</a>
     <Mapdetailtitle />
 </section>
 
@@ -17,6 +16,7 @@
         position: relative;
         margin-top: 7rem;
         width: 100%;
+        height: 70vh;
     }
 
 /* --------------------------------------- Heading (h3) background + H3 Styling------------------------------------ */

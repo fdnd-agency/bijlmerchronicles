@@ -14,17 +14,15 @@
 
 
 <style>
-    :global(footer) {
-        background-color: var(--color-neutral);
-    }
     img {
-        width: 15vw;
+        width: 150px;
+        height: 150px;
         height: auto;
         display: block;
     }
     div {
         display: flex;
-        gap: 2rem;
         justify-content: space-around;
+        overflow-x: auto;
     }
 </style>

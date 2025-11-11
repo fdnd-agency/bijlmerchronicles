@@ -12,6 +12,7 @@
         const middleLine = document.querySelector('.line-middle');
         const bottomLine = document.querySelector('.line-bottom');
 
+        const hamburger_closing_opening_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hamburger-closing-opening-duration'),10);
         const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
 
         hamburgerButton.addEventListener('click', () => {
@@ -31,12 +32,17 @@
             middleLine.style.setProperty('display', 'block');
 
             menu.classList.remove('open');
-            menu.style.setProperty('display', 'none');
+            menu.classList.add('closing');
+            // Wait for the animation to finish before hiding it
+            setTimeout(() => {
+                menu.style.setProperty('display', 'none');
+                menu.classList.remove('closing');
+            }, hamburger_closing_opening_duration); // same duration as your slide-out animation
         }
 
-        setTimeout(() => {
-            hamburgerButton.classList.remove('bounce_animation');
-        }, animation_duration + 100);
+            setTimeout(() => {
+                hamburgerButton.classList.remove('bounce_animation');
+            }, animation_duration + 100);
         });
     });
 
@@ -170,6 +176,14 @@
         }
     }
 
+    @keyframes slide-out{
+        from{
+            transform: translateY(0);
+        }to{
+            transform: translateY(100%);
+        }
+    }
+
 }
 
 /* --------------------------------------- Hamburger-menu styling ---------------------------------------  */
@@ -187,24 +201,33 @@
 }
 
 /* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
-:global(.open) {
-    display: none;
+:global(.open),:global(.closing){
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 80%;
-    animation: slide-in 300ms ease-in forwards;
-    
+
     ul{
         display: flex;
         flex-direction: column;
         align-items: center;
         
         li{
-        list-style: none;
+            list-style: none;
         }
     }
+
+}
+
+:global(.open) {
+    display: none;
+    animation: slide-in var(--hamburger-closing-opening-duration) ease-in forwards;
+}
+
+:global(.closing) {
+    animation: slide-out var(--hamburger-closing-opening-duration) ease-in forwards;
+    background-color: var(--background-hamburger-pop-up);
 }
 
 </style>

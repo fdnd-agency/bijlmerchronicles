@@ -143,11 +143,25 @@ body {
         position: absolute;
     }
 
-    /* ---- Als de body een .open class heeft, voeg dan de blur toe ---- */
-    body:has(.hamburger-menu-nav.open) main, footer {
-        filter: blur(1rem);
-        transition: filter 300ms ease;
-        pointer-events: none;
+}
+
+@layer hamburger-menu{
+    :root{
+        --hamburger-closing-opening-duration: 200ms;
+    }
+    /* Add blur when hamburger has the 'open' class. Closing class is added so the animation only fades back out again after the full hamburger has closed  */
+    body:has(.hamburger-menu-nav.open),
+    body:has(.hamburger-menu-nav.closing) {
+        main, footer {
+            filter: blur(1rem);
+            pointer-events: none;
+            transition: filter var(--hamburger-closing-opening-duration) ease;
+        }
     }
 
+    /* Default (reverse) */
+    body main, body footer {
+        filter: blur(0);
+        transition: filter var(--hamburger-closing-opening-duration) ease;
+    }
 }

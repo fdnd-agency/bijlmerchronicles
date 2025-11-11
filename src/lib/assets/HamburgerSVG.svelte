@@ -4,9 +4,9 @@
 
     onMount(() => {
         const hamburgerButton = document.querySelector('button');
+        hamburgerButton.style.setProperty('display', 'block');
 
         let menu = document.querySelector('.hamburger-menu-nav');
-        menu.style.setProperty('display', 'none');
 
         const topLine = document.querySelector('.line-top');
         const middleLine = document.querySelector('.line-middle');
@@ -42,7 +42,6 @@
 
 </script>
 
-<!--
 <div> 
 
     <button id="menu" aria-haspopup="true" aria-controls="menu"> <span class="sr-only">Hamburger menu</span>
@@ -53,30 +52,30 @@
         </svg>
     </button>
    
-    <menu class="hamburger-menu-nav">
+    <nav class="hamburger-menu-nav">
       <ul>
         <li><a href="#">home</a></li>
         <li><a href="#">portfolio</a></li>
         <li><a href="#">images</a></li>
         <li><a href="#">contact</a></li>
       </ul>
-    </menu>
+    </nav>
    
 </div>
 
--->
 <style>
 
     :root{
-    --animation-duration: 400ms;
+        --animation-duration: 400ms;
     }
 
 /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
 
     button{
         transition: transform var(--animation-duration) ease-in-out;
-        background-color: none;
+        background-color: transparent;
         border: none;
+        display: none;
 
         .hamburger-menu{
             cursor: pointer;
@@ -163,39 +162,49 @@
         }
     }
 
+    @keyframes slide-in{
+        from{
+            transform: translateY(100%);
+        }to{
+            transform: translateY(0);
+        }
+    }
+
 }
 
 /* --------------------------------------- Hamburger-menu styling ---------------------------------------  */
 
 .hamburger-menu-nav {
-  background-color: #263B1C;
-  padding: 0;
-  margin: 0;
-  a{
-    color: #CEBF8F;
-    font-size: 2rem;
-    text-decoration: none;
-  }
+    display: none;
+    background-color: var(--background-hamburger-pop-up);
+    padding: 0;
+    margin: 0;
+    a{
+        color: #CEBF8F;
+        font-size: 2rem;
+        text-decoration: none;
+    }
 }
 
 /* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
 :global(.open) {
-  display: block;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 60%;
-  
-  ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+    animation: slide-in 300ms ease-in forwards;
     
-    li{
-      list-style: none;
+    ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        li{
+        list-style: none;
+        }
     }
-  }
 }
 
 </style>

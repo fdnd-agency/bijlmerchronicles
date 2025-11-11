@@ -34,8 +34,8 @@
 
 /* --------------------------------------- General styling ---------------------------------------  */
         :root{
-            --button-width: 8rem;
-            --button-height: 2rem;
+            --signup-login-button-width: 8rem;
+            --signup-login-button-height: 2rem;
             --border-radius: 0.4rem;
         }
 
@@ -159,7 +159,7 @@
 
                         nav{
                             justify-content: space-between;
-                            padding: 0 0.6rem 0;
+                            padding: 0;
                         }
 
                         .logo-container{
@@ -200,8 +200,8 @@
 /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
 
     .login-button, .signup-button{
-        width: var(--button-width);
-        height: var(--button-height);
+        width: var(--signup-login-button-width);
+        height: var(--signup-login-button-height);
         position: relative;
         border-radius: var(--border-radius);
         z-index: 1;
@@ -212,8 +212,8 @@
             position: absolute;
             top: -0.15rem;
             right: 0.1rem;
-            width: calc(var(--button-width) + 0.2rem);
-            height: calc(var(--button-height) + 0.15rem);
+            width: calc(var(--signup-login-button-width) + 0.2rem);
+            height: calc(var(--signup-login-button-height) + 0.15rem);
             border-radius: inherit;
             z-index: -1;
         }

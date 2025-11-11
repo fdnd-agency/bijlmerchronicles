@@ -38,13 +38,13 @@ body {
 
         /* --------------------------------------- Heading levels ------------------------------------ */
 
-        --heading-1: clamp(1.85rem, 4vw, 3.25rem);
+        --heading-1: clamp(1.875rem, 4.740vw, 3.25rem);
 
         --heading-2: clamp(2.5rem, 4vw, 4rem);
 
         --heading-3: clamp(1.375rem, 4vw, 2.25rem);
         
-        --paragraph-size: clamp(1.175rem, 1.5vw, 1.5rem);;
+        --paragraph-size: clamp(1.175rem, 1.5vw, 1.5rem);
 
         --heading-4: clamp(2.25rem, 4vw, 2.625rem);
 
@@ -118,6 +118,8 @@ body {
         --color-text: var(--color-secondary); /* Text-color used for majority of the page */
         --color-text-light: var(--color-primary); /* Text-color used for the majority of headings */
 
+        --background-hamburger-pop-up: var(--color-secondary);
+
         --wiki-heading: var(--heading-4);
         --wiki-heading-mobile: var(--heading-4);
         --wiki-p: var(--paragraph-2);
@@ -140,6 +142,13 @@ body {
         overflow: hidden;
         padding: 0;
         position: absolute;
+    }
+
+    /* ---- Als de body een .open class heeft, voeg dan de blur toe ---- */
+    body:has(.hamburger-menu-nav.open) main {
+        filter: blur(1rem);
+        transition: filter 300ms ease;
+        pointer-events: none;
     }
 
 }

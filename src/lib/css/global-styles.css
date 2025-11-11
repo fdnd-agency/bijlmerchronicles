@@ -89,7 +89,6 @@ body {
 
         --accent-color: #DBE6D5;
 
-
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
         --color-neutral: #EDF0EA;
@@ -145,7 +144,7 @@ body {
     }
 
     /* ---- Als de body een .open class heeft, voeg dan de blur toe ---- */
-    body:has(.hamburger-menu-nav.open) main {
+    body:has(.hamburger-menu-nav.open) main, footer {
         filter: blur(1rem);
         transition: filter 300ms ease;
         pointer-events: none;

@@ -89,7 +89,7 @@
             }
 
             .login-button-border{
-                border: solid 1px var(--color-secondary-alt);
+                border: solid 1px var(--accent-color);
             }
 
             .signup-button-border{   
@@ -222,7 +222,7 @@
 
      /* -- Hover styling per button --  */
     .login-button{
-        color: var(--color-secondary-alt);
+        color: var(--accent-color);
 
         &::before{
             background-color: var(--color-secondary);
@@ -232,7 +232,7 @@
             color: var(--color-secondary);
 
                 .login-button-border{
-                    border-color: var(--color-secondary);
+                    border-color: var(--accent-color);
                 }
 
 
@@ -259,7 +259,7 @@
                 }
 
                 &::before{
-                    background-color: var(--color-secondary-alt);
+                    background-color: var(--accent-color);
                 }
             }
 

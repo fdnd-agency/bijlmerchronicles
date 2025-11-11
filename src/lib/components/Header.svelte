@@ -30,7 +30,7 @@
 </nav>
 
 <style>
-    @layer general-styling{
+@layer general-styling{
 
 /* --------------------------------------- General styling ---------------------------------------  */
         :root{
@@ -232,7 +232,7 @@
             color: var(--color-secondary);
 
                 .login-button-border{
-                    border-color: var(--accent-color);
+                    border-color: var(--color-secondary);
                 }
 
 
@@ -266,4 +266,3 @@
     }
 
 </style>
-

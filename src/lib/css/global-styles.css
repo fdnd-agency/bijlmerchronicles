@@ -153,6 +153,7 @@ body {
     body:has(.hamburger-menu-nav.open),
     body:has(.hamburger-menu-nav.closing) {
         main, footer {
+            user-select: none;
             filter: blur(1rem);
             pointer-events: none;
             transition: filter var(--hamburger-closing-opening-duration) ease;

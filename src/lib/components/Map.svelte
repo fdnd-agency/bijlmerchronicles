@@ -20,10 +20,21 @@
 	function createMarkerPopup(marker) {
 		// Use leaflet popup if available (avoid global L dependency)
 		const popup = leaflet && leaflet.popup ? leaflet.popup({}) : null;
+		// Prefer a direct poster image URL (provided by server load as `posterimage_url`).
+		// Fallback: try the older nested `marker.poster.covers[...]` shape.
+		let imgHtml = '';
+		const posterUrl = marker.posterimage_url || marker.posterimage ||
+			(marker.poster && marker.poster.covers && marker.poster.covers[0] && (marker.poster.covers[0].directus_files_id?.id || marker.poster.covers[0].directus_files_id));
+		if (posterUrl) {
+			const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
+			imgHtml = `<img style="float: left; width: 150px; height: auto; margin-bottom: 0.75rem;" src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
+		}
+
 		const content = `
-		<div style="width: 100px;">
-		  <p><strong>${marker.street ?? ''}</strong> ${marker.house_number ?? ''} ${marker.floor ?? ''} ${marker.addition ?? ''}</p>
-		  ${marker.poster && marker.poster.covers && marker.poster.covers[0] && marker.poster.covers[0].directus_files_id ? `<img style="width: 100%; height: auto; margin-bottom: 0.75rem;" src="https://fdnd-agency.directus.app/assets/${marker.poster.covers[0].directus_files_id.id}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''} ${marker.floor ?? ''} ${marker.addition ?? ''}">` : ''}
+		<div style="width: 100%;">
+		  <p><strong>${marker.title ?? ''}</strong></p>
+		  ${imgHtml}
+          <p>${marker.summary ?? ''}</p>
 		  <a href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
 		</div>`;
 
@@ -79,6 +90,46 @@
 					.addTo(map)
 					.bindPopup(popup);
 
+					// open popup on hover, close on mouseout
+					let closeTimer = null;
+					newMarker._pinned = false;
+					newMarker.on('mouseover', function () {
+						if (closeTimer) {
+							clearTimeout(closeTimer);
+							closeTimer = null;
+						}
+						this.openPopup();
+						// attach listeners to popup element so hovering the popup keeps it open
+						setTimeout(() => {
+							const popup = this.getPopup?.();
+							const el = popup?.getElement?.();
+							if (el) {
+								el.addEventListener('mouseenter', () => {
+									if (closeTimer) {
+										clearTimeout(closeTimer);
+										closeTimer = null;
+									}
+								});
+								el.addEventListener('mouseleave', () => {
+									if (!this._pinned) this.closePopup();
+								});
+							}
+						}, 0);
+					});
+					newMarker.on('mouseout', function () {
+						// delay close so user can move pointer into popup
+						if (closeTimer) clearTimeout(closeTimer);
+						closeTimer = setTimeout(() => {
+							if (!this._pinned) this.closePopup();
+							closeTimer = null;
+						}, 250);
+					});
+					newMarker.on('click', function () {
+						// toggle pinned state on click so popup stays open for interaction
+						this._pinned = !this._pinned;
+						if (this._pinned) this.openPopup();
+					});
+
 				markers.push(newMarker);
 			});
 		}
@@ -100,6 +151,42 @@
 					.addTo(map)
 					.bindPopup(popup);
 
+					let closeTimer = null;
+					newMarker._pinned = false;
+					newMarker.on('mouseover', function () {
+						if (closeTimer) {
+							clearTimeout(closeTimer);
+							closeTimer = null;
+						}
+						this.openPopup();
+						setTimeout(() => {
+							const popup = this.getPopup?.();
+							const el = popup?.getElement?.();
+							if (el) {
+								el.addEventListener('mouseenter', () => {
+									if (closeTimer) {
+										clearTimeout(closeTimer);
+										closeTimer = null;
+									}
+								});
+								el.addEventListener('mouseleave', () => {
+									if (!this._pinned) this.closePopup();
+								});
+							}
+						}, 0);
+					});
+					newMarker.on('mouseout', function () {
+						if (closeTimer) clearTimeout(closeTimer);
+						closeTimer = setTimeout(() => {
+							if (!this._pinned) this.closePopup();
+							closeTimer = null;
+						}, 250);
+					});
+					newMarker.on('click', function () {
+						this._pinned = !this._pinned;
+						if (this._pinned) this.openPopup();
+					});
+
 				markers.push(newMarker);
 			});
 		}
@@ -120,10 +207,31 @@
 </script>
 
 <section class="map" class:js-enabled={jsEnabled}>
-	<h2 class="sr-only">Adressen fop de kaart</h2>
-
 	<div bind:this={mapElement} class={mapClass}></div>
 </section>
+
+<div class="poi-container">
+    <a href="/kaart" class="poi">
+        <img src="/lemmapngtest1.png" alt="Lemma {{ }}">
+        <h2>Johan Cruijff Arena</h2>
+    </a>
+    <a href="/kaart" class="poi">
+        <img src="/lemmapngtest1.png" alt="Footer Image">
+        <h2>Johan Cruijff Arena</h2>
+    </a>
+    <a href="/kaart" class="poi">
+        <img src="/lemmapngtest1.png" alt="Footer Image">
+        <h2>Johan Cruijff Arena</h2>
+    </a>
+    <a href="/kaart" class="poi">
+        <img src="/lemmapngtest1.png" alt="Footer Image">
+        <h2>Johan Cruijff Arena</h2>
+    </a>
+    <a href="/kaart" class="poi">
+        <img src="/lemmapngtest1.png" alt="Footer Image">
+        <h2>Johan Cruijff Arena</h2>
+    </a>
+</div>
 
 <style>
 	@import 'leaflet/dist/leaflet.css';
@@ -138,7 +246,44 @@
 		display: block;
 	}
 
-	div {
+	.leaflet-container {
 		height: 60vh;
 	}
+
+    .poi-container {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1rem;
+        margin-top: 1rem;
+        & a {
+            text-decoration: none;
+            color: inherit;
+        }
+        & img {
+            height: 100px;
+            width: 150px;
+        }
+    }
+    .poi {
+        position: relative;
+        h2 {
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            transform: translateX(-50%) scale(1);
+            text-wrap: nowrap;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.1s ease-in-out;
+        }
+        &:hover {
+            img {
+                transform: scale(1.6);
+                transition: transform 0.1s ease-in-out;
+            }
+            h2 {
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+    }
 </style>

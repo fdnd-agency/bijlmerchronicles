@@ -1,29 +1,29 @@
 <script>
     import Map from '$lib/components/Map.svelte';
 
-    // minimal sample data so the map can render out-of-the-box
-    // coordinates are [lng, lat] in the source and the component reverses them
-    // Leaflet expects coordinates as [lat, lng]. The original data used [lat, lng]
-    // but the Map component currently reverses coordinates expecting [lng, lat].
-    // To be safe, provide coordinates in [lng, lat] so the component's reverse()
-    // call results in the correct [lat, lng] order.
-    const mapAddresses = [
+    // data is populated by the server load (`+page.server.js`).
+    // If the server load failed or returned nothing, fall back to a small sample.
+    export let data;
+
+    const sample = [
         {
             id: '1',
             street: 'Johan Cruijff Boulevard',
             house_number: '1',
             map: { coordinates: [4.942131736450486, 52.315393117430666] }
-        },
-        {
-            id: '2',
-            street: 'Bijlmerweg',
-            house_number: '12A',
-            map: { coordinates: [4.96610318962727, 52.319965790713674] }
         }
     ];
+
+    const mapAddresses = (data && data.mapAddresses && data.mapAddresses.length) ? data.mapAddresses : sample;
 </script>
 
+<div>
 <Map {mapAddresses} />
+</div>
 
 <style>
+    div {
+        height: 100%;
+        border-top: 7px solid var(--color-secondary);
+    }
 </style>

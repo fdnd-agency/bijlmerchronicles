@@ -7,6 +7,7 @@
         hamburgerButton.style.setProperty('display', 'block');
 
         let menu = document.querySelector('.hamburger-menu-nav');
+        const links = document.querySelectorAll('.hamburger-menu-nav a');
 
         const topLine = document.querySelector('.line-top');
         const middleLine = document.querySelector('.line-middle');
@@ -28,6 +29,13 @@
 
             menu.classList.add('open');
             menu.style.setProperty('display', 'block');
+
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add('slide-in-text');
+                }, index * 50);
+            });
+            
         } else {
             middleLine.style.setProperty('display', 'block');
 
@@ -37,7 +45,11 @@
             setTimeout(() => {
                 menu.style.setProperty('display', 'none');
                 menu.classList.remove('closing');
-            }, hamburger_closing_opening_duration); // same duration as your slide-out animation
+            }, hamburger_closing_opening_duration);
+
+            links.forEach(link => {
+                link.classList.remove('slide-in-text');
+            });
         }
 
             setTimeout(() => {
@@ -79,10 +91,13 @@
 /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
 
     button{
-        transition: transform var(--animation-duration) ease-in-out;
         background-color: transparent;
         border: none;
         display: none;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform var(--animation-duration) ease-in-out;
+        }
 
         .hamburger-menu{
             cursor: pointer;
@@ -128,65 +143,6 @@
 
     }
 
-/* --------------------------------------- Animaties ---------------------------------------  */
-
-@layer animations{
-
-    :global(.bounce_animation) {
-        animation-name: bounce;
-        animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
-        animation-duration: 0.4s;
-        animation-iteration-count: 1;
-    }
-
-    :global(.path_animation_top){
-        stroke-dashoffset: -135px; /* Bepaald waar de lijn stopt */
-        transition: stroke-dashoffset var(--animation-duration) ease-in-out;
-    }
-
-    :global(.path_animation_bottom){
-        stroke-dashoffset: -127px; /* Bepaald waar de lijn stopt */
-        transition: stroke-dashoffset var(--animation-duration) ease-in-out;
-    }
-    /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'animation-is-on' kan aanspreken en deze weer kan removen*/
-    :global(.animation-is-on){
-        transform: translateX(0);
-    }
-
-
-    @keyframes bounce {
-        0%, 50%, 57%, 64% {
-            transform: scale(1);
-        }
-        10% {
-            transform: scale(1.2, 0.8);
-        }
-        30% {
-            transform: scale(0.8, 1.4);
-        }
-        100%{
-            transform: scale(1);
-        }
-    }
-
-    @keyframes slide-in{
-        from{
-            transform: translateY(100%);
-        }to{
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slide-out{
-        from{
-            transform: translateY(0);
-        }to{
-            transform: translateY(100%);
-        }
-    }
-
-}
-
 /* --------------------------------------- Hamburger-menu styling ---------------------------------------  */
 
 .hamburger-menu-nav {
@@ -203,12 +159,33 @@
         padding-left: 1rem;
         display: flex;
         align-items: center;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: all var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+        }
         &:hover{
             corner-shape: bevel;
             border-top-right-radius: 100% 1.5rem;
             background-color: var(--color-secondary-600);
         }
     }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+    :global(.slide-in-text){
+        animation: slide-in-text var(--hamburger-closing-opening-duration) cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+    }
+
+}
+
+.hamburger-menu-nav li:nth-child(1) a, 
+.hamburger-menu-nav li:nth-child(2) a, 
+.hamburger-menu-nav li:nth-child(3) a, 
+.hamburger-menu-nav li:nth-child(4) a, 
+.hamburger-menu-nav li:nth-child(5) a{ 
+    animation-delay:  100ms; 
 }
 
 /* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
@@ -250,14 +227,86 @@
 
 }
 
-:global(.open) {
-    display: none;
-    animation: slide-in var(--hamburger-closing-opening-duration) ease-in forwards;
+@media (prefers-reduced-motion: no-preference) {
+
+    :global(.open) {
+        display: none;
+        animation: slide-in var(--hamburger-closing-opening-duration) ease-in forwards;
+    }
+
+    :global(.closing) {
+        animation: slide-out var(--hamburger-closing-opening-duration) ease-in forwards;
+        background-color: var(--background-hamburger-pop-up);
+    }
+
 }
 
-:global(.closing) {
-    animation: slide-out var(--hamburger-closing-opening-duration) ease-in forwards;
-    background-color: var(--background-hamburger-pop-up);
-}
+/* --------------------------------------- Animaties ---------------------------------------  */
 
+@layer animations{
+    @media (prefers-reduced-motion: no-preference) {
+        :global(.bounce_animation) {
+            animation-name: bounce;
+            animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+            animation-duration: 0.4s;
+            animation-iteration-count: 1;
+        }
+
+        :global(.path_animation_top){
+            stroke-dashoffset: -135px; /* Bepaald waar de lijn stopt */
+            transition: stroke-dashoffset var(--animation-duration) ease-in-out;
+        }
+
+        :global(.path_animation_bottom){
+            stroke-dashoffset: -127px; /* Bepaald waar de lijn stopt */
+            transition: stroke-dashoffset var(--animation-duration) ease-in-out;
+        }
+        /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'animation-is-on' kan aanspreken en deze weer kan removen*/
+        :global(.animation-is-on){
+            transform: translateX(0);
+        }
+
+
+        @keyframes bounce {
+            0%, 50%, 57%, 64% {
+                transform: scale(1);
+            }
+            10% {
+                transform: scale(1.2, 0.8);
+            }
+            30% {
+                transform: scale(0.8, 1.4);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slide-in{
+            from{
+                transform: translateY(100%);
+            }to{
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-in-text{
+            from{
+                opacity: 0;
+                transform: translateX(-5rem);
+            }to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-out{
+            from{
+                transform: translateY(0);
+            }to{
+                transform: translateY(100%);
+            }
+        }
+    }
+}
 </style>

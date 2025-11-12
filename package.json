@@ -15,5 +15,8 @@
 		"@sveltejs/vite-plugin-svelte": "^6.2.0",
 		"svelte": "^5.39.5",
 		"vite": "^7.1.7"
+	},
+	"dependencies": {
+		"leaflet": "^1.9.4"
 	}
 }

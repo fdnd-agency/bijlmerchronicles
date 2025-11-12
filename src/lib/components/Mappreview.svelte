@@ -1,5 +1,4 @@
 <script>
-    import { Mapdetailtitle } from '$lib';
 </script>
 
 <section>
@@ -7,7 +6,6 @@
     <h3><div class="background-heading"></div>Bekijk de lemma's</h3>
     <img src="/mapimage.png" alt="foto van de kaart van de bijlmer">
     <a href="/">Ontdek meer</a>
-    <Mapdetailtitle />
 </section>
 
 <style>

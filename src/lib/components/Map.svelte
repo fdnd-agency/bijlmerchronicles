@@ -1,94 +1,144 @@
 <script>
-    import { Mapdetailtitle } from '$lib';
+	import { onDestroy, onMount } from 'svelte';
+	import { tick } from 'svelte';
+	import { javascript } from '$lib/utils/javascriptEnabled.svelte.js';
+
+	let {
+		mapAddresses,
+		activeMapAddresses = [],
+		mapClass = '',
+		initialZoom = 13,
+		initialView = [52.32110888521107, 4.966273199933488]
+	} = $props();
+	let mapElement;
+	let map = null;
+	let markers = [];
+	let leaflet = null;
+	// local flag to show the map area when JS runs (avoid relying on external $state)
+	let jsEnabled = $state(false);
+
+	function createMarkerPopup(marker) {
+		// Use leaflet popup if available (avoid global L dependency)
+		const popup = leaflet && leaflet.popup ? leaflet.popup({}) : null;
+		const content = `
+		<div style="width: 100px;">
+		  <p><strong>${marker.street ?? ''}</strong> ${marker.house_number ?? ''} ${marker.floor ?? ''} ${marker.addition ?? ''}</p>
+		  ${marker.poster && marker.poster.covers && marker.poster.covers[0] && marker.poster.covers[0].directus_files_id ? `<img style="width: 100%; height: auto; margin-bottom: 0.75rem;" src="https://fdnd-agency.directus.app/assets/${marker.poster.covers[0].directus_files_id.id}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''} ${marker.floor ?? ''} ${marker.addition ?? ''}">` : ''}
+		  <a href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
+		</div>`;
+
+		if (popup) {
+			popup.setContent(content);
+			return popup;
+		}
+
+		// Fallback: return plain HTML string (Leaflet bindPopup accepts strings)
+		return content;
+	}
+
+	async function initializeMap() {
+		// Leaflet's ESM build is the default export
+		leaflet = (await import('leaflet')).default;
+
+		const mapStyle = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+		const attribution =
+			'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+		map = leaflet.map(mapElement).setView(initialView, initialZoom);
+
+		leaflet
+			.tileLayer(mapStyle, {
+				attribution
+			})
+			.addTo(map);
+
+		updateMarkers();
+	}
+
+	function updateMarkers() {
+		if (!map) return;
+
+		// remove previous markers
+		markers.forEach((m) => map.removeLayer(m));
+		markers = [];
+
+		// create simple circle markers for all addresses (avoids depending on external marker images)
+		if (Array.isArray(mapAddresses)) {
+			mapAddresses.forEach((marker) => {
+				const popup = createMarkerPopup(marker);
+				const coords = [...(marker?.map?.coordinates ?? [])].reverse();
+				if (coords.length < 2) return;
+
+				const newMarker = leaflet
+					.circleMarker(coords, {
+						radius: 6,
+						color: '#d0342a',
+						fillColor: '#d0342a',
+						fillOpacity: 0.9
+					})
+					.addTo(map)
+					.bindPopup(popup);
+
+				markers.push(newMarker);
+			});
+		}
+
+		// render active addresses as larger/highlighted circle markers
+		if (Array.isArray(activeMapAddresses)) {
+			activeMapAddresses.forEach((marker) => {
+				const popup = createMarkerPopup(marker);
+				const coords = [...(marker?.map?.coordinates ?? [])].reverse();
+				if (coords.length < 2) return;
+
+				const newMarker = leaflet
+					.circleMarker(coords, {
+						radius: 12,
+						color: '#0056ff',
+						fillColor: '#0056ff',
+						fillOpacity: 0.95
+					})
+					.addTo(map)
+					.bindPopup(popup);
+
+				markers.push(newMarker);
+			});
+		}
+	}
+
+	onMount(async () => {
+		jsEnabled = true;
+		await initializeMap();
+	});
+
+	$effect(() => {
+		updateMarkers();
+	});
+
+	onDestroy(() => {
+		if (map) map.remove();
+	});
 </script>
 
-<section>
-    <div class="intersection-shape"></div>
-    <h3><div class="background-heading"></div>Bekijk de lemma's</h3>
-    <img src="/mapimage.png" alt="foto van de kaart van de bijlmer">
-    <Mapdetailtitle />
+<section class="map" class:js-enabled={jsEnabled}>
+	<h2 class="sr-only">Adressen fop de kaart</h2>
+
+	<div bind:this={mapElement} class={mapClass}></div>
 </section>
 
 <style>
+	@import 'leaflet/dist/leaflet.css';
+	section {
+		display: none;
+		width: 100%;
+		position: relative;
+		z-index: 1;
+	}
 
-/* --------------------------------------- Section styling ------------------------------------ */
-    section {
-        position: relative;
-        margin-top: 7rem;
-        width: 100%;
-        height: 70vh;
-    }
+	section.js-enabled {
+		display: block;
+	}
 
-/* --------------------------------------- Heading (h3) background + H3 Styling------------------------------------ */
-
-    .background-heading {
-        position: absolute;
-        width: 150%;
-        height: 300%;
-        min-height: 7rem;
-        right: -1rem;
-        top: -2rem;
-        aspect-ratio: 3.118;
-        clip-path: shape(from 100% 94%,curve to 97.64% 99.87% with 100% 97.81%/98.85% 100.66%,line to 82.91% 90.36%,line to 58.41% 73.64%,curve to 58.05% 73.5% with 58.29% 73.56%/58.17% 73.51%,line to 4.68% 67.74%,curve to 2.82% 62.84% with 3.76% 67.64%/2.99% 65.6%,line to 0.03% 16.72%,curve to 1.9% 9.63% with -0.19% 13.11%/0.7% 9.75%,line to 97.98% 0%,curve to 100% 6% with 99.08% -0.11%/100% 2.61%,vline to 94%,close);        background-color: var(--color-secondary);
-        z-index: -1;
-    }
-
-
-    h3 {
-        position: absolute;
-        top: 0;
-        right: 1rem;
-        margin: 0;
-        color: var(--color-primary);
-        font-size: clamp(1.5rem, 5vw, 3rem);
-        z-index: 2;
-    }
-
-/* --------------------------------------- Img (cover) and shape that's the same color as the background (intersection shape) that's top left ------------------------------------ */
-
-    img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-    }
-
-    .intersection-shape {
-        aspect-ratio: 6.296;
-        clip-path: shape(from 0% 0%,hline to 100%,line to 73.11% 36.4%,line to 0% 100%,vline to 0%,close);
-        background-color: var(--color-background);
-        position: absolute;
-        width: 65%;
-        height: 10vh;
-        min-height: 3rem;
-        left: 0;
-        top: -0.2rem;
-    }
-
-/* --------------------------------------- Button styling (Button in the middle that redirects to new page) ------------------------------------ */
-    a {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #717171c8;
-        color: #FFFFFF;
-        text-decoration: none;
-        padding: .6em;
-        border-radius: 10px;
-        font-size: 1.25rem;
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-        }
-        @media (min-width: 600px) {
-            font-size: 1.5em;
-            padding: .5em 1em;
-        }
-    }
-
+	div {
+		height: 60vh;
+	}
 </style>

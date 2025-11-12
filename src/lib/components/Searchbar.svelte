@@ -31,51 +31,58 @@
 <style>
 
   :root{
-      --button-width-searchbar: 4.375rem;
-      --button-height-searchbar: 3.125rem;
+    --button-width: 4.375rem;
+    --button-height: 3.125rem;
   }
 
   .searchbar-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      max-width: 600px;
-      width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 600px;
+    width: 100%;
   }
-    
+  
   .search-input {
-      width: 100%;
-      padding: 0.7rem;
-      font-size: 1.5rem;
-      border: 4px solid var(--color-secondary);
-      flex: 1;
-      border-radius: 10px;
-      background-color: var(--color-neutral-200);
-      color: var(--color-secondary);
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1.5rem;
+    border: 4px solid var(--color-secondary);
+    flex: 1;
+    border-radius: 10px;
+    background-color: var(--color-neutral-200);
+    color: var(--color-secondary);
+    &:focus {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 3px; /* kleine offset, pas aan indien nodig */
+      box-shadow: none;
+    }
   }
-    
+  
   .search-input::placeholder {
-      color: var(--color-secondary);
-      opacity: 0.7;
-      text-align: center;
+    color: var(--color-secondary);
+    opacity: 0.7;
+    text-align: center;
   } 
-    
+  
   .search-button {
-      background-color: var(--color-secondary);
-      width: var(--button-width-searchbar);
-      height: var(--button-height-searchbar);
-      position: relative;
-      padding: 1.7rem 1.1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 4px 4px 2px 1px var(--color-neutral-200);
-
+    background-color: var(--color-secondary);
+    width: var(--button-width);
+    height: var(--button-height);
+    position: relative;
+    padding: 1.7rem 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 2px 1px var(--color-neutral-200);
+    &:focus {
+      outline: 2px solid var(--color-secondary);
+      outline-offset: 3px; /* kleine offset, pas aan indien nodig */
+      box-shadow: none;
+    }
   }
   
 </style>
-  
-  

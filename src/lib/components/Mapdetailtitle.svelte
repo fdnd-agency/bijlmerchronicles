@@ -76,6 +76,7 @@
             color: var(--link-color);
             text-decoration: none;
             font-size: 1.25em;
+            font-weight: bold;
         }
     }
 }

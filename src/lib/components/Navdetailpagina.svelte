@@ -1,3 +1,9 @@
+
+<script>
+  export let title = "Navbardetailpagina";
+</script>
+
+
 <div class="sidebar">
   <h3>Inhoud</h3>
   <div class="divider"></div>
@@ -18,11 +24,12 @@
 
   .sidebar {
     display: none;
-    min-height: 100vh;
+    min-height: auto;
     width: clamp(180px, 20vw, 260px);
     background: var(--color-neutral);
     padding: clamp(12px, 2vw, 24px);
     border-right: 1px solid #ddd;
+    /* padding-top: 200px; */
   }
 
   h3 {
@@ -74,7 +81,7 @@
     text-decoration: underline;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 1200px) {
     .sidebar {
       display: block;
     }

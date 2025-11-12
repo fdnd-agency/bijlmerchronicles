@@ -1,8 +1,7 @@
 <script>
 //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
-    import { onMount } from 'svelte';
 
-    onMount(() => {
+    $effect(() => {
         const hamburgerButton = document.querySelector('button');
         hamburgerButton.style.setProperty('display', 'block');
 
@@ -191,7 +190,7 @@
 /* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
 :global(.open),:global(.closing){
     corner-shape: bevel;
-    border-top-right-radius: 100% 1.5rem;
+    border-top-right-radius: 100% 1rem;
     position: fixed;
     left: 0;
     bottom: 0;

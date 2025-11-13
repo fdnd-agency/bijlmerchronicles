@@ -3,7 +3,6 @@
 
     $effect(() => {
         const hamburgerButton = document.querySelector('button');
-        hamburgerButton.style.setProperty('display', 'block');
 
         let menu = document.querySelector('.hamburger-menu-nav');
         const links = document.querySelectorAll('.hamburger-menu-nav a');
@@ -16,14 +15,15 @@
         const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
 
         hamburgerButton.addEventListener('click', () => {
-        const animation_is_on = hamburgerButton.classList.toggle('animation-is-on');
 
-        hamburgerButton.classList.add('bounce_animation');
+            const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
 
-        topLine.classList.toggle('path_animation_top', animation_is_on);
-        bottomLine.classList.toggle('path_animation_bottom', animation_is_on);
+            hamburgerButton.classList.add('bounce_animation');
 
-        if (animation_is_on) {
+            topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
+            bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
+
+        if (hamburger_menu_is_open) {
             middleLine.style.setProperty('display', 'none');
 
             menu.classList.add('open');
@@ -55,6 +55,24 @@
                 hamburgerButton.classList.remove('bounce_animation');
             }, animation_duration + 100);
         });
+
+        // Na navigatie, verwijder hamburger menu
+        afterNavigate(() => {
+            middleLine.style.setProperty('display', 'block');
+
+            menu.classList.remove('open');
+            menu.classList.add('closing');
+            setTimeout(() => {
+                menu.style.setProperty('display', 'none');
+                menu.classList.remove('closing');
+            }, hamburger_closing_opening_duration);
+
+            links.forEach(link => {
+                link.classList.remove('slide-in-text');
+            });
+        });
+
+
     });
 
 </script>
@@ -142,6 +160,14 @@
 
     }
 
+/* -- Stel grid is supported, zorg er dan voor dat de button bestaat. Dit is relevant, want zonder grid kan het menu open toch niet werken -- */
+
+    @supports (display: grid) {
+        button{
+            display: block;
+        }
+    }
+
 /* --------------------------------------- Hamburger-menu styling ---------------------------------------  */
 
 .hamburger-menu-nav {
@@ -164,8 +190,6 @@
             opacity: 0;
         }
         &:hover{
-            corner-shape: bevel;
-            border-top-right-radius: 100% 1.5rem;
             background-color: var(--color-secondary-600);
         }
     }
@@ -189,8 +213,6 @@
 
 /* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
 :global(.open),:global(.closing){
-    corner-shape: bevel;
-    border-top-right-radius: 100% 1rem;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -226,6 +248,21 @@
 
 }
 
+/* -- als corner-shape is gesupport, voeg dit dan toe -- */
+
+@supports (corner-shape: bevel) {
+    :global(.open),:global(.closing){
+        corner-shape: bevel;
+        border-top-right-radius: 100% 1rem;
+    }
+    .hamburger-menu-nav a:hover{
+        corner-shape: bevel;
+        border-top-right-radius: 100% 1rem;
+    }
+}
+
+/* -- voeg animaties toe wanneer no-preference aanstaat -- */
+
 @media (prefers-reduced-motion: no-preference) {
 
     :global(.open) {
@@ -260,8 +297,8 @@
             stroke-dashoffset: -127px; /* Bepaald waar de lijn stopt */
             transition: stroke-dashoffset var(--animation-duration) ease-in-out;
         }
-        /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'animation-is-on' kan aanspreken en deze weer kan removen*/
-        :global(.animation-is-on){
+        /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'hamburger-is-open' kan aanspreken en deze weer kan removen*/
+        :global(.hamburger-is-open){
             transform: translateX(0);
         }
 

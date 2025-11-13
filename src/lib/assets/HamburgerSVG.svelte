@@ -1,51 +1,85 @@
 <script>
 //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
-    import { onMount } from 'svelte';
 
-    onMount(() => {
+    $effect(() => {
         const hamburgerButton = document.querySelector('button');
 
         let menu = document.querySelector('.hamburger-menu-nav');
-        menu.style.setProperty('display', 'none');
+        const links = document.querySelectorAll('.hamburger-menu-nav a');
 
         const topLine = document.querySelector('.line-top');
         const middleLine = document.querySelector('.line-middle');
         const bottomLine = document.querySelector('.line-bottom');
 
+        const hamburger_closing_opening_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hamburger-closing-opening-duration'),10);
         const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
 
         hamburgerButton.addEventListener('click', () => {
-        const animation_is_on = hamburgerButton.classList.toggle('animation-is-on');
 
-        hamburgerButton.classList.add('bounce_animation');
+            const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
 
-        topLine.classList.toggle('path_animation_top', animation_is_on);
-        bottomLine.classList.toggle('path_animation_bottom', animation_is_on);
+            hamburgerButton.classList.add('bounce_animation');
 
-        if (animation_is_on) {
+            topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
+            bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
+
+        if (hamburger_menu_is_open) {
             middleLine.style.setProperty('display', 'none');
 
             menu.classList.add('open');
             menu.style.setProperty('display', 'block');
+
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add('slide-in-text');
+                }, index * 50);
+            });
+            
         } else {
             middleLine.style.setProperty('display', 'block');
 
             menu.classList.remove('open');
-            menu.style.setProperty('display', 'none');
+            menu.classList.add('closing');
+            // Wait for the animation to finish before hiding it
+            setTimeout(() => {
+                menu.style.setProperty('display', 'none');
+                menu.classList.remove('closing');
+            }, hamburger_closing_opening_duration);
+
+            links.forEach(link => {
+                link.classList.remove('slide-in-text');
+            });
         }
 
-        setTimeout(() => {
-            hamburgerButton.classList.remove('bounce_animation');
-        }, animation_duration + 100);
+            setTimeout(() => {
+                hamburgerButton.classList.remove('bounce_animation');
+            }, animation_duration + 100);
         });
+
+        // Na navigatie, verwijder hamburger menu
+        afterNavigate(() => {
+            middleLine.style.setProperty('display', 'block');
+
+            menu.classList.remove('open');
+            menu.classList.add('closing');
+            setTimeout(() => {
+                menu.style.setProperty('display', 'none');
+                menu.classList.remove('closing');
+            }, hamburger_closing_opening_duration);
+
+            links.forEach(link => {
+                link.classList.remove('slide-in-text');
+            });
+        });
+
+
     });
 
 </script>
 
-<!--
 <div> 
 
-    <button id="menu" aria-haspopup="true" aria-controls="menu"> <span class="sr-only">Hamburger menu</span>
+    <button aria-haspopup="true" aria-controls="menu"> <span class="sr-only">Hamburger menu</span>
         <svg class="hamburger-menu" width="44" height="26" viewBox="0 0 44 26">
             <path class="line-top" d="M41.0312 2.98676C39.0171 2.88676 37.003 2.79176 34.9888 2.70176C31.6696 2.55344 28.3504 2.4187 25.0312 2.29754C19.6979 2.10287 14.3646 1.94324 9.03125 1.81868L8.73145 1.85781C6.86385 2.36385 5.15646 3.05212 3.50407 4.14424C1.92624 5.19502 0.15087 6.98612 0.130538 9.48676C-0.0125909 11.8174 2.04822 13.7662 3.7354 14.3944C5.50365 15.1349 7.18726 15.3946 9.03125 15.4596C11.7395 15.4777 14.4478 15.4868 17.1561 15.4868C19.7812 15.4868 22.4062 15.4783 25.0313 15.4613L25.2939 15.4377C31.0715 14.2358 34.7016 8.27739 34.3207 2.98676C34.3136 2.61632 34.2545 2.23909 33.9943 1.82206C33.7247 1.38144 33.2309 1.10099 32.907 1.01259C32.729 0.958434 32.5559 0.929339 32.388 0.915225C32.2431 0.903739 32.129 0.903644 32.0022 0.908537C31.7625 0.917198 31.4804 0.960499 31.3119 0.99607C30.4905 1.16882 29.8055 1.4547 29.1934 1.72275C27.9156 2.29341 26.699 2.97631 25.565 3.64794C23.231 5.03816 21.048 6.513 18.8626 8.04659C14.5156 11.1106 10.2963 14.3556 6.17529 17.6647C4.59576 18.9344 3.01604 20.225 1.5 21.5C3.1367 20.3846 4.82837 19.2475 6.51223 18.1245C10.9062 15.2013 15.3495 12.2933 19.8413 9.53512C22.0961 8.15579 24.3361 6.82439 26.6565 5.59468C27.7799 5.00414 28.9805 4.40497 30.1282 3.95307C30.6669 3.74263 31.2848 3.5319 31.7677 3.45601C31.9921 3.41267 32.2287 3.44166 32.1449 3.43677C32.1104 3.43524 31.9257 3.34565 31.8303 3.19021C31.7396 3.04868 31.7459 2.96516 31.7418 2.98676C31.8471 7.57409 28.8567 11.6635 24.7686 12.5358L25.0313 12.5122C22.4062 12.4952 19.7812 12.4868 17.1561 12.4868C14.4478 12.4868 11.7395 12.4958 9.03125 12.5139C6.26861 12.491 2.71049 11.4948 2.86946 9.48676C2.75673 7.12062 6.36447 5.05801 9.33105 4.1157L9.03125 4.15483C14.3646 4.03027 19.6979 3.87065 25.0312 3.67597C28.3504 3.55481 31.6696 3.42007 34.9888 3.27176C37.003 3.18176 39.0171 3.08676 41.0312 2.98676Z" />
             <path class="line-middle" d="M0 2C24 2 32.6667 2 34 2" />
@@ -53,30 +87,34 @@
         </svg>
     </button>
    
-    <menu class="hamburger-menu-nav">
-      <ul>
-        <li><a href="#">home</a></li>
-        <li><a href="#">portfolio</a></li>
-        <li><a href="#">images</a></li>
-        <li><a href="#">contact</a></li>
-      </ul>
-    </menu>
+    <nav class="hamburger-menu-nav">
+        <ul>
+            <li><a href="/nieuwsbrief">Nieuwsbrief</a></li>
+            <li><a href="/overons">Over ons</a></li>
+            <li><a href="/help">Help center</a></li>
+            <li><a href="/kaart">Kaart</a></li>
+            <li><a href="/wiki">Wiki</a></li>
+        </ul>
+    </nav>
    
 </div>
 
--->
 <style>
 
     :root{
-    --animation-duration: 400ms;
+        --animation-duration: 400ms;
     }
 
 /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
 
     button{
-        transition: transform var(--animation-duration) ease-in-out;
-        background-color: none;
+        background-color: transparent;
         border: none;
+        display: none;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform var(--animation-duration) ease-in-out;
+        }
 
         .hamburger-menu{
             cursor: pointer;
@@ -122,80 +160,189 @@
 
     }
 
-/* --------------------------------------- Animaties ---------------------------------------  */
+/* -- Stel grid is supported, zorg er dan voor dat de button bestaat. Dit is relevant, want zonder grid kan het menu open toch niet werken -- */
 
-@layer animations{
-
-    :global(.bounce_animation) {
-        animation-name: bounce;
-        animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
-        animation-duration: 0.4s;
-        animation-iteration-count: 1;
-    }
-
-    :global(.path_animation_top){
-        stroke-dashoffset: -135px; /* Bepaald waar de lijn stopt */
-        transition: stroke-dashoffset var(--animation-duration) ease-in-out;
-    }
-
-    :global(.path_animation_bottom){
-        stroke-dashoffset: -127px; /* Bepaald waar de lijn stopt */
-        transition: stroke-dashoffset var(--animation-duration) ease-in-out;
-    }
-    /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'animation-is-on' kan aanspreken en deze weer kan removen*/
-    :global(.animation-is-on){
-        transform: translateX(0);
-    }
-
-
-    @keyframes bounce {
-        0%, 50%, 57%, 64% {
-            transform: scale(1);
-        }
-        10% {
-            transform: scale(1.2, 0.8);
-        }
-        30% {
-            transform: scale(0.8, 1.4);
-        }
-        100%{
-            transform: scale(1);
+    @supports (display: grid) {
+        button{
+            display: block;
         }
     }
-
-}
 
 /* --------------------------------------- Hamburger-menu styling ---------------------------------------  */
 
 .hamburger-menu-nav {
-  background-color: #263B1C;
-  padding: 0;
-  margin: 0;
-  a{
-    color: #CEBF8F;
-    font-size: 2rem;
-    text-decoration: none;
-  }
+    display: none;
+    background-color: var(--background-hamburger-pop-up);
+    padding: 0;
+    margin: 0;
+    a{
+        color: #CEBF8F;
+        font-size: var(--heading-1);
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+        padding-left: 1rem;
+        display: flex;
+        align-items: center;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: all var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+        }
+        &:hover{
+            background-color: var(--color-secondary-600);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+    :global(.slide-in-text){
+        animation: slide-in-text var(--hamburger-closing-opening-duration) cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+    }
+
+}
+
+.hamburger-menu-nav li:nth-child(1) a, 
+.hamburger-menu-nav li:nth-child(2) a, 
+.hamburger-menu-nav li:nth-child(3) a, 
+.hamburger-menu-nav li:nth-child(4) a, 
+.hamburger-menu-nav li:nth-child(5) a{ 
+    animation-delay:  100ms; 
 }
 
 /* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
-:global(.open) {
-  display: block;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 60%;
-  
-  ul{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    li{
-      list-style: none;
+:global(.open),:global(.closing){
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+
+    ul{
+        position: relative;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: 100%;
+        
+        li{
+            position: relative;
+            height: 100%;
+            width: 100%;
+            list-style: none;
+           
+            &:not(:first-child)::after {
+                border-top: 1px solid;
+                border-color: var(--color-neutral-600);
+                content:"";
+                margin: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: -1;
+            }
+        }
     }
-  }
+
 }
 
+/* -- als corner-shape is gesupport, voeg dit dan toe -- */
+
+@supports (corner-shape: bevel) {
+    :global(.open),:global(.closing){
+        corner-shape: bevel;
+        border-top-right-radius: 100% 1rem;
+    }
+    .hamburger-menu-nav a:hover{
+        corner-shape: bevel;
+        border-top-right-radius: 100% 1rem;
+    }
+}
+
+/* -- voeg animaties toe wanneer no-preference aanstaat -- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+    :global(.open) {
+        display: none;
+        animation: slide-in var(--hamburger-closing-opening-duration) ease-in forwards;
+    }
+
+    :global(.closing) {
+        animation: slide-out var(--hamburger-closing-opening-duration) ease-in forwards;
+        background-color: var(--background-hamburger-pop-up);
+    }
+
+}
+
+/* --------------------------------------- Animaties ---------------------------------------  */
+
+@layer animations{
+    @media (prefers-reduced-motion: no-preference) {
+        :global(.bounce_animation) {
+            animation-name: bounce;
+            animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1);
+            animation-duration: 0.4s;
+            animation-iteration-count: 1;
+        }
+
+        :global(.path_animation_top){
+            stroke-dashoffset: -135px; /* Bepaald waar de lijn stopt */
+            transition: stroke-dashoffset var(--animation-duration) ease-in-out;
+        }
+
+        :global(.path_animation_bottom){
+            stroke-dashoffset: -127px; /* Bepaald waar de lijn stopt */
+            transition: stroke-dashoffset var(--animation-duration) ease-in-out;
+        }
+        /* Doet iets niks betekend maar zorgt ervoor dat ik in javascript de class 'hamburger-is-open' kan aanspreken en deze weer kan removen*/
+        :global(.hamburger-is-open){
+            transform: translateX(0);
+        }
+
+
+        @keyframes bounce {
+            0%, 50%, 57%, 64% {
+                transform: scale(1);
+            }
+            10% {
+                transform: scale(1.2, 0.8);
+            }
+            30% {
+                transform: scale(0.8, 1.4);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slide-in{
+            from{
+                transform: translateY(100%);
+            }to{
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-in-text{
+            from{
+                opacity: 0;
+                transform: translateX(-5rem);
+            }to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slide-out{
+            from{
+                transform: translateY(0);
+            }to{
+                transform: translateY(100%);
+            }
+        }
+    }
+}
 </style>

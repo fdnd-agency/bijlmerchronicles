@@ -30,12 +30,12 @@
 </nav>
 
 <style>
-    @layer general-styling{
+@layer general-styling{
 
 /* --------------------------------------- General styling ---------------------------------------  */
         :root{
-            --button-width: 8rem;
-            --button-height: 2rem;
+            --signup-login-button-width: 8rem;
+            --signup-login-button-height: 2rem;
             --border-radius: 0.4rem;
         }
 
@@ -89,7 +89,7 @@
             }
 
             .login-button-border{
-                border: solid 1px var(--color-secondary-alt);
+                border: solid 1px var(--accent-color);
             }
 
             .signup-button-border{   
@@ -159,7 +159,7 @@
 
                         nav{
                             justify-content: space-between;
-                            padding: 0 0.6rem 0;
+                            padding: 0;
                         }
 
                         .logo-container{
@@ -200,8 +200,8 @@
 /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
 
     .login-button, .signup-button{
-        width: var(--button-width);
-        height: var(--button-height);
+        width: var(--signup-login-button-width);
+        height: var(--signup-login-button-height);
         position: relative;
         border-radius: var(--border-radius);
         z-index: 1;
@@ -212,8 +212,8 @@
             position: absolute;
             top: -0.15rem;
             right: 0.1rem;
-            width: calc(var(--button-width) + 0.2rem);
-            height: calc(var(--button-height) + 0.15rem);
+            width: calc(var(--signup-login-button-width) + 0.2rem);
+            height: calc(var(--signup-login-button-height) + 0.15rem);
             border-radius: inherit;
             z-index: -1;
         }
@@ -222,7 +222,7 @@
 
      /* -- Hover styling per button --  */
     .login-button{
-        color: var(--color-secondary-alt);
+        color: var(--accent-color);
 
         &::before{
             background-color: var(--color-secondary);
@@ -259,11 +259,10 @@
                 }
 
                 &::before{
-                    background-color: var(--color-secondary-alt);
+                    background-color: var(--accent-color);
                 }
             }
 
     }
 
 </style>
-

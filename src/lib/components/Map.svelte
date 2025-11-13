@@ -27,11 +27,11 @@
 			(marker.poster && marker.poster.covers && marker.poster.covers[0] && (marker.poster.covers[0].directus_files_id?.id || marker.poster.covers[0].directus_files_id));
 		if (posterUrl) {
 			const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
-			imgHtml = `<img style="float: left; width: 150px; height: auto; margin-bottom: 0.75rem;" src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
+			imgHtml = `<img style="float: left; width: 20vw; height: auto; margin-bottom: 0.75rem;" src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
 		}
 
 		const content = `
-		<div style="width: 100%;">
+		<div style="width: 80vw;">
 		  <p><strong>${marker.title ?? ''}</strong></p>
 		  ${imgHtml}
           <p>${marker.summary ?? ''}</p>
@@ -73,6 +73,10 @@
 		markers.forEach((m) => map.removeLayer(m));
 		markers = [];
 
+		// Create marker icons per-marker below (use poster image when available).
+		// Removed single static markerIcon; we will compute an icon per marker using
+		// the same poster resolution logic as in createMarkerPopup.
+
 		// create simple circle markers for all addresses (avoids depending on external marker images)
 		if (Array.isArray(mapAddresses)) {
 			mapAddresses.forEach((marker) => {
@@ -80,15 +84,30 @@
 				const coords = [...(marker?.map?.coordinates ?? [])].reverse();
 				if (coords.length < 2) return;
 
-				const newMarker = leaflet
-					.circleMarker(coords, {
+				// try to build an icon from the marker's poster; fallback to circleMarker
+				const posterUrl = marker.posterimage_url || marker.posterimage ||
+					(marker.poster && marker.poster.covers && marker.poster.covers[0] && (marker.poster.covers[0].directus_files_id?.id || marker.poster.covers[0].directus_files_id));
+				let icon = null;
+				if (posterUrl) {
+					const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
+					icon = leaflet.icon({
+						iconUrl: src,
+						iconSize: [45, 40],
+						iconAnchor: [23, 36],
+						popupAnchor: [1, -34]
+					});
+				}
+
+				const newMarker = icon
+					? leaflet.marker(coords, { icon })
+					: leaflet.circleMarker(coords, {
 						radius: 6,
 						color: '#d0342a',
 						fillColor: '#d0342a',
 						fillOpacity: 0.9
-					})
-					.addTo(map)
-					.bindPopup(popup);
+					});
+
+				newMarker.addTo(map).bindPopup(popup);
 
 					// open popup on hover, close on mouseout
 					let closeTimer = null;
@@ -141,15 +160,30 @@
 				const coords = [...(marker?.map?.coordinates ?? [])].reverse();
 				if (coords.length < 2) return;
 
-				const newMarker = leaflet
-					.circleMarker(coords, {
+				// try to build an icon from the marker's poster; fallback to circleMarker
+				const posterUrl = marker.posterimage_url || marker.posterimage ||
+					(marker.poster && marker.poster.covers && marker.poster.covers[0] && (marker.poster.covers[0].directus_files_id?.id || marker.poster.covers[0].directus_files_id));
+				let icon = null;
+				if (posterUrl) {
+					const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
+					icon = leaflet.icon({
+						iconUrl: src,
+						iconSize: [36, 54],
+						iconAnchor: [18, 54],
+						popupAnchor: [1, -34]
+					});
+				}
+
+				const newMarker = icon
+					? leaflet.marker(coords, { icon })
+					: leaflet.circleMarker(coords, {
 						radius: 12,
 						color: '#0056ff',
 						fillColor: '#0056ff',
 						fillOpacity: 0.95
-					})
-					.addTo(map)
-					.bindPopup(popup);
+					});
+
+				newMarker.addTo(map).bindPopup(popup);
 
 					let closeTimer = null;
 					newMarker._pinned = false;

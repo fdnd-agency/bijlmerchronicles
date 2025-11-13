@@ -1,8 +1,7 @@
 <script>
     import Map from '$lib/components/Map.svelte';
 
-    // data is populated by the server load (`+page.server.js`).
-    // If the server load failed or returned nothing, fall back to a small sample.
+    // data inladen vanuit de server.js
     export let data;
 
     const sample = [

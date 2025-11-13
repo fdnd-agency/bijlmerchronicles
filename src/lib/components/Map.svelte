@@ -27,13 +27,13 @@
 			(marker.poster && marker.poster.covers && marker.poster.covers[0] && (marker.poster.covers[0].directus_files_id?.id || marker.poster.covers[0].directus_files_id));
 		if (posterUrl) {
 			const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
-			imgHtml = `<img style="float: left; width: 20vw; height: auto; margin-bottom: 0.75rem;" src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
+			imgHtml = `<img style="width: clamp(100px, 20vw, 150px);" src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
 		}
 
 		const content = `
-		<div style="width: 80vw;">
-		  <p><strong>${marker.title ?? ''}</strong></p>
+		<div id="popover-container">
 		  ${imgHtml}
+          <p><strong>${marker.title ?? ''}</strong></p>
           <p>${marker.summary ?? ''}</p>
 		  <a href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
 		</div>`;
@@ -244,7 +244,7 @@
 	<div bind:this={mapElement} class={mapClass}></div>
 </section>
 
-<div class="poi-container">
+<!-- <div class="poi-container">
     <a href="/kaart" class="poi">
         <img src="/lemmapngtest1.png" alt="Lemma {{ }}">
         <h2>Johan Cruijff Arena</h2>
@@ -265,7 +265,7 @@
         <img src="/lemmapngtest1.png" alt="Footer Image">
         <h2>Johan Cruijff Arena</h2>
     </a>
-</div>
+</div> -->
 
 <style>
 	@import 'leaflet/dist/leaflet.css';
@@ -318,6 +318,16 @@
             h2 {
                 transform: translateX(-50%) scale(1.2);
             }
+        }
+    }
+    .leaflet-popup-content {
+        display: grid;
+        background-color: black;
+        margin: 0;
+        & img {
+            width: clamp(100px, 20vw, 200px);
+            border-radius: 4px;
+            margin-right: 0.75rem;
         }
     }
 </style>

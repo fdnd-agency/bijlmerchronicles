@@ -1,5 +1,7 @@
 <script>
-//codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
+    import { onMount } from "svelte";
+    import { afterNavigate } from '$app/navigation';
+    //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
 
     $effect(() => {
         
@@ -31,6 +33,13 @@
                 link.classList.remove('slide-in-text');
             });
         }
+
+        // Reset hamburger icon
+        function resetHamburgerIcon() {
+            hamburgerButton.classList.remove('hamburger-is-open');
+            topLine.classList.remove('path_animation_top');
+            bottomLine.classList.remove('path_animation_bottom');
+        }
         
         // Event listener voor hamburger button, na klikken voeg animaties toe en open het menu
         hamburgerButton.addEventListener('click', () => {
@@ -42,7 +51,7 @@
             topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
             bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
         
-        // Open of sluit menu afhankelijk van de staat
+        // Open of sluit menu afhankelijk van de staat en voeg animaties toe aan de links
         if (hamburger_menu_is_open) {
             middleLine.style.setProperty('display', 'none');
 
@@ -62,11 +71,26 @@
             setTimeout(() => {
                 hamburgerButton.classList.remove('bounce_animation');
             }, animation_duration + 100);
+
         });
 
-        // Na navigatie, verwijder hamburger menu
+        // Na klikken op escape, verwijder hamburger menu
+        document.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Escape" &&
+                hamburgerButton.classList.contains('hamburger-is-open')
+            ) {
+                closeMenu();
+                resetHamburgerIcon();
+            }
+        });
+
+        // Na navigeren, sluit het menu als deze open is
         afterNavigate(() => {
-           closeMenu();
+            if (hamburgerButton.classList.contains('hamburger-is-open')) {
+                closeMenu();
+                resetHamburgerIcon();
+            }
         });
 
     });

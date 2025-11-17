@@ -2,6 +2,8 @@
 //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
 
     $effect(() => {
+        
+        // Alle variablen maken en selecteren in de DOM
         const hamburgerButton = document.querySelector('button');
 
         let menu = document.querySelector('.hamburger-menu-nav');
@@ -14,33 +16,12 @@
         const hamburger_closing_opening_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hamburger-closing-opening-duration'),10);
         const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
 
-        hamburgerButton.addEventListener('click', () => {
-
-            const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
-
-            hamburgerButton.classList.add('bounce_animation');
-
-            topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
-            bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
-
-        if (hamburger_menu_is_open) {
-            middleLine.style.setProperty('display', 'none');
-
-            menu.classList.add('open');
-            menu.style.setProperty('display', 'block');
-
-            links.forEach((link, index) => {
-                setTimeout(() => {
-                    link.classList.add('slide-in-text');
-                }, index * 50);
-            });
-            
-        } else {
+        // Functie om menu te sluiten
+        function closeMenu() {
             middleLine.style.setProperty('display', 'block');
 
             menu.classList.remove('open');
             menu.classList.add('closing');
-            // Wait for the animation to finish before hiding it
             setTimeout(() => {
                 menu.style.setProperty('display', 'none');
                 menu.classList.remove('closing');
@@ -50,6 +31,33 @@
                 link.classList.remove('slide-in-text');
             });
         }
+        
+        // Event listener voor hamburger button, na klikken voeg animaties toe en open het menu
+        hamburgerButton.addEventListener('click', () => {
+
+            const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
+
+            hamburgerButton.classList.add('bounce_animation');
+
+            topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
+            bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
+        
+        // Open of sluit menu afhankelijk van de staat
+        if (hamburger_menu_is_open) {
+            middleLine.style.setProperty('display', 'none');
+
+            menu.classList.add('open');
+            menu.style.setProperty('display', 'block'); 
+
+            links.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add('slide-in-text');
+                }, index * 50);
+            });
+            
+        } else {
+            closeMenu();
+        }
 
             setTimeout(() => {
                 hamburgerButton.classList.remove('bounce_animation');
@@ -58,20 +66,8 @@
 
         // Na navigatie, verwijder hamburger menu
         afterNavigate(() => {
-            middleLine.style.setProperty('display', 'block');
-
-            menu.classList.remove('open');
-            menu.classList.add('closing');
-            setTimeout(() => {
-                menu.style.setProperty('display', 'none');
-                menu.classList.remove('closing');
-            }, hamburger_closing_opening_duration);
-
-            links.forEach(link => {
-                link.classList.remove('slide-in-text');
-            });
+           closeMenu();
         });
-
 
     });
 

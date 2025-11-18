@@ -34,4 +34,8 @@
 		container-name: header;
         container-type: inline-size;
 	}
+
+	main{
+		margin-top: -7.3rem;
+	}
 </style>

@@ -1,30 +1,28 @@
 <script>
     import Map from '$lib/components/Map.svelte';
+
+    // data inladen vanuit de server.js
+    export let data;
+
+    const sample = [
+        {
+            id: '1',
+            street: 'Johan Cruijff Boulevard',
+            house_number: '1',
+            map: { coordinates: [4.942131736450486, 52.315393117430666] }
+        }
+    ];
+
+    const mapAddresses = (data && data.mapAddresses && data.mapAddresses.length) ? data.mapAddresses : sample;
 </script>
 
-<Map />
-
 <div>
-    <img src="/lemmapngtest1.png" alt="Footer Image">
-    <img src="/lemmapngtest1.png" alt="Footer Image">
-    <img src="/lemmapngtest1.png" alt="Footer Image">
-    <img src="/lemmapngtest1.png" alt="Footer Image">
-    <img src="/lemmapngtest1.png" alt="Footer Image">
+<Map {mapAddresses} />
 </div>
 
-
 <style>
-    :global(footer) {
-        background-color: var(--color-neutral);
-    }
-    img {
-        width: 15vw;
-        height: auto;
-        display: block;
-    }
     div {
-        display: flex;
-        gap: 2rem;
-        justify-content: space-around;
+        height: 100%;
+        border-top: 7px solid var(--color-secondary);
     }
 </style>

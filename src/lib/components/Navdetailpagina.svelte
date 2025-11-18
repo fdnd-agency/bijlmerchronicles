@@ -25,11 +25,10 @@
   .sidebar {
     display: none;
     min-height: auto;
-    width: clamp(180px, 20vw, 260px);
+    width: clamp(11rem, 20vw, 16.3rem);
     background: var(--color-neutral);
-    padding: clamp(12px, 2vw, 24px);
-    border-right: 1px solid #ddd;
-    /* padding-top: 200px; */
+    padding: clamp(0.8rem, 2vw, 1.5rem);
+    border-right: 0.06rem solid #ddd;
   }
 
   h3 {
@@ -39,9 +38,9 @@
   }
 
   .divider {
-    height: 1px;
+    height: 0.06rem;
     background: var(--color-neutral-700);
-    margin: clamp(4px, 1vh, 10px) 0;
+    margin: clamp(0.3rem, 1vh, 0.6rem) 0;
   }
 
   details summary {
@@ -64,14 +63,14 @@
   }
 
   details ul {
-    margin: clamp(4px, 1vh, 8px) 0 0 clamp(15px, 2vw, 25px);
+    margin: clamp(0.3rem, 1vh, 0.5rem) 0 0 clamp(1rem, 2vw, 1.6rem);
     list-style: none;
     padding: 0;
   }
 
   details a {
     display: block;
-    margin: clamp(4px, 1vh, 8px) 0;
+    margin: clamp(3rem, 1vh, 0.5rem) 0;
     color: var(--link-color);
     text-decoration: none;
     font-size: clamp(0.8rem, 1.6vw, 1rem);
@@ -81,7 +80,7 @@
     text-decoration: underline;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 75rem) {
     .sidebar {
       display: block;
     }

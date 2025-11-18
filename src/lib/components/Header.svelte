@@ -89,11 +89,11 @@
             }
 
             .login-button-border{
-                border: solid 1px var(--color-secondary-alt);
+                border: solid 0.1rem var(--color-secondary-alt);
             }
 
             .signup-button-border{   
-                border: solid 1px var(--color-primary-darker);
+                border: solid 0.1rem var(--color-primary-darker);
             }
 
         }
@@ -118,7 +118,7 @@
 
         /* -- After the header is a certain size, each element (when there is room for it) get's displayed again --  */
 
-        @container header (width > 570px) {
+        @container header (width > 35.7rem) {
 
             .loginNsignup-container{
                 display: flex;
@@ -128,7 +128,7 @@
             
         }
 
-            @container header (width > 700px) {
+            @container header (width > 44rem) {
 
                 .links-nav-container{
                     display: flex;
@@ -142,7 +142,7 @@
 
             }
 
-                @container header (width > 810px) {
+                @container header (width > 51rem) {
 
                     .links-nav-container{
                         gap: 5vw;
@@ -155,7 +155,7 @@
 
                 }
 
-                    @container header (width > 1025px) {
+                    @container header (width > 64rem) {
 
                         nav{
                             justify-content: space-between;
@@ -183,7 +183,7 @@
 
                     }
 
-                        @container header (width > 1625px) {
+                        @container header (width > 101rem) {
                             .links-nav-container {
 
                                 a:nth-child(4), a:last-child{

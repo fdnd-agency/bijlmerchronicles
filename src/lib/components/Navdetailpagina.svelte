@@ -3,24 +3,28 @@
   export let title = "Navbardetailpagina";
 </script>
 
+<div class="sidebar-container">
+  <div class="sidebar">
+    <h3>Inhoud</h3>
+    <div class="divider"></div>
 
-<div class="sidebar">
-  <h3>Inhoud</h3>
-  <div class="divider"></div>
-
-  <details>
-    <summary>Ipsum</summary>
-    <ul>
-      <li><a href="/help">Lorem Ipsum</a></li>
-      <li><a href="/map">Lorem Ipsum</a></li>
-      <li><a href="/navigatie">Lorem Ipsum</a></li>
-      <li><a href="/overons">Lorem Ipsum</a></li>
-      <li><a href="/wiki">Lorem Ipsum</a></li>
-    </ul>
-  </details>
+    <details>
+      <summary>Ipsum</summary>
+      <ul>
+        <li><a href="/help">Lorem Ipsum</a></li>
+        <li><a href="/map">Lorem Ipsum</a></li>
+        <li><a href="/navigatie">Lorem Ipsum</a></li>
+        <li><a href="/overons">Lorem Ipsum</a></li>
+        <li><a href="/wiki">Lorem Ipsum</a></li>
+      </ul>
+    </details>
+  </div>
 </div>
 
 <style>
+  .sidebar-container {
+    container-type: inline-size;
+  }
 
   .sidebar {
     display: none;
@@ -28,7 +32,7 @@
     width: clamp(11rem, 20vw, 16.3rem);
     background: var(--color-neutral);
     padding: clamp(0.8rem, 2vw, 1.5rem);
-    border-right: 0.06rem solid #ddd;
+    border-right: 0.06rem solid var(--color-neutral-700);
   }
 
   h3 {
@@ -70,7 +74,7 @@
 
   details a {
     display: block;
-    margin: clamp(3rem, 1vh, 0.5rem) 0;
+    margin: clamp(0.3rem, 1vh, 0.5rem) 0;
     color: var(--link-color);
     text-decoration: none;
     font-size: clamp(0.8rem, 1.6vw, 1rem);
@@ -80,7 +84,7 @@
     text-decoration: underline;
   }
 
-  @media (min-width: 75rem) {
+  @container (min-width: 75rem) {
     .sidebar {
       display: block;
     }

@@ -19,9 +19,9 @@
 
   <style>
     section {
-      max-width: 800px;
+      max-width: 50rem;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 8rem;
       position: relative;
     }
     
@@ -34,7 +34,7 @@
     .image-container img {
       width: 80%;
       height: auto;
-      border-radius: 15px;
+      border-radius: 1rem;
       anchor-name: --titel;
     }
     
@@ -73,7 +73,7 @@
 
     /* RESPONSIVE  */
 
-    @media (min-width: 51px) and (max-width: 767px) {
+    @media (min-width: 3.2rem) and (max-width: 48rem) {
     h1 {
         font-size: var(--wiki-heading-mobile);
         translate: -50% -70%;

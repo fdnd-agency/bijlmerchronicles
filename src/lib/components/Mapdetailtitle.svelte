@@ -33,13 +33,13 @@
 
     @layer triangle-shape-styling{
         .shape1, .shape2 {
-            transform: translateY(30px);
+            transform: translateY(1.9rem);
             width: 100%;
             background-color: var(--color-secondary);
             aspect-ratio: 5.389;
             position: relative;
-            @media (min-width: 600px) {
-                transform: translateY(30px);
+            @media (min-width: 37.5rem) {
+                transform: translateY(1.9rem);
             }
         }
         .shape1 {
@@ -55,8 +55,8 @@
 /* --------------------------------------- Info en titel styling ------------------------------------ */
 
     article {
-        border: 4px solid var(--color-secondary);
-        border-radius: 15px 15px 0 0;
+        border: 0.25rem solid var(--color-secondary);
+        border-radius: 1rem 1rem 0 0;
         display: flex;
         justify-content: space-evenly;
         align-items: center;

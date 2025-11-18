@@ -1,44 +1,33 @@
 <script>
 //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
-    // import { onMount } from 'svelte';
-
-    // onMount(() => {
-    //     const hamburgerButton = document.querySelector('button');
-
-    //     let menu = document.querySelector('.hamburger-menu-nav');
-    //     menu.style.setProperty('display', 'none');
-
-    //     const topLine = document.querySelector('.line-top');
-    //     const middleLine = document.querySelector('.line-middle');
-    //     const bottomLine = document.querySelector('.line-bottom');
-
-    //     const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
-
-    //     hamburgerButton.addEventListener('click', () => {
-    //     const animation_is_on = hamburgerButton.classList.toggle('animation-is-on');
-
-    //     hamburgerButton.classList.add('bounce_animation');
-
-    //     topLine.classList.toggle('path_animation_top', animation_is_on);
-    //     bottomLine.classList.toggle('path_animation_bottom', animation_is_on);
-
-    //     if (animation_is_on) {
-    //         middleLine.style.setProperty('display', 'none');
-
-    //         menu.classList.add('open');
-    //         menu.style.setProperty('display', 'block');
-    //     } else {
-    //         middleLine.style.setProperty('display', 'block');
-
-    //         menu.classList.remove('open');
-    //         menu.style.setProperty('display', 'none');
-    //     }
-
-    //     setTimeout(() => {
-    //         hamburgerButton.classList.remove('bounce_animation');
-    //     }, animation_duration + 100);
-    //     });
-    // });
+    import { onMount } from 'svelte';
+    onMount(() => {
+        const hamburgerButton = document.querySelector('button');
+        let menu = document.querySelector('.hamburger-menu-nav');
+        menu.style.setProperty('display', 'none');
+        const topLine = document.querySelector('.line-top');
+        const middleLine = document.querySelector('.line-middle');
+        const bottomLine = document.querySelector('.line-bottom');
+        const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
+        hamburgerButton.addEventListener('click', () => {
+        const animation_is_on = hamburgerButton.classList.toggle('animation-is-on');
+        hamburgerButton.classList.add('bounce_animation');
+        topLine.classList.toggle('path_animation_top', animation_is_on);
+        bottomLine.classList.toggle('path_animation_bottom', animation_is_on);
+        if (animation_is_on) {
+            middleLine.style.setProperty('display', 'none');
+            menu.classList.add('open');
+            menu.style.setProperty('display', 'block');
+        } else {
+            middleLine.style.setProperty('display', 'block');
+            menu.classList.remove('open');
+            menu.style.setProperty('display', 'none');
+        }
+        setTimeout(() => {
+            hamburgerButton.classList.remove('bounce_animation');
+        }, animation_duration + 100);
+        });
+    });
 
 </script>
 

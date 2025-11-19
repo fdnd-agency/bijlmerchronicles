@@ -212,13 +212,19 @@
         }
     }
 
-/* --------------------------------------- Hamburger-menu styling ---------------------------------------  */
+/* --------------------------------------- Hamburger-menu styling (open) ---------------------------------------  */
 
 .hamburger-menu-nav {
     display: none;
+    width: 100%;
+    height: 80%;
     background-color: var(--background-hamburger-pop-up);
     padding: 0;
     margin: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+
     a{
         color: #CEBF8F;
         font-size: var(--heading-1);
@@ -237,31 +243,6 @@
             background-color: var(--color-secondary-600);
         }
     }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-
-    :global(.slide-in-text){
-        animation: slide-in-text var(--hamburger-closing-opening-duration) cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
-    }
-
-}
-
-.hamburger-menu-nav li:nth-child(1) a, 
-.hamburger-menu-nav li:nth-child(2) a, 
-.hamburger-menu-nav li:nth-child(3) a, 
-.hamburger-menu-nav li:nth-child(4) a, 
-.hamburger-menu-nav li:nth-child(5) a{ 
-    animation-delay:  100ms; 
-}
-
-/* -- Classlist open, is aangesproken in javascript en wordt toegevoegd aan het hamburger menu, deze styling is nodig voor het hamburger menu -- */
-:global(.open),:global(.closing){
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 80%;
 
     ul{
         position: relative;
@@ -289,7 +270,24 @@
             }
         }
     }
+}
 
+/* -- voeg animaties toe aan de links wanneer no-preference aanstaat -- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+    :global(.slide-in-text){
+        animation: slide-in-text var(--hamburger-closing-opening-duration) cubic-bezier(0.28, 0.84, 0.42, 1) forwards;
+    }
+
+}
+
+.hamburger-menu-nav li:nth-child(1) a, 
+.hamburger-menu-nav li:nth-child(2) a, 
+.hamburger-menu-nav li:nth-child(3) a, 
+.hamburger-menu-nav li:nth-child(4) a, 
+.hamburger-menu-nav li:nth-child(5) a{ 
+    animation-delay:  100ms; 
 }
 
 /* -- als corner-shape is gesupport, voeg dit dan toe -- */
@@ -310,7 +308,6 @@
 @media (prefers-reduced-motion: no-preference) {
 
     :global(.open) {
-        display: none;
         animation: slide-in var(--hamburger-closing-opening-duration) ease-in forwards;
     }
 

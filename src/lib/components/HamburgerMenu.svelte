@@ -21,7 +21,7 @@
         const focusStart = document.getElementById("menu-focus-start");
         const focusEnd = document.getElementById("menu-focus-end");
 
-        let hadFocusInside = false;
+        let focusInMenu = false;
 
         // Functie om menu te sluiten
         function closeMenu() {
@@ -53,7 +53,7 @@
             const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
 
             hamburgerButton.classList.add('bounce_animation');
-            hamburgerButton.setAttribute("aria-expanded", hamburger_menu_is_open);
+            hamburgerButton.setAttribute("aria-expanded", "true");
 
             topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
             bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
@@ -100,22 +100,22 @@
         });
 
         // Focusin event listener om te detecteren of focus buiten het menu komt
-        function handleFocusIn(event) {
+        function handleFocusInHamburgerMenu(event) {
             const focused = event.target;
 
             if (menu.contains(focused)) {
-                hadFocusInside = true;
+                focusInMenu = true;
                 return;
             }
 
-            if (hadFocusInside) {
+            if (focusInMenu) {
                 closeMenu();
                 resetHamburgerIcon();
-                hadFocusInside = false;
+                focusInMenu = false;
             }
         }
 
-        document.addEventListener("focusin", handleFocusIn);
+        document.addEventListener("focusin", handleFocusInHamburgerMenu);
 
     });
 

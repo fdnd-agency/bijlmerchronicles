@@ -17,7 +17,7 @@
 
         // Zet de opacity van de links op 0 zodat ze onzichtbaar zijn bij het openen van het menu, dit moet in javascript, omdat als javascript uit staat, de popover dan niet werkt, dit staat op 0 voor de fade in animatie
         const links = document.querySelectorAll('.hamburger-menu-nav a');
-       links.forEach(link => {
+        links.forEach(link => {
             link.style.opacity = "0";
         });
 
@@ -44,11 +44,12 @@
             setTimeout(() => {
                 menu.hidden = true;       
                 menu.classList.remove('closing');
-            }, hamburger_closing_opening_duration);
 
-            links.forEach(link => {
-                link.classList.remove('slide-in-text');
-            });
+                links.forEach(link => {
+                    link.classList.remove('slide-in-text');
+                });
+                
+            }, hamburger_closing_opening_duration);
         }
 
         // Reset hamburger icon

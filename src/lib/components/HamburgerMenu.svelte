@@ -248,10 +248,6 @@
         &:hover{
             background-color: var(--color-secondary-600);
         }
-        &:focus { 
-            outline: none; 
-            box-shadow: none; 
-        }
     }
 
     ul{

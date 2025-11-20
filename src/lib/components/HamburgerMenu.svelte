@@ -169,6 +169,7 @@
 <style>
 
     :root{
+        --hamburger-closing-opening-duration: 200ms;
         --animation-duration: 400ms;
     }
 

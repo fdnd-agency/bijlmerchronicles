@@ -146,9 +146,6 @@ body {
 }
 
 @layer hamburger-menu{
-    :root{
-        --hamburger-closing-opening-duration: 200ms;
-    }
     /* Add blur when hamburger has the 'open' class. Closing class is added so the animation only fades back out again after the full hamburger has closed  */
     body:has(.hamburger-menu-nav.open),
     body:has(.hamburger-menu-nav.closing) {

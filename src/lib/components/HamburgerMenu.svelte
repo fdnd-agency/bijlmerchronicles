@@ -91,14 +91,6 @@
             }
         });
 
-        // Na navigeren, sluit het menu als deze open is
-        afterNavigate(() => {
-            if (hamburgerButton.classList.contains('hamburger-is-open')) {
-                closeMenu();
-                resetHamburgerIcon();
-            }
-        });
-
         // Focusin event listener om te detecteren of focus buiten het menu komt
         function handleFocusInHamburgerMenu(event) {
             const focused = event.target;
@@ -119,6 +111,23 @@
         }
 
         document.addEventListener("focusin", handleFocusInHamburgerMenu);
+
+        // Bij scrollen, sluit het menu als deze open is
+        document.addEventListener("scroll", () => {
+            if (hamburgerButton.classList.contains('hamburger-is-open')) {
+                closeMenu();
+                resetHamburgerIcon();
+            }
+        });
+
+
+        // Na navigeren, sluit het menu als deze open is
+        afterNavigate(() => {
+            if (hamburgerButton.classList.contains('hamburger-is-open')) {
+                closeMenu();
+                resetHamburgerIcon();
+            }
+        });
 
     });
 
@@ -222,11 +231,6 @@
     left: 0;
     bottom: 0;
 
-    /* zorg dat er geen outline komt op mobile, de focus outline is ook niet nodig, omdat dit een menu is */
-    &:focus { 
-        outline: none; 
-    }
-
     a{
         color: #CEBF8F;
         font-size: var(--heading-1);
@@ -243,6 +247,10 @@
         }
         &:hover{
             background-color: var(--color-secondary-600);
+        }
+        &:focus { 
+            outline: none; 
+            box-shadow: none; 
         }
     }
 

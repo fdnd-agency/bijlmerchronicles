@@ -27,7 +27,6 @@
         const bottomLine = document.querySelector('.line-bottom');
 
         // Haal de duur van de animaties op uit CSS variabelen
-        const hamburger_closing_opening_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hamburger-closing-opening-duration'),10);
         const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
 
         // Variabele om te checken of focus in het menu is, deze start op false

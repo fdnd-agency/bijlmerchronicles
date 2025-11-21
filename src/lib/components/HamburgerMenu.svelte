@@ -40,10 +40,10 @@
 
             menu.classList.remove('open');
             menu.classList.add('closing');
-            
+
             menu.addEventListener('animationend', () => {
 
-                // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: https://github.com/fdnd-agency/bijlmerchronicles/issues/79#issuecomment-3564684508
+                // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: 
                 if (event.animationName.includes("slide-out")) {
 
                     menu.classList.remove('closing');
@@ -54,7 +54,7 @@
                     });
                 }
 
-            }, { once: true });
+            });
 
         }
 

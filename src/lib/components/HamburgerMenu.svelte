@@ -34,22 +34,28 @@
         let focusInMenu = false;
 
         // Functie om menu te sluiten
-        function closeMenu() {
+       function closeMenu() {
             hamburgerButton.setAttribute("aria-expanded", "false");
             middleLine.style.setProperty('display', 'block');
 
             menu.classList.remove('open');
             menu.classList.add('closing');
+            
+            menu.addEventListener('animationend', () => {
 
-            setTimeout(() => {
-                menu.hidden = true;       
-                menu.classList.remove('closing');
+                // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: https://github.com/fdnd-agency/bijlmerchronicles/issues/79#issuecomment-3564684508
+                if (event.animationName.includes("slide-out")) {
 
-                links.forEach(link => {
-                    link.classList.remove('slide-in-text');
-                });
-                
-            }, hamburger_closing_opening_duration);
+                    menu.classList.remove('closing');
+                    menu.hidden = true;
+
+                    links.forEach(link => {
+                        link.classList.remove('slide-in-text');
+                    });
+                }
+
+            }, { once: true });
+
         }
 
         // Reset hamburger icon
@@ -66,8 +72,8 @@
 
             hamburgerButton.classList.add('bounce_animation');
 
-            topLine.classList.toggle('path_animation_top', hamburger_menu_is_open);
-            bottomLine.classList.toggle('path_animation_bottom', hamburger_menu_is_open);
+            topLine.classList.toggle('path_animation_top');
+            bottomLine.classList.toggle('path_animation_bottom');
 
             // Open of sluit menu afhankelijk van de staat en voeg animaties toe aan de links
             if (hamburger_menu_is_open) {

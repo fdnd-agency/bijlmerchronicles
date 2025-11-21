@@ -70,19 +70,17 @@
         transform: translateX(-50%);
       }
     }
+@container ( width > 48rem) {
+  h1 {
+    font-size: var(--wiki-heading-mobile);
+    translate: -50% -60%;
+  }
 
-    /* RESPONSIVE  */
-
-    @media (min-width: 3.2rem) and (max-width: 48rem) {
-    h1 {
-        font-size: var(--wiki-heading-mobile);
-        translate: -50% -70%;
-    }
-
-    p {
-        font-size: var(--wiki-p-mobile);
-    }
-    }
+  p {
+    font-size: var(--wiki-p-mobile);
+    margin-top: 8rem;
+  }
+}
 
     </style>
   

@@ -84,7 +84,7 @@
     text-decoration: underline;
   }
 
-  @container (min-width: 75rem) {
+  @container ( width > 75rem) {
     .sidebar {
       display: block;
     }

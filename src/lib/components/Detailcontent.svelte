@@ -6,70 +6,76 @@
   
   <section>
 
-    {#if image}
-      <div class="image-container">
-        <img src={image} alt="" anchor-name="--titel" />
-      </div>
-    {/if}
+<section>
+  {#if image}
+    <div class="image-container">
+      <img src={image} alt="" />
+    </div>
+  {/if}
 
-    <h1>{title}</h1>
-    <p>{text}</p>
+  <h1>{title}</h1>
+  <p>{text}</p>
+</section>
 
-  </section>
+<style>
+  section {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 8rem;
+    position: relative;
+    container-type: inline-size;
+  }
 
-  <style>
-    section {
-      max-width: 50rem;
-      margin: 0 auto;
-      padding: 8rem;
-      position: relative;
-    }
-    
-    .image-container {
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-    
+  .image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .image-container img {
+    width: 360%;
+    height: auto;
+    justify-content: center;
+    border-radius: 0.7rem;
+  }
+
+  h1 {
+    font-size: var(--wiki-heading);
+    text-transform: uppercase;
+    color: var(--color-neutral-700);
+    text-align: center;
+    margin: 0rem 1rem 0rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+  p {
+    font-size: var(--wiki-p);
+    line-height: 1.6;
+    color: var(--color-neutral-700);
+    margin-top: 8rem;
+  }
+
+
+  @supports (anchor-name: --titel) and (position-anchor: --titel) {
     .image-container img {
-      width: 80%;
-      height: auto;
-      border-radius: 1rem;
       anchor-name: --titel;
     }
-    
 
     h1 {
-      position-anchor: --titel;
       position: absolute;
+      position-anchor: --titel;
       top: anchor(--titel bottom);
       left: anchor(--titel center);
-      translate: -50% -60%; /* verplaatst de titel iets omhoog en naar links zodat hij exact gecentreerd onderaan de afbeelding staat */
-      font-size: var(--wiki-heading);
-      text-transform: uppercase;
-      color: var(--color-neutral-700);
-      text-align: center; 
+      translate: -50% -60%;
       margin: 0;
-
     }
+  }
 
+ /* RESPONSIVE met container query */
 
-    p {
-      font-size: var(--wiki-p);
-      line-height: 1.6;
-      color: var(--color-neutral-700);
-      margin-top: 2rem;
-    }
-    
-    /* Fallback voor browsers zonder anchor positioning */
-    @supports not (position-anchor: --titel) {
-      h1 {
-        position: absolute;
-        bottom: 0.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
 @container ( width > 48rem) {
   h1 {
     font-size: var(--wiki-heading-mobile);
@@ -82,6 +88,4 @@
   }
 }
 
-    </style>
-  
-  
+</style>

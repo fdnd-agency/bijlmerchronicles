@@ -33,11 +33,13 @@
     background: var(--color-neutral);
     padding: clamp(0.8rem, 2vw, 1.5rem);
     border-right: 0.06rem solid var(--color-neutral-700);
+    margin-top: 7rem;
+    position: fixed;
   }
 
   h3 {
     margin: 0;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: 2rem;
     color: var(--color-neutral-700);
   }
 
@@ -77,7 +79,7 @@
     margin: clamp(0.3rem, 1vh, 0.5rem) 0;
     color: var(--link-color);
     text-decoration: none;
-    font-size: clamp(0.8rem, 1.6vw, 1rem);
+    font-size: 1.5rem;
   }
 
   details a:hover {

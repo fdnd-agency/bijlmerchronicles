@@ -25,9 +25,6 @@ Lorem nar vivamus fringilla lacus nec metus biben eiro woek lwieu rdum egestas. 
 margin-top: 7rem;
 position: fixed;
 }
-:global(body) {
-margin-top: 7rem;
-}
 
 :global(.sidebar details a) {
   font-size: 1.5rem;

@@ -1,5 +1,4 @@
 <script>
-    import { onMount } from "svelte";
     import { afterNavigate } from '$app/navigation';
     //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
 

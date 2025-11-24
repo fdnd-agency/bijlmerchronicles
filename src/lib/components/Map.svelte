@@ -19,7 +19,11 @@
 
 	function createMarkerPopup(marker) {
 		// Use leaflet popup if available (avoid global L dependency)
-		const popup = leaflet && leaflet.popup ? leaflet.popup({}) : null;
+		const popup = leaflet && leaflet.popup ? leaflet.popup({
+			autoPan: true,
+			autoPanPaddingTopLeft: [10, 110],  // Extra padding aan de bovenkant (left, top)
+			autoPanPaddingBottomRight: [10, 10]  // Minimale padding onderaan
+		}) : null;
 		// Prefer a direct poster image URL (provided by server load as `posterimage_url`).
 		// Fallback: try the older nested `marker.poster.covers[...]` shape.
 		let imgHtml = '';
@@ -27,15 +31,15 @@
 			(marker.poster && marker.poster.covers && marker.poster.covers[0] && (marker.poster.covers[0].directus_files_id?.id || marker.poster.covers[0].directus_files_id));
 		if (posterUrl) {
 			const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
-			imgHtml = `<img style="width: clamp(100px, 20vw, 150px);" src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
+			imgHtml = `<img src="${src}" alt="Afbeelding van ${marker.street ?? ''} ${marker.house_number ?? ''}">`;
 		}
 
 		const content = `
 		<div id="popover-container">
 		  ${imgHtml}
-          <p><strong>${marker.title ?? ''}</strong></p>
+          <h2><strong>${marker.title ?? ''}</strong></h2>
           <p>${marker.summary ?? ''}</p>
-		  <a href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
+		  <a class="see-more" href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
 		</div>`;
 
 		if (popup) {
@@ -92,9 +96,9 @@
 					const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
 					icon = leaflet.icon({
 						iconUrl: src,
-						iconSize: [45, 40],
-						iconAnchor: [23, 36],
-						popupAnchor: [1, -34]
+						iconSize: [60, 55],
+						iconAnchor: [30, 50],
+						popupAnchor: [1, -45]
 					});
 				}
 
@@ -146,7 +150,11 @@
 					newMarker.on('click', function () {
 						// toggle pinned state on click so popup stays open for interaction
 						this._pinned = !this._pinned;
-						if (this._pinned) this.openPopup();
+						if (this._pinned) {
+							this.openPopup();
+						} else {
+							this.closePopup();
+						}
 					});
 
 				markers.push(newMarker);
@@ -168,9 +176,9 @@
 					const src = posterUrl.startsWith('http') ? posterUrl : `https://fdnd-agency.directus.app/assets/${posterUrl}`;
 					icon = leaflet.icon({
 						iconUrl: src,
-						iconSize: [36, 54],
-						iconAnchor: [18, 54],
-						popupAnchor: [1, -34]
+						iconSize: [70, 65],
+						iconAnchor: [35, 60],
+						popupAnchor: [1, -55]
 					});
 				}
 
@@ -218,7 +226,11 @@
 					});
 					newMarker.on('click', function () {
 						this._pinned = !this._pinned;
-						if (this._pinned) this.openPopup();
+						if (this._pinned) {
+							this.openPopup();
+						} else {
+							this.closePopup();
+						}
 					});
 
 				markers.push(newMarker);
@@ -281,7 +293,7 @@
 	}
 
 	.leaflet-container {
-		height: 60vh;
+		height: 79vh;
 	}
 
     .poi-container {
@@ -320,14 +332,64 @@
             }
         }
     }
-    .leaflet-popup-content {
-        display: grid;
-        background-color: black;
-        margin: 0;
+	:global(.leaflet-popup-content-wrapper),
+	:global(.leaflet-popup-tip) {
+		box-shadow: var(--box-shadow);
+		background-color: var(--color-neutral);
+		border: 5px solid var(--color-secondary);
+		border-radius: 5px;
+		container-name: popup;
+	}
+
+	:global(.leaflet-popup-tip) {
+		display: none;
+	}
+
+	@media (min-width: 40em) {
+		:global(.leaflet-popup-content-wrapper) {
+			background-color: red;
+		}
+	}
+	
+	@supports (container: popup) {
+		@container popup (min-width: 40em) {
+			:global(.leaflet-popup-content-wrapper) {
+				grid-template-columns: 2fr 1fr;
+			}
+		}
+	}
+	
+
+	
+    :global(.leaflet-popup-content) {
+		width: 200px;
         & img {
-            width: clamp(100px, 20vw, 200px);
+            width: 100%;
             border-radius: 4px;
             margin-right: 0.75rem;
         }
     }
+	:global(#popover-container) {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: min-content min-content min-content;
+		& h2 {
+			font-size: var(--heading-3);
+			margin: 0;
+			text-align: center;
+		}
+	}
+	:global(.see-more) {
+		margin-top: 0.5rem;
+		text-align: center;
+		color: var(--link-color);
+		font-size: var(--paragraph-3);
+		text-decoration: none;
+	}
+	:global(.leaflet-container a.leaflet-popup-close-button) {
+		font-size: 24px;
+		top: 5px;
+		right: 5px;
+		color: black;
+	}
 </style>

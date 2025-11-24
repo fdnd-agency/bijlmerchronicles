@@ -32,7 +32,6 @@
 <style>
 
 /* --------------------------------------- Main heading styling (h1 and background off the h1) ------------------------------------ */
-
     h1{
         font-family: var(--main-font-black);
         font-size: var(--heading-1);
@@ -40,12 +39,13 @@
         position: relative;
         margin: 1.5rem 0rem 0rem 0rem;
         z-index: 2;
-        width: 95vw;
+        max-width: 85vw;
         height: 40vh;
         min-height: 17rem;
         max-height: 18rem;
         display: flex;
         align-items: center;
+        text-wrap: balance;
 
         @media (min-width: 37.5rem){
             width: 60vw;
@@ -60,7 +60,7 @@
             position: absolute;
             left: -1rem;
             top: -2rem;
-            width: 110%;
+            width: calc(100% + 10vw);
             height: 100%;
             z-index: -1;
         }

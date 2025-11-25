@@ -36,6 +36,8 @@
             hamburgerButton.setAttribute("aria-expanded", "false");
             middleLine.style.setProperty('display', 'block');
 
+            focusInMenu = false;
+
             menu.classList.remove('open');
             menu.classList.add('closing');
 

@@ -94,9 +94,9 @@
                 closeMenu();
             }
             
-            setTimeout(() => {
+            hamburgerButton.addEventListener('animationend', () => {
                 hamburgerButton.classList.remove('bounce_animation');
-            }, animation_duration + 100);
+            });
 
         });
 

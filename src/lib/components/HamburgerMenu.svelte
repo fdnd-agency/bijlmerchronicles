@@ -1,5 +1,4 @@
 <script>
-    import { afterNavigate } from '$app/navigation';
     //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
 
     $effect(() => {
@@ -135,15 +134,6 @@
 
         // Bij scrollen, sluit het menu als deze open is
         document.addEventListener("scroll", () => {
-            if (hamburgerButton.classList.contains('hamburger-is-open')) {
-                closeMenu();
-                resetHamburgerIcon();
-            }
-        });
-
-
-        // Na navigeren, sluit het menu als deze open is
-        afterNavigate(() => {
             if (hamburgerButton.classList.contains('hamburger-is-open')) {
                 closeMenu();
                 resetHamburgerIcon();

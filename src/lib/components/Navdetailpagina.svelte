@@ -95,12 +95,20 @@
     opacity: 1;
   }
 
+  /* link style + hoverbar */
   details a {
     display: block;
     margin: clamp(4px, 1vh, 8px) 0;
     color: var(--link-color);
+    color: var(--color-neutral-700);
     text-decoration: none;
     font-size: clamp(0.8rem, 1.6vw, 1rem);
+    position: relative;
+    padding: 4px 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 160ms ease-out;
+  }
   }
 
   details a:hover {

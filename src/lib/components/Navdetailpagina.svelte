@@ -1,8 +1,6 @@
-
 <script>
   export let title = "Navbardetailpagina";
 </script>
-
 
 <div class="sidebar">
   <h3>Inhoud</h3>
@@ -21,7 +19,7 @@
 </div>
 
 <style>
-
+  /* sidebar & slide in*/
   .sidebar {
     display: none;
     min-height: auto;
@@ -29,7 +27,16 @@
     background: var(--color-neutral);
     padding: clamp(12px, 2vw, 24px);
     border-right: 1px solid #ddd;
-    /* padding-top: 200px; */
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: sidebar-in 400ms ease-out forwards;
+  }
+
+  @keyframes sidebar-in {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   h3 {
@@ -54,6 +61,7 @@
     content: "";
   }
 
+  /* Arrow icon */
   details summary::before {
     content: "";
     display: inline-block;
@@ -61,24 +69,71 @@
     height: 1em;
     margin-right: 0.4em;
     background: url("/static/arrow.svg") no-repeat center;
+    background-size: 0.8em;
+    transition: transform 300ms ease;
   }
 
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  /* Zorgt dat de lijst soepel openklapt */
   details ul {
     margin: clamp(4px, 1vh, 8px) 0 0 clamp(15px, 2vw, 25px);
     list-style: none;
     padding: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 220ms ease-out,
+      opacity 220ms ease-out;
   }
 
+  details[open] ul {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  /* link style + hoverbar */
   details a {
     display: block;
     margin: clamp(4px, 1vh, 8px) 0;
-    color: var(--link-color);
+    color: var(--color-neutral-700);
     text-decoration: none;
     font-size: clamp(0.8rem, 1.6vw, 1rem);
+    position: relative;
+    padding: 4px 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 160ms ease-out;
   }
 
+  /* slideover bar */
+  details a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--color-primary-lighter);
+    z-index: -1;
+    opacity: 0;
+    transform-origin: left;
+    transition:
+      width 320ms ease-out,
+      opacity 180ms ease-out;
+  }
+
+  details a:hover::before {
+    width: 100%;
+    opacity: 1;
+  }
+
+  /* tekst schuift iets naar rechts bij hover */
   details a:hover {
-    text-decoration: underline;
+    transform: translateX(4px);
   }
 
   @media (min-width: 1200px) {

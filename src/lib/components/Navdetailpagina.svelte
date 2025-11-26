@@ -61,6 +61,7 @@
     content: "";
   }
 
+  /* Arrow icon */
   details summary::before {
     content: "";
     display: inline-block;
@@ -68,6 +69,12 @@
     height: 1em;
     margin-right: 0.4em;
     background: url("/static/arrow.svg") no-repeat center;
+    background-size: 0.8em;
+    transition: transform 300ms ease;
+  }
+
+  details[open] summary::before {
+    transform: rotate(90deg);
   }
 
   details ul {

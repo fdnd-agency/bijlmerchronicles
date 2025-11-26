@@ -1,23 +1,23 @@
 <script>
-    import { Searchbar } from '$lib';
-    import { Mappreview } from '$lib';
-    import { Lemmacard } from '$lib';
+    import { SearchBar } from '$lib';
+    import { MapPreview } from '$lib';
+    import { LemmaCard } from '$lib';
 </script>
 
 <h1><div class="h1-background"></div>ENCYCLOPEDIE MAPPING IMAGINARIES BIJLMER AMSTERDAM - ZUIDOOST</h1>
 
 <section class="lemma-search-container">
-    <Searchbar />
+    <SearchBar />
 </section>
 
 <div class = "lemmacard-container">
     <ul>
-        <Lemmacard imgname="lemmapngtest1"/>
-        <Lemmacard imgname="lemmapngtest2"/>
-        <Lemmacard imgname="lemmapngtest3"/>
-        <Lemmacard imgname="lemmapngtest1"/>
-        <Lemmacard imgname="lemmapngtest2"/>
-        <Lemmacard imgname="lemmapngtest3"/>
+        <LemmaCard imgname="lemmapngtest1"/>
+        <LemmaCard imgname="lemmapngtest2"/>
+        <LemmaCard imgname="lemmapngtest3"/>
+        <LemmaCard imgname="lemmapngtest1"/>
+        <LemmaCard imgname="lemmapngtest2"/>
+        <LemmaCard imgname="lemmapngtest3"/>
     </ul>
 </div>
 
@@ -27,7 +27,7 @@
     <p>We werken samen om het bestaande werk van gidsen, kenners, kunstenaars en ondernemers te versterken die de waarde van deze buurt al hebben laten zien.</p>
 </section>
 
-<Mappreview />
+<MapPreview />
 
 <style>
 

@@ -1,8 +1,6 @@
-
 <script>
   export let title = "Navbardetailpagina";
 </script>
-
 
 <div class="sidebar">
   <h3>Inhoud</h3>
@@ -21,7 +19,7 @@
 </div>
 
 <style>
-
+  /* sidebar & slide in*/
   .sidebar {
     display: none;
     min-height: auto;
@@ -29,7 +27,16 @@
     background: var(--color-neutral);
     padding: clamp(12px, 2vw, 24px);
     border-right: 1px solid #ddd;
-    /* padding-top: 200px; */
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: sidebar-in 400ms ease-out forwards;
+  }
+
+  @keyframes sidebar-in {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   h3 {

@@ -108,6 +108,27 @@
     overflow: hidden;
     transition: transform 160ms ease-out;
   }
+
+  /* slideover bar */
+  details a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--color-primary-lighter);
+    z-index: -1;
+    opacity: 0;
+    transform-origin: left;
+    transition:
+      width 320ms ease-out,
+      opacity 180ms ease-out;
+  }
+
+  details a:hover::before {
+    width: 100%;
+    opacity: 1;
   }
 
   details a:hover {

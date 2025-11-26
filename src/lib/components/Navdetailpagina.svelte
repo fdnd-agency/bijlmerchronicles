@@ -77,10 +77,22 @@
     transform: rotate(90deg);
   }
 
+  /* Zorgt dat de lijst soepel openklapt */
   details ul {
     margin: clamp(4px, 1vh, 8px) 0 0 clamp(15px, 2vw, 25px);
     list-style: none;
     padding: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 220ms ease-out,
+      opacity 220ms ease-out;
+  }
+
+  details[open] ul {
+    max-height: 400px;
+    opacity: 1;
   }
 
   details a {

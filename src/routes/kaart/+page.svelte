@@ -1,5 +1,5 @@
 <script>
-    import Map from '$lib/components/Map.svelte';
+    import Map from '$lib/components/organisms/map/Map.svelte';
 
     // data inladen vanuit de server.js
     export let data;

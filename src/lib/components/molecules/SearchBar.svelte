@@ -1,6 +1,6 @@
 <script>
 
-  import { Searchicon } from '$lib';
+  import { SearchIcon } from '$lib';
 
   export let type = "Searchbar";
   let query = '';
@@ -23,7 +23,7 @@
     />
 
   <button type="submit" class="search-button" aria-label="Zoeken">
-    <Searchicon />
+    <SearchIcon />
   </button>
 
 </form>

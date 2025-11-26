@@ -1,10 +1,9 @@
 <script>
     export let title = "Naam Lemma";
     export let text = "Informatieve tekst";
-    export let image = "";
+    export let image = ""
   </script>
   
-  <section>
 
 <section>
   {#if image}

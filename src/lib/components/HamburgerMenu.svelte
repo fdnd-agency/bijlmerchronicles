@@ -1,5 +1,4 @@
 <script>
-    import { afterNavigate } from '$app/navigation';
     //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
 
     $effect(() => {
@@ -25,9 +24,6 @@
         const middleLine = document.querySelector('.line-middle');
         const bottomLine = document.querySelector('.line-bottom');
 
-        // Haal de duur van de animaties op uit CSS variabelen
-        const animation_duration = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration'),10);
-
         // Variabele om te checken of focus in het menu is, deze start op false
         let focusInMenu = false;
 
@@ -35,6 +31,8 @@
        function closeMenu() {
             hamburgerButton.setAttribute("aria-expanded", "false");
             middleLine.style.setProperty('display', 'block');
+
+            focusInMenu = false;
 
             menu.classList.remove('open');
             menu.classList.add('closing');
@@ -93,9 +91,9 @@
                 closeMenu();
             }
             
-            setTimeout(() => {
+            hamburgerButton.addEventListener('animationend', () => {
                 hamburgerButton.classList.remove('bounce_animation');
-            }, animation_duration + 100);
+            });
 
         });
 
@@ -133,15 +131,6 @@
 
         // Bij scrollen, sluit het menu als deze open is
         document.addEventListener("scroll", () => {
-            if (hamburgerButton.classList.contains('hamburger-is-open')) {
-                closeMenu();
-                resetHamburgerIcon();
-            }
-        });
-
-
-        // Na navigeren, sluit het menu als deze open is
-        afterNavigate(() => {
             if (hamburgerButton.classList.contains('hamburger-is-open')) {
                 closeMenu();
                 resetHamburgerIcon();

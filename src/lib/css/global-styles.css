@@ -147,8 +147,7 @@ body {
 
 @layer hamburger-menu{
     /* Add blur when hamburger has the 'open' class. Closing class is added so the animation only fades back out again after the full hamburger has closed  */
-    body:has(.hamburger-menu-nav.open),
-    body:has(.hamburger-menu-nav.closing) {
+    body:has(.hamburger-menu-nav.open) {
         main, footer {
             user-select: none;
             filter: blur(1rem);

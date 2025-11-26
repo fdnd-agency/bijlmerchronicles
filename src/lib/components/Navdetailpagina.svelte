@@ -99,7 +99,6 @@
   details a {
     display: block;
     margin: clamp(4px, 1vh, 8px) 0;
-    color: var(--link-color);
     color: var(--color-neutral-700);
     text-decoration: none;
     font-size: clamp(0.8rem, 1.6vw, 1rem);

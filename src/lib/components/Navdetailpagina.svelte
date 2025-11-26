@@ -131,8 +131,9 @@
     opacity: 1;
   }
 
+  /* tekst schuift iets naar rechts bij hover */
   details a:hover {
-    text-decoration: underline;
+    transform: translateX(4px);
   }
 
   @media (min-width: 1200px) {

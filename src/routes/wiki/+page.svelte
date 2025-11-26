@@ -19,18 +19,3 @@ text="Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus e
 Lorem nar vivamus fringilla lacus nec metus biben eiro woek lwieu rdum egestas. Iaculis"
 />
 
-
-<style>
-:global(.sidebar) {
-margin-top: 7rem;
-position: fixed;
-}
-
-:global(.sidebar details a) {
-  font-size: 1.5rem;
-}
-
-:global(.sidebar h3) {
-  font-size: 2rem;
-}
-</style>

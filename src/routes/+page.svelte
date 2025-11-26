@@ -47,7 +47,7 @@
         align-items: center;
         text-wrap: balance;
 
-        @media (min-width: 600px){
+        @media (min-width: 37.5rem){
             width: 60vw;
             height: 40vh;
         }
@@ -107,13 +107,13 @@
             scroll-snap-type: x mandatory;
             list-style-type: none;
             width: 100vw;
-            padding: 20px;
+            padding: 1.25rem;
             margin: 0;
             display: flex;
             gap: 4vw;
         }
 
-        @media (min-width: 700px) {
+        @media (min-width: 44rem) {
             ul {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);

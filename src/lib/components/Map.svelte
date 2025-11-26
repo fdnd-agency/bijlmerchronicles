@@ -19,10 +19,14 @@
 
 	function createMarkerPopup(marker) {
 		// Use leaflet popup if available (avoid global L dependency)
+		// Adjust padding based on viewport width for better centering
+		const isMobile = window.innerWidth < 600;
 		const popup = leaflet && leaflet.popup ? leaflet.popup({
 			autoPan: true,
-			autoPanPaddingTopLeft: [10, 110],  // Extra padding aan de bovenkant (left, top)
-			autoPanPaddingBottomRight: [10, 10]  // Minimale padding onderaan
+			autoPanPaddingTopLeft: isMobile ? [10, 200] : [50, 100],
+			autoPanPaddingBottomRight: isMobile ? [10, 10] : [50, 50],
+			minWidth: 250,
+			maxWidth: 400
 		}) : null;
 		// Prefer a direct poster image URL (provided by server load as `posterimage_url`).
 		// Fallback: try the older nested `marker.poster.covers[...]` shape.
@@ -332,58 +336,51 @@
             }
         }
     }
-	:global(.leaflet-popup-content-wrapper),
-	:global(.leaflet-popup-tip) {
-		box-shadow: var(--box-shadow);
+	:global(.leaflet-popup-content-wrapper) {
+		box-shadow: 5px 5px 0 black;
 		background-color: var(--color-neutral);
 		border: 5px solid var(--color-secondary);
 		border-radius: 5px;
-		container-name: popup;
 	}
 
 	:global(.leaflet-popup-tip) {
 		display: none;
 	}
 
-	@media (min-width: 40em) {
-		:global(.leaflet-popup-content-wrapper) {
-			background-color: red;
-		}
-	}
-	
-	@supports (container: popup) {
-		@container popup (min-width: 40em) {
-			:global(.leaflet-popup-content-wrapper) {
-				grid-template-columns: 2fr 1fr;
-			}
-		}
-	}
-	
-
-	
     :global(.leaflet-popup-content) {
-		width: 200px;
+		width: 250px;
         & img {
             width: 100%;
             border-radius: 4px;
             margin-right: 0.75rem;
         }
+		@media (min-width: 600px) {
+			width: 400px;
+		}
     }
 	:global(#popover-container) {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: min-content min-content min-content;
+		grid-template-rows: max-content max-content max-content;
 		& h2 {
 			font-size: var(--heading-3);
 			margin: 0;
 			text-align: center;
+		}
+		@media (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: max-content max-content max-content;
+			& img {
+				grid-row: 1 / -1;
+				align-self: center;
+			}
 		}
 	}
 	:global(.see-more) {
 		margin-top: 0.5rem;
 		text-align: center;
 		color: var(--link-color);
-		font-size: var(--paragraph-3);
+		font-size: 16px;
 		text-decoration: none;
 	}
 	:global(.leaflet-container a.leaflet-popup-close-button) {

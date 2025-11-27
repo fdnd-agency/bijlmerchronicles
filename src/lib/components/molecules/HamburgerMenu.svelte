@@ -66,7 +66,7 @@
         });
 
         // Na klikken op escape, verwijder hamburger menu
-        document.addEventListener("keydown", (event) => {
+        document.addEventListener("keydown", () => {
             if (
                 event.key === "Escape" &&
                 hamburgerButton.classList.contains('hamburger-is-open')
@@ -123,8 +123,8 @@
             bottomLine.classList.remove('path_animation_bottom');
         }
 
-              // Focusin event listener om te detecteren of focus buiten het menu komt
-        function handleFocusInHamburgerMenu(event) {
+        // Focusin event listener om te detecteren of focus buiten het menu komt
+        function handleFocusInHamburgerMenu() {
             const focused = event.target;
 
             const insideMenuNav = menu.contains(focused);

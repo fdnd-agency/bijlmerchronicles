@@ -8,7 +8,7 @@
         // -------------------------------------------------------------------- //
 
         const hamburgerButton = document.querySelector('.hamburger-button');
-        let menu = document.querySelector('.hamburger-menu-nav');
+        const menu = document.querySelector('.hamburger-menu-nav');
         const links = document.querySelectorAll('.hamburger-menu-nav a');
         const topLine = document.querySelector('.line-top'); // Svg bovenste lijmn
         const middleLine = document.querySelector('.line-middle'); // Svg middelste lijn
@@ -29,9 +29,36 @@
         // verwijder popover weer via javascript als javascript aanstaat
         menu.removeAttribute("popover");
 
-        // Event listener voor hamburger button, na klikken voeg animaties toe en open het menu
-        hamburgerButton.addEventListener('click', () => {
-            const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
+        hamburgerButton.addEventListener('click', handleClick);
+
+        document.addEventListener("keydown", handleKeydown);
+
+        document.addEventListener("focusin", handleFocusInHamburgerMenu);
+
+        document.addEventListener("scroll", handleScroll);
+
+        return cleanUp;
+
+        // -------------------------------------------------------------------- //
+        // ------------------------3. Functie declaraties --------------------- //
+        // -------------------------------------------------------------------- //
+        
+        // Functie om menu te sluiten
+        function closeMenu() {
+            hamburgerButton.setAttribute("aria-expanded", "false");
+            middleLine.style.display = 'block';  
+
+            focusInMenu = false;
+
+            menu.classList.remove('open');
+            menu.classList.add('closing');
+
+            menu.addEventListener('animationend', handleAnimationEndOnMenu);
+        }
+
+        // na klikken voeg animaties toe en open het menu
+        function handleClick(){
+            const hamburgerMenuIsOpen = hamburgerButton.classList.toggle('hamburger-is-open');
             hamburgerButton.setAttribute("aria-expanded", "true");
 
             hamburgerButton.classList.add('bounce_animation');
@@ -40,8 +67,8 @@
             bottomLine.classList.toggle('path_animation_bottom');
 
             // Open of sluit menu afhankelijk van de staat en voeg animaties toe aan de links
-            if (hamburger_menu_is_open) {
-                middleLine.style.setProperty('display', 'none');
+            if (hamburgerMenuIsOpen ) {
+                middleLine.style.display = 'none';  
 
                 menu.classList.add('open');
                 menu.hidden = false;  
@@ -59,62 +86,7 @@
                 closeMenu();
             }
             
-            hamburgerButton.addEventListener('animationend', () => {
-                hamburgerButton.classList.remove('bounce_animation');
-            });
-
-        });
-
-        // Na klikken op escape, verwijder hamburger menu
-        document.addEventListener("keydown", () => {
-            if (
-                event.key === "Escape" &&
-                hamburgerButton.classList.contains('hamburger-is-open')
-            ) {
-                closeMenu();
-                resetHamburgerIcon();
-            }
-        });
-
-        document.addEventListener("focusin", handleFocusInHamburgerMenu);
-
-        // Bij scrollen, sluit het menu als deze open is
-        document.addEventListener("scroll", () => {
-            if (hamburgerButton.classList.contains('hamburger-is-open')) {
-                closeMenu();
-                resetHamburgerIcon();
-            }
-        });
-
-        // -------------------------------------------------------------------- //
-        // ------------------------3. Functie declaraties --------------------- //
-        // -------------------------------------------------------------------- //
-        
-        // Functie om menu te sluiten
-        function closeMenu() {
-            hamburgerButton.setAttribute("aria-expanded", "false");
-            middleLine.style.setProperty('display', 'block');
-
-            focusInMenu = false;
-
-            menu.classList.remove('open');
-            menu.classList.add('closing');
-
-            menu.addEventListener('animationend', () => {
-
-                // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: 
-                if (event.animationName.includes("slide-out")) {
-
-                    menu.classList.remove('closing');
-                    menu.hidden = true;
-
-                    links.forEach(link => {
-                        link.classList.remove('slide-in-text');
-                    });
-                }
-
-            });
-
+            hamburgerButton.addEventListener('animationend', handleAnimationEndOnButton);
         }
 
         function resetHamburgerIcon() {
@@ -124,7 +96,7 @@
         }
 
         // Focusin event listener om te detecteren of focus buiten het menu komt
-        function handleFocusInHamburgerMenu() {
+        function handleFocusInHamburgerMenu(event) {
             const focused = event.target;
 
             const insideMenuNav = menu.contains(focused);
@@ -142,8 +114,53 @@
             }
         }
 
+        function handleKeydown(event) {
+            const key = event.key;
+
+            if (
+                key === "Escape" &&
+                hamburgerButton.classList.contains('hamburger-is-open')
+            ) {
+                closeMenu();
+                resetHamburgerIcon();
+            }
+        }
+
+        function handleScroll(event) {
+            if (hamburgerButton.classList.contains('hamburger-is-open')) {
+                closeMenu();
+                resetHamburgerIcon();
+            }
+        }
+        
+        function handleAnimationEndOnMenu(event) {
+            // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: 
+            if (event.animationName.includes("slide-out")) {
+
+                menu.classList.remove('closing');
+                menu.hidden = true;
+
+                links.forEach(link => {
+                    link.classList.remove('slide-in-text');
+                });
+            }
+        }
+
+        function handleAnimationEndOnButton(event) {
+            hamburgerButton.classList.remove('bounce_animation');
+        }
+
+        function cleanUp() {
+            hamburgerButton.removeEventListener('click', handleClick);
+            hamburgerButton.removeEventListener('animationend', handleAnimationEndOnButton);
+            menu.removeEventListener('animationend', handleAnimationEndOnMenu);
+            document.removeEventListener("keydown", handleKeydown);
+            document.removeEventListener("focusin", handleFocusInHamburgerMenu);
+            document.removeEventListener("scroll", handleScroll);
+        }
 
     });
+
 
 </script>
 

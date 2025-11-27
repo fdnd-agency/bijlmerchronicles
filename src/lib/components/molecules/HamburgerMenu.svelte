@@ -2,65 +2,33 @@
     //codepen (voor uitleg): https://codepen.io/Lutrian1/pen/WbrXZZE
 
     $effect(() => {
-        
-        // Alle variablen maken en selecteren in de DOM
+
+        // -------------------------------------------------------------------- //
+        // --------------- ---------1. Alle variabelen ------------------------ //
+        // -------------------------------------------------------------------- //
+
         const hamburgerButton = document.querySelector('.hamburger-button');
+        let menu = document.querySelector('.hamburger-menu-nav');
+        const links = document.querySelectorAll('.hamburger-menu-nav a');
+        const topLine = document.querySelector('.line-top'); // Svg bovenste lijmn
+        const middleLine = document.querySelector('.line-middle'); // Svg middelste lijn
+        const bottomLine = document.querySelector('.line-bottom'); // Svg onderste lijn
+        let focusInMenu = false;
+        
+        // -------------------------------------------------------------------- //
+        // ---------------------------2. Code Logic --------------------------- //
+        // -------------------------------------------------------------------- //
+
+        links.forEach(link => {
+            link.style.opacity = "0";
+        });
 
         // Zet menu standaard op hidden, dit moet in javascript, omdat als javascript uit staat, de popover dan niet werkt 
-        let menu = document.querySelector('.hamburger-menu-nav');
         menu.hidden = true;       
 
         // verwijder popover weer via javascript als javascript aanstaat
         menu.removeAttribute("popover");
 
-        // Zet de opacity van de links op 0 zodat ze onzichtbaar zijn bij het openen van het menu, dit moet in javascript, omdat als javascript uit staat, de popover dan niet werkt, dit staat op 0 voor de fade in animatie
-        const links = document.querySelectorAll('.hamburger-menu-nav a');
-        links.forEach(link => {
-            link.style.opacity = "0";
-        });
-
-        // Selecteer de lijnen van de hamburgerSVG
-        const topLine = document.querySelector('.line-top');
-        const middleLine = document.querySelector('.line-middle');
-        const bottomLine = document.querySelector('.line-bottom');
-
-        // Variabele om te checken of focus in het menu is, deze start op false
-        let focusInMenu = false;
-
-        // Functie om menu te sluiten
-       function closeMenu() {
-            hamburgerButton.setAttribute("aria-expanded", "false");
-            middleLine.style.setProperty('display', 'block');
-
-            focusInMenu = false;
-
-            menu.classList.remove('open');
-            menu.classList.add('closing');
-
-            menu.addEventListener('animationend', () => {
-
-                // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: 
-                if (event.animationName.includes("slide-out")) {
-
-                    menu.classList.remove('closing');
-                    menu.hidden = true;
-
-                    links.forEach(link => {
-                        link.classList.remove('slide-in-text');
-                    });
-                }
-
-            });
-
-        }
-
-        // Reset hamburger icon
-        function resetHamburgerIcon() {
-            hamburgerButton.classList.remove('hamburger-is-open');
-            topLine.classList.remove('path_animation_top');
-            bottomLine.classList.remove('path_animation_bottom');
-        }
-        
         // Event listener voor hamburger button, na klikken voeg animaties toe en open het menu
         hamburgerButton.addEventListener('click', () => {
             const hamburger_menu_is_open = hamburgerButton.classList.toggle('hamburger-is-open');
@@ -136,6 +104,43 @@
                 resetHamburgerIcon();
             }
         });
+
+        // -------------------------------------------------------------------- //
+        // ------------------------3. Functie declaraties --------------------- //
+        // -------------------------------------------------------------------- //
+        
+        // Functie om menu te sluiten
+        function closeMenu() {
+            hamburgerButton.setAttribute("aria-expanded", "false");
+            middleLine.style.setProperty('display', 'block');
+
+            focusInMenu = false;
+
+            menu.classList.remove('open');
+            menu.classList.add('closing');
+
+            menu.addEventListener('animationend', () => {
+
+                // event.animationName moet "includes" bevatten omdat sveltekit altijd een random animatie naam toevoegt dat elke keer veranderd. Check uitleg hier: 
+                if (event.animationName.includes("slide-out")) {
+
+                    menu.classList.remove('closing');
+                    menu.hidden = true;
+
+                    links.forEach(link => {
+                        link.classList.remove('slide-in-text');
+                    });
+                }
+
+            });
+
+        }
+
+        function resetHamburgerIcon() {
+            hamburgerButton.classList.remove('hamburger-is-open');
+            topLine.classList.remove('path_animation_top');
+            bottomLine.classList.remove('path_animation_bottom');
+        }
 
     });
 

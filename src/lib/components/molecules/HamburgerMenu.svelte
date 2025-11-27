@@ -76,25 +76,6 @@
             }
         });
 
-        // Focusin event listener om te detecteren of focus buiten het menu komt
-        function handleFocusInHamburgerMenu(event) {
-            const focused = event.target;
-
-            const insideMenuNav = menu.contains(focused);
-            const focusOnButton = hamburgerButton.contains(focused);
-
-            if (insideMenuNav) {
-                focusInMenu = true;
-                return;
-            }
-
-            if (focusInMenu && !focusOnButton) {
-                closeMenu();
-                resetHamburgerIcon();
-                focusInMenu = false;
-            }
-        }
-
         document.addEventListener("focusin", handleFocusInHamburgerMenu);
 
         // Bij scrollen, sluit het menu als deze open is
@@ -141,6 +122,26 @@
             topLine.classList.remove('path_animation_top');
             bottomLine.classList.remove('path_animation_bottom');
         }
+
+              // Focusin event listener om te detecteren of focus buiten het menu komt
+        function handleFocusInHamburgerMenu(event) {
+            const focused = event.target;
+
+            const insideMenuNav = menu.contains(focused);
+            const focusOnButton = hamburgerButton.contains(focused);
+
+            if (insideMenuNav) {
+                focusInMenu = true;
+                return;
+            }
+
+            if (focusInMenu && !focusOnButton) {
+                closeMenu();
+                resetHamburgerIcon();
+                focusInMenu = false;
+            }
+        }
+
 
     });
 

@@ -124,6 +124,60 @@ Foto:
 
 - Fatima > Matthijs: Je denkt dat het houden van een retrospective fijn is voor beter overzicht, om verder te kunnen met het project en meer duidelijkheid te krijgen over hoe we het verder kunnen gaan oppakken.
 
+# Retrospective 28/11
+
+## Three Words (#82)
+
+- Luuk: 
+1. Sloom
+2. Leerzaam
+3. Progressie
+
+
+Fatima:
+1. Stagnerend
+2. Praktisch
+3. Inzichtelijk
+
+Matthijs: 
+
+1. 
+2. 
+3. 
+
+
+## Proud & Sorry (#33)
+
+- Did anything surprise you? 
+Nee
+- What patterns do you see? 
+We zijn het met elkaar eens en vinden dat we moeten kijken naar het grote geheeld
+
+- What do they mean for you as a team?
+Dat we moeten focussen op het grote geheel in plaats van focussen op kleine taken.
+
+## The Worst We Could Do (#69)
+We zijn het mee eens dat de communicatie meer kan, en vaker standups moeten houde.
+
+
+## Outside In (#124)
+
+
+## Appreciations (#15)
+
+Luuk: 
+- Fatima: Blij dat Fatima de taak van het refactoren heeft opgepakt. Houdt ook de documentatie altijd bij en voert testen uit. 
+- Matthijs: Blij dat hij de lastigste taak niet heeft opgegeven en niet heeft neergelegd bij anderen.
+
+Fatima:
+- Luuk: Ondanks dat de hamburger menu veel tijd heeft gekost, heeft hij een hele leuke en unieke gemaakt en ook echt aan de user experience gedacht. 
+- Matthijs: De dynamische map was een van de moelijkste gedeelte maar hij heeft het laten lukken!  
+
+Matthijs: 
+- Luuk:
+- Fatima:
+
+
 # Projectinrichting
 
 ### DoR

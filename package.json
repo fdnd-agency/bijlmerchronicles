@@ -18,6 +18,10 @@
 		"vite": "^7.1.7"
 	},
 	"dependencies": {
-		"leaflet": "^1.9.4"
+		"@threlte/core": "^8.3.0",
+		"@threlte/extras": "^9.7.1",
+		"gsap": "^3.13.0",
+		"leaflet": "^1.9.4",
+		"three": "^0.181.2"
 	}
 }

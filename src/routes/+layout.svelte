@@ -1,7 +1,6 @@
 <script>
 	import favicon from '$lib/assets/logo-favicon.avif';
 	import '$lib/css/global-styles.css';
-	import { Header } from "$lib";
 	import { AmsterdamStarsSVG } from "$lib";
 
 	let { children } = $props();
@@ -13,9 +12,7 @@
 </svelte:head>
 
 <!-- COMPONENT: BACKGROUND--> 
-<header>
-	<Header />
-</header>
+
 
 <main>
 	{@render children?.()}
@@ -34,6 +31,5 @@
 	}
 
 	main{
-		margin-top: -7.3rem;
 	}
 </style>

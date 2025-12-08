@@ -158,10 +158,12 @@ Dat we moeten focussen op het grote geheel in plaats van focussen op kleine take
 
 ## The Worst We Could Do (#69)
 We zijn het mee eens dat de communicatie meer kan, en vaker standups moeten houde.
+![WhatsApp Image 2025-12-08 at 11 34 56 (1)](https://github.com/user-attachments/assets/28acff18-c7d4-4fc9-ae5d-42b20b8a483f)
 
 
 ## Outside In (#124)
 
+![WhatsApp Image 2025-12-08 at 11 34 56](https://github.com/user-attachments/assets/4178f0da-058b-4950-8a49-c4660aafa7ab)
 
 ## Appreciations (#15)
 

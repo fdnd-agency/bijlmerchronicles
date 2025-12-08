@@ -152,14 +152,6 @@
         </div>
     </div>
 
-    <div class="sneeuwvlokken" aria-hidden="true">
-    <div>❅</div><div>❅</div><div>❅</div><div>❅</div><div>❅</div>
-    <div>❅</div><div>❅</div><div>❅</div><div>❅</div><div>❅</div>
-
-    <div>❅</div><div>❅</div><div>❅</div><div>❅</div><div>❅</div>
-    <div>❅</div><div>❅</div><div>❅</div><div>❅</div><div>❅</div>
-    </div>
-
 </div>
 
 <!-- STYLING -->

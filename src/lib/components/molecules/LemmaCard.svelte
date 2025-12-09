@@ -63,24 +63,31 @@
 
     a {
         h2 {
-            opacity: 0  ;
             display: block;
             position: absolute;
+            transform: translateX(-50%) translateY(-0.1rem) scale(1.05);
             bottom: 0.1rem;
             left: 50%;
-            transform: translateX(-50%) translateY(0.6rem) scale(1.05);
             margin: 0;
             justify-self: center;
             white-space: nowrap;
             font-size: 1.25rem;
-            transition:
-                opacity 0.25s ease-out,
-                transform 0.25s ease-out;
         }
-        &:hover h2,
-        &:focus-within h2 {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0) scale(1.05);
+
+        @media (prefers-reduced-motion: no-preference) and (hover: hover){
+            h2 {
+                transform: translateX(-50%) translateY(0.6rem) scale(1.05);
+                opacity: 0;
+                transition:
+                    opacity 0.25s ease-out,
+                    transform 0.25s ease-out;
+            }
+
+            &:hover h2,
+            &:focus-within h2 {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1.05);
+            }
         }
     }
 

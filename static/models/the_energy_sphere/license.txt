@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Energy Sphere
+* source:	https://sketchfab.com/3d-models/the-energy-sphere-a073d97754d84f988c09df92ce4492a0
+* author:	prototypus (https://sketchfab.com/prototypus)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Energy Sphere" (https://sketchfab.com/3d-models/the-energy-sphere-a073d97754d84f988c09df92ce4492a0) by prototypus (https://sketchfab.com/prototypus) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

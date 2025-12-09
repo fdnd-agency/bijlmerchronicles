@@ -1,0 +1,11 @@
+Model Information:
+* title:	Looping Particle Trail FBX 0.9MB!
+* source:	https://sketchfab.com/3d-models/looping-particle-trail-fbx-09mb-5b0496d88a7c4ed49219869673322100
+* author:	IZ.MdVerz (https://sketchfab.com/IZ.MdVerz)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Looping Particle Trail FBX 0.9MB!" (https://sketchfab.com/3d-models/looping-particle-trail-fbx-09mb-5b0496d88a7c4ed49219869673322100) by IZ.MdVerz (https://sketchfab.com/IZ.MdVerz) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Particle Wave
+* source:	https://sketchfab.com/3d-models/particle-wave-072b42ac6b8d4c93a55f3c524e44b2f3
+* author:	Tycho Magnetic Anomaly (https://sketchfab.com/Tycho_Magnetic_Anomaly)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Particle Wave" (https://sketchfab.com/3d-models/particle-wave-072b42ac6b8d4c93a55f3c524e44b2f3) by Tycho Magnetic Anomaly (https://sketchfab.com/Tycho_Magnetic_Anomaly) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

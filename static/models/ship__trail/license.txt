@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ship_ Trail
+* source:	https://sketchfab.com/3d-models/ship--trail-66c9059a1760457c806067b81ab41a4c
+* author:	m.adityamondal2003 (https://sketchfab.com/m.adityamondal2003)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ship_ Trail" (https://sketchfab.com/3d-models/ship--trail-66c9059a1760457c806067b81ab41a4c) by m.adityamondal2003 (https://sketchfab.com/m.adityamondal2003) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

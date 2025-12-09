@@ -3,8 +3,8 @@ html, body{
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
-    color: var(--color-text);
-    background: var(--color-background);
+    color: white;
+    background-color: #181818;
     height: 100%;
     width: 100%;
 }

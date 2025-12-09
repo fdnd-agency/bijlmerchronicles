@@ -1,0 +1,11 @@
+Model Information:
+* title:	Particle Beam
+* source:	https://sketchfab.com/3d-models/particle-beam-4d251c485f5245e099ac786d4139e40e
+* author:	Tycho Magnetic Anomaly (https://sketchfab.com/Tycho_Magnetic_Anomaly)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Particle Beam" (https://sketchfab.com/3d-models/particle-beam-4d251c485f5245e099ac786d4139e40e) by Tycho Magnetic Anomaly (https://sketchfab.com/Tycho_Magnetic_Anomaly) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

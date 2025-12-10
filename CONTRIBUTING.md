@@ -218,6 +218,15 @@ https://miro.com/app/board/uXjVGdBvKDw=/
 - Hoe kunnen we het probleem oplossen?
 - Afronding
 
+## Burn-Down Chart
+
+Begin: 
+
+<img width="962" height="588" alt="image" src="https://github.com/user-attachments/assets/036b9164-d5d6-4446-bd0e-913f2d9f81db" />
+
+Bekijk de chart [hier](https://miro.com/welcomeonboard/Z0UyRG5QU3pjNW5IcGowSTdNUHBPMk1HZ3BNeUMreS9NN1FZU3RJRGMwcVN5NXBpaXJSdHBTUEVUOE5SRHMwd29hNU9ZZ21mamhRUm00blRFVU44VmFLZkdaM21UcU0xQ0kwK3M1WWtINW9yWGlGTWNKZldJS3BVSG9iU3MrR050R2lncW1vRmFBVnlLcVJzTmdFdlNRPT0hdjE=?share_link_id=682360362029).
+
+
 
 
 

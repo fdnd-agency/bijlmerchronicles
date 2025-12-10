@@ -4,7 +4,7 @@
     const { members = [] } = data;
 </script>
 
-<main class="team-page">
+<main>
 
     <section class="over-ons-section">
         <h2>Over Ons</h2>
@@ -14,27 +14,20 @@
 
     <section class="ons-team-heading">
         <h3>Ons Team</h3>
-        <p class="subtitle">Maak kennis met de mensen achter dit project</p>
-    </section>
+        <p>Maak kennis met de mensen achter dit project</p>
 
-    <section class="team-grid">
         {#each members as person}
-            <article class="member-card">
-
+            <article class="member-info">
                 <h4>{person.name}</h4>
-                <aside class="role">{person.role}</aside>
-
-                <article class="bio">
-                    <p>{person.bio}</p>
-                </article>
-
+                <aside class="role">{person.role}</aside><p>{person.bio}</p>
             </article>
         {/each}
+
     </section>
 
     <section class="onze-partners">
         <h3>Onze Partners</h3>
-        <p class="subtitle">HIER KOMEN ONZE PARTNERS</p>
+        <p>HIER KOMEN ONZE PARTNERS</p>
     </section>
 
 </main>
@@ -62,9 +55,9 @@
         font-size: var(--paragraph-3);
     }
 
-    /* Preserve line breaks exactly as stored in DB */
-    .bio p {
-        white-space: pre-line;
+    aside{
+        font-size: var(--paragraph-2);
+        font-weight: bold;
     }
 
     /*----------------------------------- Grid-layour voor de main zodat alles mooi uitgelijnd is --------------------------------------*/

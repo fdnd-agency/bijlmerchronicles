@@ -1,6 +1,5 @@
 <script>
     import logo from '$lib/assets/logo.avif';
-    import { HamburgerSVG } from '$lib';
 </script>
 
 <nav>
@@ -24,7 +23,6 @@
 
     
     <div class="hamburger-container">
-        <HamburgerSVG />
     </div>
 
 </nav>

@@ -1,6 +1,5 @@
 <script>
 	import favicon from '$lib/assets/logo-favicon.avif';
-	import '$lib/css/global-styles.css';
 	import { Header } from "$lib";
 	import { AmsterdamStarsSVG } from "$lib";
 
@@ -12,10 +11,6 @@
 	<title>Encyclopédie Mapping Bijlmer Zuid-Oost </title>
 </svelte:head>
 
-<!-- COMPONENT: BACKGROUND--> 
-<header>
-	<Header />
-</header>
 
 <main>
 	{@render children?.()}
@@ -31,9 +26,5 @@
 		height: var(--header-height);
     	min-height: 9rem;
 		top: 0;
-	}
-
-	main{
-		margin-top: -7.3rem;
 	}
 </style>

@@ -202,7 +202,7 @@ Checklsit die aangeeft of een user story af is
 
 # Project Inrichting
 
-We hebben gekozen voor de burn-up chart, hier is onze online omgeving:
+We hebben gekozen voor de burn-down chart, hier is onze online omgeving:
 
 https://miro.com/app/board/uXjVGdBvKDw=/
 

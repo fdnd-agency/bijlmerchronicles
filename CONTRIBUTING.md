@@ -200,6 +200,18 @@ Checklsit die aangeeft of een user story af is
 - Feedback
 - Gecomit en verwerkt op de dev
 
+# Project Inrichting
+
+![WhatsApp Image 2025-12-10 at 14 11 51](https://github.com/user-attachments/assets/e614ca41-a297-45ae-ac9b-2907b5d961ea)
+
+## Post Mortem
+
+### Vragenlijst
+- Probleem analyse
+- Wat ging goed?
+- Wat ging fout?
+- Hoe kunnen we het probleem oplossen?
+- Afronding
 
 
 

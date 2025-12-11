@@ -29,6 +29,7 @@
 	header{
 		width: 100%;
 		height: var(--header-height);
+		min-height: 9.3rem;
 		top: 0;
 	}
 

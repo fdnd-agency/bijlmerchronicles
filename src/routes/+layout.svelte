@@ -29,10 +29,10 @@
 	header{
 		width: 100%;
 		height: var(--header-height);
-    	min-height: 9rem;
 		top: 0;
 	}
 
 	main{
+		margin-top: -7.3rem;
 	}
 </style>

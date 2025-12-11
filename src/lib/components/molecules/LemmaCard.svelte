@@ -27,15 +27,15 @@
         a{
             position: relative;
             display: block;
-            width: 200px;
-            height: 100px;
+            width: 12.5rem;
+            height: 6.3rem;
             border-radius: var(--border-radius-cards);
                     
             &:nth-of-type(1n) {
-                box-shadow: 5px 5px 0px var(--color-primary-darkest);
+                box-shadow: 0.3rem 0.3rem 0rem var(--color-primary-darkest);
             }
             &:nth-of-type(2n) {
-                box-shadow: 5px 5px 0px var(--color-secondary);
+                box-shadow: 0.3rem 0.3rem 0rem var(--color-secondary);
             }
 
         }
@@ -63,24 +63,31 @@
 
     a {
         h2 {
-            opacity: 0  ;
             display: block;
             position: absolute;
-            bottom: 2px;
+            transform: translateX(-50%) translateY(-0.1rem) scale(1.05);
+            bottom: 0.1rem;
             left: 50%;
-            transform: translateX(-50%) translateY(10px) scale(1.05);
             margin: 0;
             justify-self: center;
             white-space: nowrap;
             font-size: 1.25rem;
-            transition:
-                opacity 0.25s ease-out,
-                transform 0.25s ease-out;
         }
-        &:hover h2,
-        &:focus-within h2 {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0) scale(1.05);
+
+        @media (prefers-reduced-motion: no-preference) and (hover: hover){
+            h2 {
+                transform: translateX(-50%) translateY(0.6rem) scale(1.05);
+                opacity: 0;
+                transition:
+                    opacity 0.25s ease-out,
+                    transform 0.25s ease-out;
+            }
+
+            &:hover h2,
+            &:focus-within h2 {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1.05);
+            }
         }
     }
 
@@ -90,8 +97,8 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 20px;
-        transform: translateY(-10px);
+        border-radius: 1.25rem;
+        transform: translateY(-0.6rem);
     }
 
 </style>

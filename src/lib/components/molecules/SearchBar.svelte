@@ -1,6 +1,6 @@
 <script>
 
-  import { Searchicon } from '$lib';
+  import { SearchIcon } from '$lib';
 
   export let type = "Searchbar";
   let query = '';
@@ -23,7 +23,7 @@
     />
 
   <button type="submit" class="search-button" aria-label="Zoeken">
-    <Searchicon />
+    <SearchIcon />
   </button>
 
 </form>
@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    max-width: 600px;
+    max-width: 37.5rem;
     width: 100%;
   }
   
@@ -47,14 +47,14 @@
     width: 100%;
     padding: 0.7rem;
     font-size: 1.5rem;
-    border: 4px solid var(--color-secondary);
+    border: 0.3rem solid var(--color-secondary);
     flex: 1;
-    border-radius: 10px;
+    border-radius: 0.6rem;
     background-color: var(--color-neutral-200);
     color: var(--color-secondary);
     &:focus {
       outline: 2px solid var(--color-secondary);
-      outline-offset: 3px; /* kleine offset, pas aan indien nodig */
+      outline-offset: 0.2rem;
       box-shadow: none;
     }
   }
@@ -72,19 +72,17 @@
     position: relative;
     padding: 1.7rem 1.1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 4px 4px 2px 1px var(--color-neutral-200);
+    box-shadow:  0.3rem  0.3rem 0.1rem 0.06rem var(--color-neutral-200);
     &:focus {
-      outline: 2px solid var(--color-secondary);
-      outline-offset: 3px; /* kleine offset, pas aan indien nodig */
+      outline: 0.1rem solid var(--color-secondary);
+      outline-offset: 0.2rem;
       box-shadow: none;
     }
   }
   
 </style>
-  
-  

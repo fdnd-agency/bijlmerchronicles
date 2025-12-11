@@ -74,7 +74,7 @@
         color: #FFFFFF;
         text-decoration: none;
         padding: .6em;
-        border-radius: 10px;
+        border-radius: 0.6rem;
         font-size: 1.25rem;
         &::after {
             content: "";
@@ -84,7 +84,7 @@
             right: 0;
             bottom: 0;
         }
-        @media (min-width: 600px) {
+        @media (min-width: 37.5rem) {
             font-size: 1.5em;
             padding: .5em 1em;
         }

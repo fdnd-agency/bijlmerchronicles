@@ -363,9 +363,13 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: max-content max-content max-content;
 		& h2 {
+			color: var(--color-secondary);
 			font-size: var(--heading-3);
 			margin: 0;
 			text-align: center;
+		}
+		& p{
+			color: var(--color-secondary);
 		}
 		@media (min-width: 600px) {
 			grid-template-columns: 1fr 1fr;

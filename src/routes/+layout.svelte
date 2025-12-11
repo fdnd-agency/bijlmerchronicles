@@ -31,8 +31,6 @@
 		height: var(--header-height);
     	min-height: 9rem;
 		top: 0;
-		container-name: header;
-        container-type: inline-size;
 	}
 
 	main{

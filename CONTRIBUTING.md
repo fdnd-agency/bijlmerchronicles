@@ -124,6 +124,62 @@ Foto:
 
 - Fatima > Matthijs: Je denkt dat het houden van een retrospective fijn is voor beter overzicht, om verder te kunnen met het project en meer duidelijkheid te krijgen over hoe we het verder kunnen gaan oppakken.
 
+# Retrospective 28/11
+
+## Three Words (#82)
+
+- Luuk: 
+1. Sloom
+2. Leerzaam
+3. Progressie
+
+
+Fatima:
+1. Stagnerend
+2. Praktisch
+3. Inzichtelijk
+
+Matthijs: 
+
+1. 
+2. 
+3. 
+
+
+## Proud & Sorry (#33)
+
+- Did anything surprise you? 
+Nee
+- What patterns do you see? 
+We zijn het met elkaar eens en vinden dat we moeten kijken naar het grote geheeld
+
+- What do they mean for you as a team?
+Dat we moeten focussen op het grote geheel in plaats van focussen op kleine taken.
+
+## The Worst We Could Do (#69)
+We zijn het mee eens dat de communicatie meer kan, en vaker standups moeten houde.
+![WhatsApp Image 2025-12-08 at 11 34 56 (1)](https://github.com/user-attachments/assets/28acff18-c7d4-4fc9-ae5d-42b20b8a483f)
+
+
+## Outside In (#124)
+
+![WhatsApp Image 2025-12-08 at 11 34 56](https://github.com/user-attachments/assets/4178f0da-058b-4950-8a49-c4660aafa7ab)
+
+## Appreciations (#15)
+
+Luuk: 
+- Fatima: Blij dat Fatima de taak van het refactoren heeft opgepakt. Houdt ook de documentatie altijd bij en voert testen uit. 
+- Matthijs: Blij dat hij de lastigste taak niet heeft opgegeven en niet heeft neergelegd bij anderen.
+
+Fatima:
+- Luuk: Ondanks dat de hamburger menu veel tijd heeft gekost, heeft hij een hele leuke en unieke gemaakt en ook echt aan de user experience gedacht. 
+- Matthijs: De dynamische map was een van de moelijkste gedeelte maar hij heeft het laten lukken!  
+
+Matthijs: 
+- Luuk:
+- Fatima:
+
+
 # Projectinrichting
 
 ### DoR
@@ -144,6 +200,31 @@ Checklsit die aangeeft of een user story af is
 - Feedback
 - Gecomit en verwerkt op de dev
 
+# Project Inrichting
+
+We hebben gekozen voor de burn-down chart, hier is onze online omgeving:
+
+https://miro.com/app/board/uXjVGdBvKDw=/
+
+
+![WhatsApp Image 2025-12-10 at 14 11 51](https://github.com/user-attachments/assets/e614ca41-a297-45ae-ac9b-2907b5d961ea)
+
+## Post Mortem
+
+### Vragenlijst
+- Probleem analyse
+- Wat ging goed?
+- Wat ging fout?
+- Hoe kunnen we het probleem oplossen?
+- Afronding
+
+## Burn-Down Chart
+
+Begin: 
+
+<img width="962" height="588" alt="image" src="https://github.com/user-attachments/assets/036b9164-d5d6-4446-bd0e-913f2d9f81db" />
+
+Bekijk de chart [hier](https://miro.com/welcomeonboard/Z0UyRG5QU3pjNW5IcGowSTdNUHBPMk1HZ3BNeUMreS9NN1FZU3RJRGMwcVN5NXBpaXJSdHBTUEVUOE5SRHMwd29hNU9ZZ21mamhRUm00blRFVU44VmFLZkdaM21UcU0xQ0kwK3M1WWtINW9yWGlGTWNKZldJS3BVSG9iU3MrR050R2lncW1vRmFBVnlLcVJzTmdFdlNRPT0hdjE=?share_link_id=682360362029).
 
 
 

@@ -34,6 +34,5 @@
 	}
 
 	main{
-		margin-top: -7.3rem;
 	}
 </style>

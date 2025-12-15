@@ -1,5 +1,5 @@
 <script>
-  export let title = "NavbarDetailPagina";
+  export let title = "Navbardetailpagina";
 </script>
 
 <div class="sidebar">
@@ -19,17 +19,20 @@
 </div>
 
 <style>
+
   /* sidebar & slide in*/
   .sidebar {
     display: none;
-    min-height: auto;
     width: clamp(180px, 20vw, 260px);
     background: var(--color-neutral);
     padding: clamp(12px, 2vw, 24px);
-    border-right: 1px solid #ddd;
+    /* border-right: 1px solid #ddd; */
     opacity: 0;
-    transform: translateX(-12px);
+    transform: translateX(-142px);
     animation: sidebar-in 400ms ease-out forwards;
+    position: sticky;
+    top: 15vh; /*De navbar is lager geplaatst om niet met de logo to overlappen */
+    height: 5vh;
   }
 
   @keyframes sidebar-in {
@@ -78,6 +81,7 @@
   }
 
   /* Zorgt dat de lijst soepel openklapt */
+
   details ul {
     margin: clamp(4px, 1vh, 8px) 0 0 clamp(15px, 2vw, 25px);
     list-style: none;
@@ -96,6 +100,7 @@
   }
 
   /* link style + hoverbar */
+
   details a {
     display: block;
     margin: clamp(4px, 1vh, 8px) 0;
@@ -109,7 +114,6 @@
     transition: transform 160ms ease-out;
   }
 
-  /* slideover bar */
   details a::before {
     content: "";
     position: absolute;
@@ -131,7 +135,6 @@
     opacity: 1;
   }
 
-  /* tekst schuift iets naar rechts bij hover */
   details a:hover {
     transform: translateX(4px);
   }

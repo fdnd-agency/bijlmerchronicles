@@ -36,9 +36,9 @@ body {
 
         /* --------------------------------------- Heading levels ------------------------------------ */
 
-        --heading-1: clamp(1.875rem, 4.740vw, 3.25rem);
+        --heading-1: clamp(1.875rem, 4.740vw, 4rem);
 
-        --heading-2: clamp(2.5rem, 4vw, 4rem);
+        --heading-2: clamp(2.5rem, 4vw, 3.25rem);
 
         --heading-3: clamp(1.375rem, 4vw, 2.25rem);
         

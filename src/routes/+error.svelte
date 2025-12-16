@@ -84,9 +84,11 @@
     /* -- Hover styling per button --  */
     .backtohome-btn {
         color: var(--accent-color);
-
-        &::before{
-            background-color: var(--color-secondary);
+        background-color: var(--color-secondary);
+        @supports (content: "") {
+            &::before{
+                background-color: var(--color-secondary);
+            }
         }
 
         &:hover{

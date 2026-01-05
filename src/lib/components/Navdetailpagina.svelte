@@ -19,20 +19,18 @@
 </div>
 
 <style>
-
-  /* sidebar & slide in*/
   .sidebar {
-    display: none;
-    width: clamp(180px, 20vw, 260px);
-    background: var(--color-neutral);
+    display: block;
+    width: 100%;
+    height: 10vh;
     padding: clamp(12px, 2vw, 24px);
-    /* border-right: 1px solid #ddd; */
-    opacity: 0;
-    transform: translateX(-142px);
-    animation: sidebar-in 400ms ease-out forwards;
     position: sticky;
-    top: 15vh; /*De navbar is lager geplaatst om niet met de logo to overlappen */
-    height: 5vh;
+    top: 0;
+    min-height: 0vh;
+    z-index: 10;
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 
   @keyframes sidebar-in {
@@ -64,7 +62,6 @@
     content: "";
   }
 
-  /* Arrow icon */
   details summary::before {
     content: "";
     display: inline-block;
@@ -79,8 +76,6 @@
   details[open] summary::before {
     transform: rotate(90deg);
   }
-
-  /* Zorgt dat de lijst soepel openklapt */
 
   details ul {
     margin: clamp(4px, 1vh, 8px) 0 0 clamp(15px, 2vw, 25px);
@@ -98,8 +93,6 @@
     max-height: 400px;
     opacity: 1;
   }
-
-  /* link style + hoverbar */
 
   details a {
     display: block;
@@ -141,7 +134,13 @@
 
   @media (min-width: 1200px) {
     .sidebar {
-      display: block;
+      width: clamp(180px, 20vw, 260px);
+      position: sticky;
+      top: 15vh;
+      min-height: unset;
+      opacity: 0;
+      transform: translateX(-142px);
+      animation: sidebar-in 400ms ease-out forwards;
     }
   }
 </style>

@@ -22,10 +22,9 @@
   .sidebar {
     display: block;
     width: 100%;
-    height: 10vh;
+    height: auto;
     padding: clamp(12px, 2vw, 24px);
     position: sticky;
-    top: 0;
     min-height: 0vh;
     z-index: 10;
     opacity: 1;
@@ -132,8 +131,16 @@
     transform: translateX(4px);
   }
 
+  @media (max-width: 1199px) {
+    .sidebar {
+      background: var(--color-neutral);
+    }
+  }
+
   @media (min-width: 1200px) {
     .sidebar {
+      height: 12vh;
+      background: var(--color-neutral);
       width: clamp(180px, 20vw, 260px);
       position: sticky;
       top: 15vh;

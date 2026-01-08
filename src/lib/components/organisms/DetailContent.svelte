@@ -20,7 +20,7 @@
   section {
     max-width: 50rem;
     margin: 0 auto;
-    padding: 8rem;
+    padding: 1rem;
     position: relative;
     container-type: inline-size;
   }

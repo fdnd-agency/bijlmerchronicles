@@ -37,7 +37,7 @@
         font-size: var(--heading-1);
         color: var( --color-primary);
         position: relative;
-        margin: 1.5rem 0rem 0rem 0rem;
+        margin: -3.25rem 0rem 0rem 0rem;
         padding-left: 1.25rem;
         z-index: 2;
         max-width: 85vw;

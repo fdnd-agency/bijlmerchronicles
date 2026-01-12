@@ -1,7 +1,14 @@
 <script>
-  import { DetailContent } from '$lib';
-  import { NavDetailPagina } from '$lib';
+    import { DetailContent } from '$lib';
+    import { NavDetailPagina } from '$lib';
 </script>
+
+<svelte:head>
+    <title>Bijlmer Wiki - Encyclopédie van Amsterdam-Zuidoost</title>
+    <meta name="description" content="Complete encyclopedie over de Bijlmer. Geschiedenis, architectuur, cultuur en bewoners van Amsterdam-Zuidoost." />
+    <meta property="og:title" content="Bijlmer Wiki - Encyclopédie van Amsterdam-Zuidoost" />
+    <meta property="og:description" content="Complete encyclopedie over de Bijlmer. Geschiedenis, architectuur, cultuur en bewoners van Amsterdam-Zuidoost." />
+</svelte:head>
 
 <NavDetailPagina/>
 

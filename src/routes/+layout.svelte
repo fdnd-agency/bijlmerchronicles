@@ -9,7 +9,6 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>Encyclopédie Mapping Bijlmer Zuid-Oost </title>
 </svelte:head>
 
 <!-- COMPONENT: BACKGROUND--> 

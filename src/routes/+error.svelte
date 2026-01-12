@@ -1,3 +1,11 @@
+<svelte:head>
+	<title>Pagina niet gevonden - Encyclopédie Mapping Bijlmer</title>
+	<meta name="description" content="Deze pagina kon niet worden gevonden in de Bijlmer Encyclopedie. Ga terug naar de homepage of gebruik de zoekfunctie." />
+	<meta property="og:title" content="Pagina niet gevonden - Encyclopédie Mapping Bijlmer" />
+	<meta property="og:description" content="Deze pagina kon niet worden gevonden in de Bijlmer Encyclopedie. Ga terug naar de homepage of gebruik de zoekfunctie." />
+	<meta name="robots" content="noindex, follow" /> 
+</svelte:head>
+
 <article>
     <h1>Oeps! Pagina niet gevonden</h1>
     <h2>404 Not Found</h2>

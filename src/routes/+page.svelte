@@ -4,6 +4,12 @@
     import { LemmaCard } from '$lib';
 </script>
 
+<svelte:head>
+	<title>Encyclopédie Mapping Bijlmer Zuid-Oost: De Bijlmer Wiki</title>
+	<meta property="og:title" content="Encyclopédie Mapping Bijlmer Zuid-Oost: De Bijlmer Wiki" />
+    <meta property="og:description" name="description" content="Ontdek de rijke geschiedenis en cultuur van Amsterdam-Zuidoost met onze Encyclopédie Mapping Bijlmer." />
+</svelte:head>
+
 <h1><div class="h1-background"></div>ENCYCLOPEDIE MAPPING IMAGINARIES BIJLMER AMSTERDAM - ZUIDOOST</h1>
 
 <section class="lemma-search-container">

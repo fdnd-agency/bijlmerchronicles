@@ -16,6 +16,13 @@
     const mapAddresses = (data && data.mapAddresses && data.mapAddresses.length) ? data.mapAddresses : sample;
 </script>
 
+<svelte:head>
+	<title>Lemma's op de kaart van de Bijlmer - Encyclopédie Mapping</title>
+	<meta name="description" content="Bekijk alle lemma's van Amsterdam-Zuidoost en de Bijlmer." />
+	<meta property="og:title" content="Lemma's op de kaart van de Bijlmer - Encyclopédie Mapping" />
+	<meta property="og:description" content="Bekijk alle lemma's van Amsterdam-Zuidoost en de Bijlmer." />
+</svelte:head>
+
 <div>
 <Map {mapAddresses} />
 </div>

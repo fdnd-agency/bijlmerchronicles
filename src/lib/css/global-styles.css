@@ -12,6 +12,12 @@ body {
     width: 100%;
 }
 
+:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 0.2rem;
+    box-shadow: none;
+}
+
 /* --------------------------------------- All Typography ------------------------------------ */
 @layer typography{
 

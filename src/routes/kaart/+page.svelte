@@ -21,8 +21,22 @@
 </div>
 
 <style>
+    :root{
+        --map-border-top-height: 7px;
+    }
+
     div {
         height: 100%;
-        border-top: 7px solid var(--color-secondary);
+        border-top: var(--map-border-top-height) solid var(--color-secondary);
     }
+    
+    @supports (corner-shape: bevel) {
+        div {
+            corner-shape: bevel;
+            border-top-right-radius: 100% 1rem;
+            border-top: 0;
+        }
+}
+    
+    
 </style>

@@ -28,13 +28,9 @@
 
         // verwijder popover weer via javascript als javascript aanstaat
         menu.removeAttribute("popover");
-
         hamburgerButton.addEventListener('click', handleClick);
-
         document.addEventListener("keydown", handleKeydown);
-
         document.addEventListener("focusin", handleFocusInHamburgerMenu);
-
         document.addEventListener("scroll", handleScroll);
 
         return cleanUp;

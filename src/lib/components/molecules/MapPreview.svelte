@@ -52,16 +52,18 @@
         object-fit: cover;
     }
 
-    .intersection-shape {
-        aspect-ratio: 6.296;
-        clip-path: shape(from 0% 0%,hline to 100%,line to 73.11% 36.4%,line to 0% 100%,vline to 0%,close);
-        background-color: var(--color-background);
-        position: absolute;
-        width: 65%;
-        height: 10vh;
-        min-height: 3rem;
-        left: 0;
-        top: -0.2rem;
+    @supports (clip-path: shape(from 0% 0%,hline to 100%,line to 73.11% 36.4%,line to 0% 100%,vline to 0%,close)) {
+        .intersection-shape {
+            aspect-ratio: 6.296;
+            clip-path: shape(from 0% 0%,hline to 100%,line to 73.11% 36.4%,line to 0% 100%,vline to 0%,close);
+            background-color: var(--color-background);
+            position: absolute;
+            width: 65%;
+            height: 10vh;
+            min-height: 3rem;
+            left: 0;
+            top: -0.2rem;
+        }
     }
 
 /* --------------------------------------- Button styling (Button in the middle that redirects to new page) ------------------------------------ */

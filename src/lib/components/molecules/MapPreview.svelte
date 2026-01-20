@@ -5,7 +5,7 @@
     <div class="intersection-shape"></div>
     <h3><div class="background-heading"></div>Bekijk de lemma's</h3>
     <img src="/mapimage.png" alt="foto van de kaart van de bijlmer">
-    <a href="/">Ontdek meer</a>
+    <a href="/kaart">Ontdek meer</a>
 </section>
 
 <style>

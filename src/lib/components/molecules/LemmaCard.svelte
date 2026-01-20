@@ -52,7 +52,7 @@
         &:nth-of-type(1n) h2 {
             color: var(--color-secondary);
         }
-
+        
         &:nth-of-type(2n) h2 {
             color: var(--color-primary-darkest); 
         }
@@ -88,6 +88,11 @@
                 opacity: 1;
                 transform: translateX(-50%) translateY(0) scale(1.05);
             }
+        }
+        &:focus {
+            outline: 2px solid var(--color-secondary);
+            outline-offset: 0.6rem;
+            box-shadow: none;
         }
     }
 

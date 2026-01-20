@@ -127,10 +127,6 @@ body {
         --wiki-heading-mobile: var(--heading-4);
         --wiki-p: var(--paragraph-2);
         --wiki-p-mobile: var(--paragraph-3);
-
-        a{
-            color: var(--link-color);
-        }
     }
 
 }

@@ -49,6 +49,7 @@
         display: inline-block;
         text-decoration: none;
         font-size: var(--paragraph-2);
+        color: var(--link-color);
         &:hover {
             text-decoration: underline;
         }

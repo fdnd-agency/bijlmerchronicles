@@ -280,6 +280,12 @@
         &:hover{
             background-color: var(--color-secondary-600);
         }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary-light);
+            outline-offset: 0.2rem;
+            box-shadow: none;
+        }
     }
 
     ul{

@@ -50,11 +50,11 @@
 /* --------------------------------------- Colors for different h2's ------------------------------------ */
 
         &:nth-of-type(1n) h2 {
-            color: black;
+            color: var(--color-secondary);
         }
-
+        
         &:nth-of-type(2n) h2 {
-            color: black;
+            color: var(--color-primary-darkest); 
         }
 
     }

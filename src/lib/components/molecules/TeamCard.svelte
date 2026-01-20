@@ -1,5 +1,6 @@
 <script>
     export let member;
+
     function getStaticImage(member) {
         const firstName = member.name?.split(" ")[0];
         return `/images/${firstName}.png`;
@@ -22,7 +23,6 @@
 
             <div class="overlay">
                 <h4>{member.name}</h4>
-
                 <div class="overlay-text">
                     <p>{member.bio}</p>
                 </div>
@@ -131,6 +131,7 @@
         background: var(--color-secondary);
         box-shadow: 0 0 10px var(--color-secondary);
         padding: 40px 20px 20px;
+        min-height: 120px;
         text-align: center;
         position: relative;
         z-index: 2;

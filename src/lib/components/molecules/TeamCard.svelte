@@ -14,7 +14,7 @@
             <img
                 class="img-size"
                 src={getStaticImage(member)}
-                alt={`Foto van ${member.name}`}
+                alt=""
                 on:error={(e) => {
                     e.target.src = defaultImage;
                 }}

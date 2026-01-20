@@ -70,7 +70,7 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        transition: all 0.35s ease-in-out;
+        transition: all 0.15s ease-in-out;
     }
 
     .item:hover .card-img img {
@@ -83,7 +83,7 @@
         padding: 20px;
         position: absolute;
         text-align: center;
-        transition: all 0.35s ease-in-out;
+        transition: all 0.15s ease-in-out;
         width: 100%;
         z-index: 1;
     }

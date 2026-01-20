@@ -122,7 +122,7 @@
     }
 
     .overlay-text::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.4);
+        background: var(--color-secondary);
         border-radius: 4px;
     }
 

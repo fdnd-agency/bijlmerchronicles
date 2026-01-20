@@ -10,7 +10,7 @@
 </script>
 
 <article class="single-item">
-    <div class="item">
+    <section class="item">
         <div class="card-img">
             <img
                 class="img-size"
@@ -21,19 +21,16 @@
                 }}
             />
 
-            <div class="overlay">
+            <aside class="overlay" >
                 <h4>{member.name}</h4>
-                <div class="overlay-text">
-                    <p>{member.bio}</p>
-                </div>
-            </div>
+                <p class="overlay-text">{member.bio}</p>
+            </aside>
         </div>
 
-        <div class="info">
-            <h4>{member.name}</h4>
+        <header class="info">
             <span class="role">{member.role}</span>
-        </div>
-    </div>
+        </header>
+    </section>
 </article>
 
 <style>

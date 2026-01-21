@@ -2,14 +2,13 @@
 
 ### Teamleden
 
-## About
-
 #### [Luuk](https://github.com/lutrian1) (Project lead)
 
 #### [Matthijs](https://github.com/Matthijs217) (Developer)
 
 #### [Fatima](https://github.com/FatimaZelay) (Developer)
 
+## About
 
 Wij zijn een consortium van partners geworteld in Amsterdam-Zuidoost die zich inzetten om Amsterdam-Zuidoost beter op de hoogte te brengen. 
 We werken samen om het bestaande werk van gidsen, kenners, kunstenaars en ondernemers te versterken die de waarde van deze buurt al hebben laten zien.

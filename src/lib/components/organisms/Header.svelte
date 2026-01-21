@@ -9,12 +9,12 @@
         <a href="/"><span class="sr-only">Home</span><img src="{ logo }" alt=""></a>
     </div>
 
-    <div class="links-nav-container">
-        <a href="/nieuwsbrie">Nieuwsbrief</a>
+    <div class="links-nav-container" aria-hidden="true">
+        <a href="/nieuwsbrief">Nieuwsbrief</a>
         <a href="/overons">Over ons</a>
-        <a href="/helps">Help center</a>
+        <a href="/help">Help center</a>
         <a href="/kaart">Kaart</a>
-        <a href="/wik">Wiki</a>
+        <a href="/wiki">Wiki</a>
     </div>
 
     <aside class="loginNsignup-container">
@@ -27,6 +27,7 @@
         <HamburgerMenu />
     </div>
 
+    <div class="bottom-border-bevel"></div>
 </nav>
 
 <style>
@@ -37,9 +38,11 @@
         --signup-login-button-width: 8rem;
         --signup-login-button-height: 2rem;
         --border-radius: 0.4rem;
+        --bevel-header-height-adjustment: 1.5rem;
     }
 
     nav{
+        background-color: var(--color-background);
         height: var(--header-height);
         min-height: 7.25rem;
         width: 100%;
@@ -52,10 +55,19 @@
         justify-content: flex-start;
     }
 
+    @supports (corner-shape: bevel) {
+		nav {
+            height: calc(var(--header-height) + var(--bevel-header-height-adjustment) * 1.6);
+            corner-shape: bevel;
+			border-bottom-left-radius: 100% var(--bevel-header-height-adjustment);
+		}
+	}
+
     .logo-container{
         flex-grow: 3;
 
         img{
+            z-index: 1000;
             width: 20vw;
             min-width: 9.25rem;
             max-width: 19rem;
@@ -265,6 +277,22 @@
             }
         }
     }
+
+    @supports (corner-shape: bevel) {
+		.bottom-border-bevel {
+            z-index: 1;
+			background-color: var(--color-secondary);
+			position: absolute;
+			width: 100%;
+			height: 8px;
+			transform: rotate(2deg);
+            top: calc(var(--header-height) + var(--bevel-header-height-adjustment) * .96);
+
+            @media (min-width: 750px) {
+                transform: rotate(.9deg);
+            }
+		}
+	}
 }
 
 </style>

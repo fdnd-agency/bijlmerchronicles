@@ -27,4 +27,9 @@ Luuk even invullen aub
 
 ## Stappen voor het volgende team
 **- Componenten layout:** Neem de layout van onze component structure goed door, met de atoms, molecules en organisms. 
+**- Read.me:** Lees de [read.me](https://github.com/fdnd-agency/bijlmerchronicles/blob/dev/README.md) goed door, hierin leggen we vrijwel alles uit over het project.
+**- Contributing.md:** Lees de [contriubting](https://github.com/fdnd-agency/bijlmerchronicles/blob/dev/CONTRIBUTING.md) door voor onze workflow en conventies
+**- Database:** Neem onze [mermaid](https://github.com/fdnd-agency/bijlmerchronicles/issues/4) door om te kijken hoe wij onze database hebben ingericht.
+**- Wont have (this time):** Neem onze laatste openstaande issues door zodat je het verder kan oppakken.
+
 

@@ -41,7 +41,7 @@
 		const content = `
 		<div id="popover-container">
 		  ${imgHtml}
-          <h2><strong>${marker.title ?? ''}</strong></h2>
+          <h2><strong class="truncate">${marker.title ?? ''}</strong></h2>
           <p>${marker.summary ?? ''}</p>
 		  <a class="see-more" href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
 		</div>`;
@@ -261,29 +261,6 @@
 	<div bind:this={mapElement} class={mapClass}></div>
 </section>
 
-<!-- <div class="poi-container">
-    <a href="/kaart" class="poi">
-        <img src="/lemmapngtest1.png" alt="Lemma {{ }}">
-        <h2>Johan Cruijff Arena</h2>
-    </a>
-    <a href="/kaart" class="poi">
-        <img src="/lemmapngtest1.png" alt="Footer Image">
-        <h2>Johan Cruijff Arena</h2>
-    </a>
-    <a href="/kaart" class="poi">
-        <img src="/lemmapngtest1.png" alt="Footer Image">
-        <h2>Johan Cruijff Arena</h2>
-    </a>
-    <a href="/kaart" class="poi">
-        <img src="/lemmapngtest1.png" alt="Footer Image">
-        <h2>Johan Cruijff Arena</h2>
-    </a>
-    <a href="/kaart" class="poi">
-        <img src="/lemmapngtest1.png" alt="Footer Image">
-        <h2>Johan Cruijff Arena</h2>
-    </a>
-</div> -->
-
 <style>
 	@import 'leaflet/dist/leaflet.css';
 	section {
@@ -409,5 +386,16 @@
 		top: 5px;
 		right: 5px;
 		color: black;
+	}
+
+	:global(.truncate) {
+		@media (min-width: 600px) {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+
+			display: block;
+			width: 300px;
+		}	
 	}
 </style>

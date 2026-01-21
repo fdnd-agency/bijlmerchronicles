@@ -91,12 +91,12 @@
         transform: translate(-50%, -50%);
     }
 
-    .card-img .overlay h4,
+    .card-img .overlay h3,
     .card-img .overlay p {
         color: #ffffff;
     }
 
-    .card-img .overlay h4 {
+    .card-img .overlay h3 {
         display: inline-block;
         text-transform: uppercase;
     }
@@ -134,7 +134,7 @@
         z-index: 2;
     }
 
-    .info h4 {
+    .info h3 {
         font-weight: 600;
         margin-bottom: 5px;
         text-transform: capitalize;

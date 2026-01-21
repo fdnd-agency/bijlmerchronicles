@@ -48,6 +48,7 @@
 
 <style>
     svg{
+        z-index: 1000;
         position: absolute;
         overflow: clip;
         z-index: 1;

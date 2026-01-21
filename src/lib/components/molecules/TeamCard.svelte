@@ -22,7 +22,7 @@
             />
 
             <aside class="overlay" >
-                <h4>{member.name}</h4>
+                <h3>{member.name}</h3>
                 <p class="overlay-text">{member.bio}</p>
             </aside>
         </div>

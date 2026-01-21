@@ -43,7 +43,7 @@
 		  ${imgHtml}
           <h2><strong class="truncate">${marker.title ?? ''}</strong></h2>
           <p>${marker.summary ?? ''}</p>
-		  <a class="see-more" href="/wiki/${marker.id ?? ''}" data-sveltekit-reload>Bekijk meer</a>
+		  <a class="see-more" href="/wiki/${marker.slug ?? ''}" data-sveltekit-reload>Bekijk meer</a>
 		</div>`;
 
 		if (popup) {

@@ -39,7 +39,7 @@
         right: 1rem;
         margin: 0;
         color: var(--color-primary);
-        font-size: clamp(1.5rem, 5vw, 3rem);
+        font-size: var(--heading-2);
         z-index: 2;
     }
 
@@ -77,7 +77,7 @@
         text-decoration: none;
         padding: .6em;
         border-radius: 0.6rem;
-        font-size: 1.25rem;
+        : 1.25rem;
         &::after {
             content: "";
             position: absolute;
@@ -87,7 +87,7 @@
             bottom: 0;
         }
         @media (min-width: 37.5rem) {
-            font-size: 1.5em;
+            font-size: var(--paragraph-size);
             padding: .5em 1em;
         }
     }

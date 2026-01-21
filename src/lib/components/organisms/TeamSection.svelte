@@ -40,13 +40,13 @@
     }
 
     .heading h2 {
-        font-size: 3rem;
+        font-size: var(--heading-1);
         text-transform: uppercase;
         margin-bottom: 20px;
     }
 
     .heading p {
-        font-size: 1.4rem;
+        font-size: var(--paragraph-size);
         max-width: 720px;
         margin: 0 auto;
     }

@@ -71,7 +71,7 @@
             margin: 0;
             justify-self: center;
             white-space: nowrap;
-            font-size: 1.25rem;
+            font-size: var(--paragraph-size);
         }
 
         @media (prefers-reduced-motion: no-preference) and (hover: hover){

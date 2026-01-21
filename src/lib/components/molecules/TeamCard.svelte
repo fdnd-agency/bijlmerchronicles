@@ -144,7 +144,7 @@
         color: var(--color-primary-lightest);
         font-weight: 600;
         text-transform: uppercase;
-        font-size: 22px;
+        font-size: var(--paragraph-size);
         letter-spacing: 0.6px;
     }
 </style>

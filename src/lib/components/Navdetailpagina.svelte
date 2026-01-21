@@ -118,12 +118,12 @@
     opacity: 0;
     transform-origin: left;
     transition:
-      width 320ms ease-out,
+      width 300ms ease-out,
       opacity 180ms ease-out;
   }
 
   details a:hover::before {
-    width: 100%;
+    width: 70%;
     opacity: 1;
   }
 

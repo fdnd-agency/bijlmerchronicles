@@ -1,9 +1,8 @@
 # Bijlmer Chronicles / Imaginaries Mapping
 
-## About
-
 ### Teamleden
 
+## About
 
 #### [Luuk](https://github.com/lutrian1) (Project lead)
 

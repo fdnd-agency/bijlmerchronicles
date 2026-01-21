@@ -10,11 +10,11 @@
     </div>
 
     <div class="links-nav-container" aria-hidden="true">
-        <a href="/nieuwsbrief">Nieuwsbrief</a>
+        <a href="/nieuwsbrief">gnwngw</a>
         <a href="/overons">Over ons</a>
-        <a href="/help">Help center</a>
+        <a href="/help">ugwhiugihuwg/a>
         <a href="/kaart">Kaart</a>
-        <a href="/wiki">Wiki</a>
+        <a href="/wiki">gwojgwioj</a>
     </div>
 
     <aside class="loginNsignup-container">

@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-    <title>{lemma.title} - Wiki</title>
+    <title>Wiki - {lemma.title}</title>
 </svelte:head>
 
 <section>

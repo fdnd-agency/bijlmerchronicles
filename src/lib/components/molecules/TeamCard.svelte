@@ -22,13 +22,14 @@
             />
 
             <aside class="overlay" >
-                <h3>{member.name}</h3>
+                <span class="role">{member.role}</span>
+
                 <p class="overlay-text">{member.bio}</p>
             </aside>
         </div>
 
         <header class="info">
-            <span class="role">{member.role}</span>
+            <h3>{member.name}</h3>
         </header>
     </section>
 </article>
@@ -91,22 +92,17 @@
         transform: translate(-50%, -50%);
     }
 
-    .card-img .overlay h3,
     .card-img .overlay p {
-        color: #ffffff;
+        color: var(--color-primary-lightest);
     }
 
-    .card-img .overlay h3 {
-        display: inline-block;
-        text-transform: uppercase;
-    }
 
     /* SCROLLBARE TEKST */
     .overlay-text {
         max-height: 160px; /* Hoeveel tekst zichtbaar is */
         overflow: hidden;
         margin-top: 10px;
-        padding-right: 6px;
+        padding: 18px
     }
 
     /* Scroll tonen bij hover */
@@ -131,13 +127,17 @@
         min-height: 120px;
         text-align: center;
         position: relative;
-        z-index: 2;
+        z-index: 1;
     }
 
     .info h3 {
         font-weight: 600;
         margin-bottom: 5px;
         text-transform: capitalize;
+        color: var(--color-primary-lightest);
+        text-transform: uppercase;
+        font-size: var(--paragraph-3);
+
     }
 
     .role {

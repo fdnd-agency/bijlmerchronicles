@@ -19,20 +19,17 @@
 </div>
 
 <style>
-
-  /* sidebar & slide in*/
   .sidebar {
-    display: none;
-    width: clamp(180px, 20vw, 260px);
-    background: var(--color-neutral);
+    display: block;
+    width: 100%;
+    height: auto;
     padding: clamp(12px, 2vw, 24px);
-    /* border-right: 1px solid #ddd; */
-    opacity: 0;
-    transform: translateX(-142px);
-    animation: sidebar-in 400ms ease-out forwards;
     position: sticky;
-    top: 15vh; /*De navbar is lager geplaatst om niet met de logo to overlappen */
-    height: 5vh;
+    min-height: 0vh;
+    z-index: 10;
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 
   @keyframes sidebar-in {
@@ -64,7 +61,6 @@
     content: "";
   }
 
-  /* Arrow icon */
   details summary::before {
     content: "";
     display: inline-block;
@@ -79,8 +75,6 @@
   details[open] summary::before {
     transform: rotate(90deg);
   }
-
-  /* Zorgt dat de lijst soepel openklapt */
 
   details ul {
     margin: clamp(4px, 1vh, 8px) 0 0 clamp(15px, 2vw, 25px);
@@ -98,8 +92,6 @@
     max-height: 400px;
     opacity: 1;
   }
-
-  /* link style + hoverbar */
 
   details a {
     display: block;
@@ -126,12 +118,12 @@
     opacity: 0;
     transform-origin: left;
     transition:
-      width 320ms ease-out,
+      width 300ms ease-out,
       opacity 180ms ease-out;
   }
 
   details a:hover::before {
-    width: 100%;
+    width: 70%;
     opacity: 1;
   }
 
@@ -139,9 +131,23 @@
     transform: translateX(4px);
   }
 
+  @media (max-width: 1199px) {
+    .sidebar {
+      background: var(--color-neutral);
+    }
+  }
+
   @media (min-width: 1200px) {
     .sidebar {
-      display: block;
+      height: 12vh;
+      background: var(--color-neutral);
+      width: clamp(180px, 20vw, 260px);
+      position: sticky;
+      top: 15vh;
+      min-height: unset;
+      opacity: 0;
+      transform: translateX(-142px);
+      animation: sidebar-in 400ms ease-out forwards;
     }
   }
 </style>

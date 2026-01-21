@@ -299,36 +299,9 @@
         justify-content: space-evenly;
         gap: 1rem;
         margin-top: 1rem;
-        & a {
-            text-decoration: none;
-            color: inherit;
-        }
-        & img {
-            height: 100px;
-            width: 150px;
-        }
     }
     .poi {
         position: relative;
-        h2 {
-            position: absolute;
-            bottom: -0.75rem;
-            left: 50%;
-            transform: translateX(-50%) scale(1);
-            text-wrap: nowrap;
-            margin: 0;
-            padding: 0;
-            transition: transform 0.1s ease-in-out;
-        }
-        &:hover {
-            img {
-                transform: scale(1.6);
-                transition: transform 0.1s ease-in-out;
-            }
-            h2 {
-                transform: translateX(-50%) scale(1.2);
-            }
-        }
     }
 	:global(.leaflet-popup-content-wrapper) {
 		box-shadow: 5px 5px 0 black;

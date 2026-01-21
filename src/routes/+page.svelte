@@ -73,7 +73,7 @@
 
 /* --------------------------------------- Rest heading / font styling (h2, h3 and P's) ------------------------------------ */
   
-    h2,h3 {
+    h3 {
         font-size: var(--heading-2);
         font-family: var(--main-font-black);
         text-align: center;

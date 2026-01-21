@@ -77,7 +77,7 @@
         text-decoration: none;
         padding: .6em;
         border-radius: 0.6rem;
-        : 1.25rem;
+        font-size: 1.25rem;
         &::after {
             content: "";
             position: absolute;

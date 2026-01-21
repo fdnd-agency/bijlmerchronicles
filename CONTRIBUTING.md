@@ -228,5 +228,8 @@ Bekijk de chart [hier](https://miro.com/welcomeonboard/Z0UyRG5QU3pjNW5IcGowSTdNU
 
 
 
+## FDND conventies 
 
+Voor het bouwen van deze website volgen wij de fdnd conventies:
+https://docs.fdnd.nl/conventies.html
 

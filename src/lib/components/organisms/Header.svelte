@@ -12,7 +12,7 @@
     <div class="links-nav-container" aria-hidden="true">
         <a href="/nieuwsbriefhehre">Nieuwsbrief</a>
         <a href="/overons">Over ons</a>
-        <a href="/helpgewegwg">Help</a>
+        <a href="/helpgewegwg">Help center</a>
         <a href="/kaart">Kaart</a>
         <a href="/wikiwegwge">Wiki</a>
     </div>

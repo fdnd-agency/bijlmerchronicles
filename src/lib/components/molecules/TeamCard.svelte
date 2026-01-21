@@ -139,7 +139,7 @@
         font-size: var(--paragraph-3);
 
     }
-
+    
     .role {
         color: var(--color-primary-lightest);
         font-weight: 600;

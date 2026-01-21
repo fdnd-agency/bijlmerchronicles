@@ -170,11 +170,11 @@
    
     <nav class="hamburger-menu-nav" id="hamburgermenu" aria-label="Hamburger menu navigatie" popover="auto">
         <ul>
-            <li><a href="/nieuwsbrief">Nieuwsbrief</a></li>
+            <li><a href="/nieuwsbrie">Nieuwsbrief</a></li>
             <li><a href="/overons">Over ons</a></li>
-            <li><a href="/help">Help center</a></li>
+            <li><a href="/helps">Help center</a></li>
             <li><a href="/kaart">Kaart</a></li>
-            <li><a href="/wiki">Wiki</a></li>
+            <li><a href="/wik">Wiki</a></li>
         </ul>
     </nav>
    

@@ -257,7 +257,6 @@
 </script>
 
 <section class="map" class:js-enabled={jsEnabled}>
-	<div class="top-border-map"></div>
 	<div bind:this={mapElement} class={mapClass}></div>
 </section>
 
@@ -282,15 +281,6 @@
 			.leaflet-container {
 				corner-shape: bevel;
 				border-top-right-radius: 100% 1rem;
-			}
-			.top-border-map {
-				background-color: var(--color-secondary);
-				position: absolute;
-				width: 100%;
-				height: 8px;
-				top: 0;
-				transform: rotate(.9deg);
-				z-index: 500;
 			}
 		}
 

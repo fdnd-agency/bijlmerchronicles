@@ -39,6 +39,7 @@ export let title = "Navbardetailpagina";
 <NavDetailPagina title="Pagina Inhoud" />
 ```
 
+dit is momenteel al verwerkt in code maar nogbiet gelinkt aan interne links binnen de gerendere data pagina, de component bevind zich dus nog niet in een pagina en moet nog verwerkt worden.
 ---
 
 ## 2. **HamburgerMenu** (Molecule)

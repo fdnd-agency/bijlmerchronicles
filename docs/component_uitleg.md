@@ -22,6 +22,8 @@ export let title = "Navbardetailpagina";
 - **Animatie** - Sidebar schuift van links naar binnen (`sidebar-in` animatie)
 - **Responsive** - Breedte past zich aan met `clamp()`
 
+dit is momenteel al verwerkt in code maar nogbiet gelinkt aan interne links binnen de gerendere data pagina, de component bevind zich dus nog niet in een pagina en moet nog verwerkt worden
+
 ### Visueel
 ```
 ┌─────────────────┐
@@ -38,8 +40,6 @@ export let title = "Navbardetailpagina";
 ```svelte
 <NavDetailPagina title="Pagina Inhoud" />
 ```
-
-dit is momenteel al verwerkt in code maar nogbiet gelinkt aan interne links binnen de gerendere data pagina, de component bevind zich dus nog niet in een pagina en moet nog verwerkt worden.
 ---
 
 ## 2. **HamburgerMenu** (Molecule)

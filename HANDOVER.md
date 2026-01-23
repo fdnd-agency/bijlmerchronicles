@@ -1,5 +1,7 @@
 # Handover 
 
+Alle issues die niet zijn opgepakt staan in het [project board](https://github.com/orgs/fdnd-agency/projects/83) bij de column 'HANDOVER'.
+
 ## De Status
 
 De huidige status van het project is dat de pagina de volgende pagina's bevat:

@@ -63,6 +63,8 @@ SvelteKit gebruikt **file-based routing** - bestandsnamen bepalen URL's:
 - `[id]` notatie betekent dynamische parameter
 - Voorbeeld: `/wiki/3` → `+page.svelte` ontvangt `id = 'amsterdam-bijlmer'`
 
+inmiddels is dit veranderd naar een [[slug]](https://github.com/fdnd-agency/bijlmerchronicles/issues/141) wat in principe hetzelfde is als de id maar dan ipv een nummer in URL een naam.
+
 ---
 
 ## 📊 Data Flow

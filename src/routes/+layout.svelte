@@ -8,7 +8,6 @@
 	// https://svelte.dev/docs/svelte/$derived
     const seo = $derived(getSeoForPath($page.url.pathname));
 
-    // Behoud de children prop
     let { children } = $props();
 </script>
 

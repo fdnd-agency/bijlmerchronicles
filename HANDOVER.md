@@ -37,6 +37,6 @@ Het hamburger menu is een compleet werkend menu zowel met javascript als zonder.
 
 **- Database:** Neem onze [mermaid](https://github.com/fdnd-agency/bijlmerchronicles/issues/4) door om te kijken hoe wij onze database hebben ingericht.
 
-**- Wont have (this time):** Neem onze laatste openstaande issues door zodat je het verder kan oppakken.
+**- Wont have (this time):** Neem onze laatste openstaande issues door zodat je het verder kan oppakken. En bekijk issues die zijn gesloten als (not planned) en open deze weer, deze moeten weer worden opgepakt.
 
 

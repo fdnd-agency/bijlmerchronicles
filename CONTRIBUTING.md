@@ -226,6 +226,38 @@ Begin:
 
 Bekijk de chart [hier](https://miro.com/welcomeonboard/Z0UyRG5QU3pjNW5IcGowSTdNUHBPMk1HZ3BNeUMreS9NN1FZU3RJRGMwcVN5NXBpaXJSdHBTUEVUOE5SRHMwd29hNU9ZZ21mamhRUm00blRFVU44VmFLZkdaM21UcU0xQ0kwK3M1WWtINW9yWGlGTWNKZldJS3BVSG9iU3MrR050R2lncW1vRmFBVnlLcVJzTmdFdlNRPT0hdjE=?share_link_id=682360362029).
 
+## Laatste Terugblik 
+
+### Matthijs:
+ 
+Algemene bevindingen van het project:
+ 
+Veel te doen, alles opnieuw dat was minder, project in het algemeen was leuk, opzich blij met het eindresultaat.
+ 
+Samenwerking:
+ 
+Goed verdeeld niet echt aan het einde.
+ 
+### Fatima:
+ 
+Algemene bevindingen van het project:
+ 
+Creativiteit kunnen uiten dus het project zelf was leuk, iets te maken wat niet bestond was leuk en ze wil ook dat we de credits krijgen wat erg leuk was. Samenwerking was zelf ook prima, ik zat met niets dat ik niet uitte. 3 maanden ging er snel met jullie en.
+
+
+### Luuk:
+
+Blij met het resultaat, maar aangezien we met alleen Nuria hebben gesproken in plaats van de hele team het zou fijner zijn als het vanaf het begin zo was, want we kwamen erachter dat de design een beetje afwijkt van wat andere teamlid in het team in gedachten hebben. 
+
+Ik vond het fijn om de leads te nemen en ik vond het fijn om het meeste werk te kunnen reviewen. Ik zou volgende keer dit willen rouleren. Ik vond het heel leerzaam en de samenwerking ging goed en heb niks op aan te merken.
+
+Tijdens het samenwerken hebben we goed met elkaar alles afgestemd en ik vond het fijn gaan. Ik ben tevreden over het project. 
+
+Het zou beter zijn voor later om in plaats van bezig zijn met de hamburger menu en meer aandacht besteden aan de pagina's want ik had  later gemerkt dat het veel tijd in beslag had genomen.
+
+
+Fatima bedankt voor de documentatie en voor bijhouden en je creaitviteit. En Matthijs bedankt voor de moeilijke stuk code van de kaart,  iedereen heeft zijn kwaliteiten aan het groep geleverd.
+
 
 
 ## FDND conventies 

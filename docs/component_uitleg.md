@@ -108,6 +108,10 @@ export let image = "";
 - **Container Queries** - Responsive
 - **Max-width** - Centered layout
 
+inmiddels is de 'detailcontent' niet meer in gebruik en word de content direct geladen uit de database met @html lemma.body : https://github.com/fdnd-agency/bijlmerchronicles/blob/5ca03abf0a263c084a299e87711fe70f58cd19c6/src/routes/wiki/%5Bslug%5D/%2Bpage.svelte#L28
+
+dit kan dus opnieuw worden geïntergreerd of compleet worden verwijderd gezien de code dus nu (even) niet in gebruik is.
+
 ---
 
 ## 5. **Header** (Organism)

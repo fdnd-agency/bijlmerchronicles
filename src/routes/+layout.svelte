@@ -25,7 +25,7 @@
 </header>
 
 <main>
-	{@render children?.()}  <!-- Behoud je oude syntax -->
+	{@render children?.()}  
 </main>
 
 <style>

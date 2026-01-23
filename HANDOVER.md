@@ -21,7 +21,10 @@ De grootste aandachtspunten en uitdagingen in ons project zijn:
 Elke lemma heeft zijn eigen titel, kleine summary, een plaatje en de coordinaten van waar het is. Dit word allemaal opgehaald in de map en getoond. 
 
 ### Het hamburger menu
-Luuk even invullen aub
+Het hamburger menu is een compleet werkend menu zowel met javascript als zonder. De code is dan ook een met veel complexe front-end code in elkaar gezet en vraagt speciale aandacht. twee belangrijke punten zijn bijvoorbeeld:
+
+- De [:has](https://github.com/fdnd-agency/bijlmerchronicles/blob/1ec6daa25cb0173f3cdc55fe9f9a170a9b254bfd/src/lib/css/global-styles.css#L152) selector binnen css in de global-styles.css die ervoor zorgt dat er een blur komt zodra een bepaalde class in het document is.
+- De popover api die word verwijderd in javascript maar zodra javascript uitstaat ervoor zorgt dat het menu nog open gaat.
 
 ### Detailpagina
 

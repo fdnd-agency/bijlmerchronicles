@@ -29,11 +29,27 @@ Wij volgen de gitflow van [gitkraken.com](https://www.gitkraken.com/learn/git/gi
 <img width="430" height="689" alt="image" src="https://github.com/user-attachments/assets/2ec9267a-c6f1-41a0-9769-0a414a3a170e" />
 
 ### Issues & project board
-
 - Issues assignen aan 1 persoon tegelijk (als er hulp nodig is, een voor een in de issue/branch werken om merge conlficten te voorkomen)
 - Zodra je begint met werken aan de issue verplaats je hem naar de In Progres kolom
 - Als je issue klaar is en de Pull Request gemerged is dan kan de issue naar Done
 - Project board bij de daily standup bespreken
+
+### Definition of Ready (DoR) user story
+- De user story is opgezet volgens de "Als gebruiker/admin/systeem ... wil ik... omdat..."
+- Alle subissues bekend zijn
+- De subissues zijn in de backlog naar "Todo" gezet
+- Planning poker gedaan is
+- De story ingeschat is op haalbaar binnen een sprint
+
+### Definition of Done (DoD) user story
+- Als alle subissues af zijn gerond
+- De styling overeen komt met het ontwerp
+- Toegankelijkheid is getest (toetsenbord, contrast, lighthouse)
+- Code voldoet aan de coding conventies
+- De RAPPE princiepes zijn aangehouden en getest
+- Code is gereviewd en gemerged
+- Documentatie is bijgewerkt
+
 
 ## Code Conventies:
 

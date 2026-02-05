@@ -1,5 +1,9 @@
 title: "Bijlmer Chronicles"
-status: "in progress"
+client: "Encyclopedie Mapping Imaginaries Bijlmer Amsterdam-Zuidoost"
+status: "active"
+years: [2]
 main_link: "https://bijlmerchronicles.agency.fdnd.nl/"
 dev_link: "https://bijlmerchronicles.dev.fdnd.nl/"
 tech_stack: ["SvelteKit", "Directus"]
+
+

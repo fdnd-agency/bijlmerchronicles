@@ -1,5 +1,5 @@
-
-html, body{
+html,
+body {
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
@@ -19,20 +19,18 @@ body {
 }
 
 /* --------------------------------------- All Typography ------------------------------------ */
-@layer typography{
-
+@layer typography {
     @font-face {
         font-family: 'Waukegan';
         src: url($lib/assets/fonts/WaukeganLdo.ttf);
     }
-    
+
     @font-face {
         font-family: 'WaukeganBlack';
         src: url($lib/assets/fonts/WaukeganLdoBlack.ttf);
     }
 
-    :root{
-
+    :root {
         /* --------------------------------------- Font Faces ------------------------------------ */
 
         --main-font: 'Waukegan', Verdana, Geneva, Tahoma, sans-serif;
@@ -42,84 +40,87 @@ body {
 
         /* --------------------------------------- Heading levels ------------------------------------ */
 
-        --heading-1: clamp(1.875rem, 4.740vw, 4rem);
+        --heading-1: clamp(1.875rem, 4.74vw, 4rem);
 
         --heading-2: clamp(2.5rem, 4vw, 3.25rem);
 
         --heading-3: clamp(1.375rem, 4vw, 2.25rem);
-        
+
         --paragraph-size: clamp(1.175rem, 1.5vw, 1.5rem);
 
         --heading-4: clamp(2.25rem, 4vw, 2.625rem);
 
         --paragraph-2: clamp(1.25rem, 2.3vw, 1.425rem);
         --paragraph-3: clamp(1.1rem, 2vw, 1.9rem);
-
     }
 }
 
 /* --------------------------------------- All colors accordring to our styelguide: https://www.figma.com/design/KyotJ9paNnRjecNhTAiXqC/Bijlmer-Chronicles-Project?node-id=286-2142&t=bHUCw3pYl6k9eqBt-1------------------------------------ */
-@layer colors{
-
-    :root{
-
+@layer colors {
+    :root {
         /* --------------------------------------- Primary Color Family - Gold/Accent ( Typography for heading and box shadows ) ------------------------------------ */
-        
-        --color-primary: #CEBF8F;
 
-        --color-primary-light: #D8CCA7;
-        --color-primary-lighter: #E0D7B8;
-        --color-primary-lightest: #EFEBDC;
+        --color-primary: #cebf8f;
 
-        --color-primary-dark: #8E7B3E;
-        --color-primary-darker: #6A5C2F;
-        --color-primary-darkest: #473D1F;
+        --color-primary-light: #d8cca7;
+        --color-primary-lighter: #e0d7b8;
+        --color-primary-lightest: #efebdc;
+
+        --color-primary-dark: #8e7b3e;
+        --color-primary-darker: #6a5c2f;
+        --color-primary-darkest: #473d1f;
 
         /* --------------------------------------- Secondary Color Family - Forest/Secondar ( Background for shapes / foreground text color ) ------------------------------------ */
 
-        --color-secondary: #263B1C;
+        --color-secondary: #263b1c;
 
-        --color-secondary-100: #E8F2E3;
-        --color-secondary-200: #CBE1C1;
-        --color-secondary-300: #8FBF78;
-        --color-secondary-400: #649C4A;
-        --color-secondary-500: #4E7939;
+        --color-secondary-100: #e8f2e3;
+        --color-secondary-200: #cbe1c1;
+        --color-secondary-300: #8fbf78;
+        --color-secondary-400: #649c4a;
+        --color-secondary-500: #4e7939;
         --color-secondary-600: #385629;
 
         /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
-        --color-tertiary: #BFCFB3;
+        --color-tertiary: #bfcfb3;
 
         /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
 
-        --accent-color: #DBE6D5;
+        --accent-color: #dbe6d5;
 
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
-        --color-neutral: #EDF0EA;
+        --color-neutral: #edf0ea;
 
-        --color-neutral-200: #D4DBCC;
-        --color-neutral-300: #B2BFA6;
-        --color-neutral-400: #8FA17C;
+        --color-neutral-200: #d4dbcc;
+        --color-neutral-300: #b2bfa6;
+        --color-neutral-400: #8fa17c;
         --color-neutral-500: #667755;
-        --color-neutral-600: #404A35;
-        --color-neutral-700: #1A1E15;
-      
+        --color-neutral-600: #404a35;
+        --color-neutral-700: #1a1e15;
+
         /* --------------------------------------- pop-out-color - Hover ------------------------------------ */
 
-        --pop-out-color: #3171A2;
+        --pop-out-color: #3171a2;
 
-        --pop-out-color-500: #7EB1D8;
-        --pop-out-color-600: #3B89C4;
+        --pop-out-color-500: #7eb1d8;
+        --pop-out-color-600: #3b89c4;
 
         /* --------------------------------------- Link styling ------------------------------------ */
 
-        --link-color: #3478FF;
+        --link-color: #3478ff;
 
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 
-        --color-background: var(--color-neutral); /* Background color for our whole page */
-        --color-text: var(--color-secondary); /* Text-color used for majority of the page */
-        --color-text-light: var(--color-primary); /* Text-color used for the majority of headings */
+        --color-background: var(
+            --color-neutral
+        ); /* Background color for our whole page */
+        --color-text: var(
+            --color-secondary
+        ); /* Text-color used for majority of the page */
+        --color-text-light: var(
+            --color-primary
+        ); /* Text-color used for the majority of headings */
 
         --background-hamburger-pop-up: var(--color-secondary);
 
@@ -128,13 +129,11 @@ body {
         --wiki-p: var(--paragraph-2);
         --wiki-p-mobile: var(--paragraph-3);
     }
-
 }
 /* --------------------------------------- Accessibility ------------------------------------ */
 
-@layer accessibility{
-
-    .sr-only{
+@layer accessibility {
+    .sr-only {
         clip: rect(1px, 1px, 1px, 1px);
         clip-path: inset(50%);
         top: 0;
@@ -146,13 +145,13 @@ body {
         padding: 0;
         position: absolute;
     }
-
 }
 
-@layer hamburger-menu{
+@layer hamburger-menu {
     /* Add blur when hamburger has the 'open' class. Closing class is added so the animation only fades back out again after the full hamburger has closed  */
     body:has(.hamburger-menu-nav.open) {
-        main, footer {
+        main,
+        footer {
             user-select: none;
             filter: blur(1rem);
             pointer-events: none;
@@ -161,7 +160,8 @@ body {
     }
 
     /* Default (reverse) */
-    body main, body footer {
+    body main,
+    body footer {
         filter: blur(0);
         transition: filter var(--hamburger-closing-opening-duration) ease;
     }

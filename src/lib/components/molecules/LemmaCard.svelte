@@ -1,19 +1,20 @@
 <script>
-    export let imgname = "lemmapngtest1";
+    export let imgname = 'lemmapngtest1';
 </script>
 
 <li>
-    <a href="/"><span class="sr-only">Ga naar de blabla op de map </span>
-        <img src="/{imgname}.png" alt="">
+    <a href="/"
+        ><span class="sr-only">Ga naar de blabla op de map </span>
+        <img src="/{imgname}.png" alt="" />
         <h2>Johan Cruijff Arena</h2>
     </a>
 </li>
 
 <style>
-    :root{
+    :root {
         --border-radius-cards: 8px;
     }
-/* --------------------------------------- Card box Styling ------------------------------------ */
+    /* --------------------------------------- Card box Styling ------------------------------------ */
 
     li {
         flex: 0 0 10%;
@@ -24,20 +25,19 @@
         height: 100%;
         display: flex;
 
-        a{
+        a {
             position: relative;
             display: block;
             width: 12.5rem;
             height: 6.3rem;
             border-radius: var(--border-radius-cards);
-                    
+
             &:nth-of-type(1n) {
                 box-shadow: 0.3rem 0.3rem 0rem var(--color-primary-darkest);
             }
             &:nth-of-type(2n) {
                 box-shadow: 0.3rem 0.3rem 0rem var(--color-secondary);
             }
-
         }
 
         &:nth-of-type(1n) {
@@ -47,19 +47,18 @@
             background-color: var(--color-primary);
         }
 
-/* --------------------------------------- Colors for different h2's ------------------------------------ */
+        /* --------------------------------------- Colors for different h2's ------------------------------------ */
 
         &:nth-of-type(1n) h2 {
             color: var(--color-secondary);
         }
-        
-        &:nth-of-type(2n) h2 {
-            color: var(--color-primary-darkest); 
-        }
 
+        &:nth-of-type(2n) h2 {
+            color: var(--color-primary-darkest);
+        }
     }
 
-/* --------------------------------------- Heading styling ------------------------------------ */
+    /* --------------------------------------- Heading styling ------------------------------------ */
 
     a {
         h2 {
@@ -74,7 +73,7 @@
             font-size: var(--paragraph-size);
         }
 
-        @media (prefers-reduced-motion: no-preference) and (hover: hover){
+        @media (prefers-reduced-motion: no-preference) and (hover: hover) {
             h2 {
                 transform: translateX(-50%) translateY(0.6rem) scale(1.05);
                 opacity: 0;
@@ -96,7 +95,7 @@
         }
     }
 
-/* --------------------------------------- IMG STYLING ------------------------------------ */
+    /* --------------------------------------- IMG STYLING ------------------------------------ */
 
     img {
         width: 100%;
@@ -105,5 +104,4 @@
         border-radius: 1.25rem;
         transform: translateY(-0.6rem);
     }
-
 </style>

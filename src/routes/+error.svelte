@@ -1,8 +1,13 @@
 <article>
     <h1>Oeps! Pagina niet gevonden</h1>
     <h2>404 Not Found</h2>
-    <p>De pagina die je probeerde te bereiken bestaat niet. Klik de knop hieronder om weer terug te gaan naar de homepagina</p>
-    <a href="/" class="backtohome-btn"><span class="backtohome-btn-border">Terug naar home</span></a>
+    <p>
+        De pagina die je probeerde te bereiken bestaat niet. Klik de knop
+        hieronder om weer terug te gaan naar de homepagina
+    </p>
+    <a href="/" class="backtohome-btn"
+        ><span class="backtohome-btn-border">Terug naar home</span></a
+    >
 </article>
 
 <style>
@@ -68,7 +73,7 @@
         z-index: 1;
 
         /* -- Box shadow in button recreated --  */
-        &::before{
+        &::before {
             content: '';
             position: absolute;
             top: -0.15rem;
@@ -78,32 +83,28 @@
             border-radius: inherit;
             z-index: -1;
         }
-        
     }
 
     /* -- Hover styling per button --  */
     .backtohome-btn {
         color: var(--accent-color);
         background-color: var(--color-secondary);
-        @supports (content: "") {
-            &::before{
+        @supports (content: '') {
+            &::before {
                 background-color: var(--color-secondary);
             }
         }
 
-        &:hover{
+        &:hover {
             color: var(--color-secondary);
 
-            .backtohome-btn-border{
+            .backtohome-btn-border {
                 border-color: var(--color-secondary);
             }
 
-            &::before{
+            &::before {
                 background-color: var(--pop-out-color-500);
             }
-
         }
-
     }
-    
 </style>

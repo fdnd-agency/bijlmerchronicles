@@ -1,5 +1,5 @@
 <script>
-    export let title = "Navbardetailpagina";
+    export let title = 'Navbardetailpagina';
 </script>
 
 <div class="sidebar">
@@ -34,8 +34,8 @@
 
     @keyframes sidebar-in {
         to {
-          opacity: 1;
-          transform: translateX(0);
+            opacity: 1;
+            transform: translateX(0);
         }
     }
 
@@ -58,16 +58,16 @@
     }
 
     details summary::marker {
-        content: "";
+        content: '';
     }
 
     details summary::before {
-        content: "";
+        content: '';
         display: inline-block;
         width: 1em;
         height: 1em;
         margin-right: 0.4em;
-        background: url("/static/arrow.svg") no-repeat center;
+        background: url('/static/arrow.svg') no-repeat center;
         background-size: 0.8em;
         transition: transform 300ms ease;
     }
@@ -84,8 +84,8 @@
         opacity: 0;
         overflow: hidden;
         transition:
-          max-height 220ms ease-out,
-          opacity 220ms ease-out;
+            max-height 220ms ease-out,
+            opacity 220ms ease-out;
     }
 
     details[open] ul {
@@ -107,7 +107,7 @@
     }
 
     details a::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         top: 0;
@@ -118,8 +118,8 @@
         opacity: 0;
         transform-origin: left;
         transition:
-          width 300ms ease-out,
-          opacity 180ms ease-out;
+            width 300ms ease-out,
+            opacity 180ms ease-out;
     }
 
     details a:hover::before {

@@ -2,40 +2,40 @@
     import { page } from '$app/stores';
     import favicon from '$lib/assets/logo-favicon.avif';
     import '$lib/css/global-styles.css';
-    import { Header } from "$lib";
+    import { Header } from '$lib';
     import { getSeoForPath } from '$lib/utils/seo';
 
-	// https://svelte.dev/docs/svelte/$derived
+    // https://svelte.dev/docs/svelte/$derived
     const seo = $derived(getSeoForPath($page.url.pathname));
 
     let { children } = $props();
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
-	<title>{seo.title}</title>
-	<meta name="description" content={seo.description} />
-	<meta property="og:title" content={seo.title} />
-	<meta property="og:description" content={seo.description} />
+    <link rel="icon" href={favicon} />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
 </svelte:head>
 
 <header>
-	<Header />
+    <Header />
 </header>
 
 <main>
-	{@render children?.()}  
+    {@render children?.()}
 </main>
 
 <style>
-	:root{
-		--header-height: 10vh;
-	}
+    :root {
+        --header-height: 10vh;
+    }
 
-	header{
-		width: 100%;
-		height: var(--header-height);
-		min-height: 7.25rem;
-		top: 0;
-	}
+    header {
+        width: 100%;
+        height: var(--header-height);
+        min-height: 7.25rem;
+        top: 0;
+    }
 </style>

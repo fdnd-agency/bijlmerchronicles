@@ -7,6 +7,10 @@ export default [
     ...svelte.configs['flat/recommended'],
 
     {
+        ignores: ['.netlify/**', 'build/**', '.svelte-kit/**'],
+    },
+
+    {
         files: ['**/*.js'],
         rules: {
             // Code conventies

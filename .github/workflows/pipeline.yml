@@ -4,47 +4,46 @@ name: CI pipeline
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "dev" ]
-  pull_request:
-    branches: [ "dev" ]
+    # Triggers the workflow on push or pull request events but only for the "main" branch
+    push:
+        branches: ['dev']
+    pull_request:
+        branches: ['dev']
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "CI"
-  CI:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    # This workflow contains a single job called "CI"
+    CI:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      # Runs a setup for Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      # installs the external packages for lint,build and  test. deletes the node_modules and reinstalls it. (its like npm i)
-      - name: Install dependencies
-        run: npm ci
-      # checks the formating if its like prettier
-      - name: Check formatting
-        run: npm run format:check
+            # Runs a setup for Node.js
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            # installs the external packages for lint,build and  test. deletes the node_modules and reinstalls it. (its like npm i)
+            - name: Install dependencies
+              run: npm ci
+            # checks the formating if its like prettier
+            - name: Check formatting
+              run: npm run format:check
 
-      - name: Lint
-        run: npm run lint
-      # checks if there is no erro with build.
-      - name: Build project
-        run: npm run build
-      # Runs the test if all the test succeed
-      - name: Run tests
-        run: npm run test
-          
+            - name: Lint
+              run: npm run lint
+            # checks if there is no erro with build.
+            - name: Build project
+              run: npm run build
+            # Runs the test if all the test succeed
+            - name: Run tests
+              run: npm run test

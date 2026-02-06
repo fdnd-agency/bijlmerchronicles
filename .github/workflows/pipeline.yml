@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: npm
       # installs the external packages for lint,build and  test. deletes the node_modules and reinstalls it. (its like npm i)
       - name: Install dependencies

@@ -32,7 +32,9 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          
+      # installs the external packages for lint,build and  test. deletes the node_modules and reinstalls it. (its like npm i)
+      - name: Install dependencies
+        run: npm ci
       # checks the formating if its like prettier
       - name: Check formatting
         run: npm run format:check

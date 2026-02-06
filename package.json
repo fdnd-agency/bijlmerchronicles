@@ -10,7 +10,9 @@
         "prepare": "svelte-kit sync || echo ''",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "lint": "eslint .  --ext .js,.svelte"
+        "lint": "eslint .  --ext .js,.svelte",
+        "lint:fix": "eslint . --fix --ext .js,.svelte",
+        "test": "vitest"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.2",

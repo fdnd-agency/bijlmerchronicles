@@ -1,5 +1,5 @@
 <script>
-    import TeamCard from "$lib/components/molecules/TeamCard.svelte";
+    import TeamCard from '$lib/components/molecules/TeamCard.svelte';
 
     export let title;
     export let subtitle;

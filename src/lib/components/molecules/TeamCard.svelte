@@ -2,11 +2,11 @@
     export let member;
 
     function getStaticImage(member) {
-        const firstName = member.name?.split(" ")[0];
+        const firstName = member.name?.split(' ')[0];
         return `/images/${firstName}.png`;
     }
 
-    const defaultImage = "/images/default.png";
+    const defaultImage = '/images/default.png';
 </script>
 
 <article class="single-item">
@@ -21,7 +21,7 @@
                 }}
             />
 
-            <aside class="overlay" >
+            <aside class="overlay">
                 <span class="role">{member.role}</span>
 
                 <p class="overlay-text">{member.bio}</p>
@@ -49,7 +49,7 @@
 
     .item .card-img::after {
         background: var(--color-secondary);
-        content: "";
+        content: '';
         height: 100%;
         left: 0;
         opacity: 0;
@@ -96,13 +96,12 @@
         color: var(--color-primary-lightest);
     }
 
-
     /* SCROLLBARE TEKST */
     .overlay-text {
         max-height: 160px; /* Hoeveel tekst zichtbaar is */
         overflow: hidden;
         margin-top: 10px;
-        padding: 18px
+        padding: 18px;
     }
 
     /* Scroll tonen bij hover */
@@ -137,9 +136,8 @@
         color: var(--color-primary-lightest);
         text-transform: uppercase;
         font-size: var(--paragraph-3);
-
     }
-    
+
     .role {
         color: var(--color-primary-lightest);
         font-weight: 600;

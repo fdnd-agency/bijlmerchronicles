@@ -1,23 +1,31 @@
 {
-	"name": "myapp",
-	"private": true,
-	"version": "0.0.1",
-	"type": "module",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/adapter-netlify": "^5.2.4",
-		"@sveltejs/kit": "^2.43.2",
-		"@sveltejs/vite-plugin-svelte": "^6.2.0",
-		"svelte": "^5.39.5",
-		"vite": "^7.1.7"
-	},
-	"dependencies": {
-		"leaflet": "^1.9.4"
-	}
+    "name": "myapp",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "preview": "vite preview",
+        "prepare": "svelte-kit sync || echo ''",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "lint": "eslint .  --ext .js,.svelte"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.2",
+        "@sveltejs/adapter-auto": "^6.1.0",
+        "@sveltejs/adapter-netlify": "^5.2.4",
+        "@sveltejs/kit": "^2.43.2",
+        "@sveltejs/vite-plugin-svelte": "^6.2.0",
+        "eslint": "^9.39.2",
+        "globals": "^17.3.0",
+        "prettier": "^3.8.1",
+        "prettier-plugin-svelte": "^3.4.1",
+        "svelte": "^5.39.5",
+        "vite": "^7.1.7"
+    },
+    "dependencies": {
+        "leaflet": "^1.9.4"
+    }
 }

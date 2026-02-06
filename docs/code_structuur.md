@@ -27,21 +27,27 @@ src/
 
 De components zijn georganiseerd volgens de **Atomic Design**:
 
-### **Atoms** 
+### **Atoms**
+
 Eenvoudige, zelfstandige elementen:
-- `AmsterdamStarsSVG.svelte` 
-- `NavDetailPagina.svelte` 
+
+- `AmsterdamStarsSVG.svelte`
+- `NavDetailPagina.svelte`
 - `SearchIconSVG.svelte`
 
 ### **Molecules** - Groepen van atoms
+
 Combinaties van meerdere atomaire elementen:
+
 - `HamburgerMenu.svelte`
 - `LemmaCard.svelte`
 - `MapPreview.svelte`
 - `SearchBar.svelte`
 
 ### **Organisms** - Complexe secties
+
 Grote, zelfstandige componenten voor complete sectie:
+
 - `Header.svelte`
 - `Map.svelte`
 - `DetailContent.svelte`
@@ -53,13 +59,16 @@ Grote, zelfstandige componenten voor complete sectie:
 SvelteKit gebruikt **file-based routing** - bestandsnamen bepalen URL's:
 
 ### **Root Layout** (`+layout.svelte`)
+
 - Globale layout voor alle pagina's
 - Header, footer, global styling
 
 ### **Root Page** (`+page.svelte`)
+
 - Home pagina (`/`)
 
 ### **Dynamic Routes**
+
 - `[id]` notatie betekent dynamische parameter
 - Voorbeeld: `/wiki/3` → `+page.svelte` ontvangt `id = 'amsterdam-bijlmer'`
 
@@ -70,6 +79,7 @@ inmiddels is dit veranderd naar een [[slug]](https://github.com/fdnd-agency/bijl
 ## 📊 Data Flow
 
 ### **Server-Side Rendering (+page.server.js)**
+
 ```javascript
 // kaart/+page.server.js of wiki/[id]/+page.server.js
 export async function load() {
@@ -80,17 +90,20 @@ export async function load() {
   }
 }
 ```
+
 - Data wordt gepasseerd aan `+page.svelte`
 
 ### **Client-Side Rendering (+page.svelte)**
+
 ```svelte
 <!-- wiki/[id]/+page.svelte -->
 <script>
-  export let data; // Ontvangen van server
+    export let data; // Ontvangen van server
 </script>
 
 {@html data.content}
 ```
+
 - Gebruikt data van server
 
 ---

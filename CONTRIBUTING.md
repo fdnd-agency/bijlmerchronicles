@@ -1,6 +1,5 @@
- 
 # Afspraken over samenwerking
- 
+
 ## Commit conventies
 
 - Wij gebruiken [code conventies](https://www.conventionalcommits.org/nl/v1.0.0/) van FDND zelf, hier proberen wij ons ook aan te houden.
@@ -12,11 +11,13 @@
 
 - Vanaf de Dev branch een feature branch maken
 - Deze geef je de naam van de corresponderende issue
-- Begin je branch naam met  Feat: / Fix: / Refactor:  / Documentatie:
-- Er mag naar de Dev gemerged worden als er een akkoord van een teamlid is gegeven op de Pull Request. 
+- Begin je branch naam met Feat: / Fix: / Refactor:  / Documentatie:
+- Er mag naar de Dev gemerged worden als er een akkoord van een teamlid is gegeven op de Pull Request.
 
 ### Pull request
+
 Pull Request template:
+
 - In het Engels
 - Wat is er veranderd? Korte omschrijving
 - Link het issue nummer
@@ -38,12 +39,14 @@ Wij volgen de gitflow van [gitkraken.com](https://www.gitkraken.com/learn/git/gi
 ## Code Conventies:
 
 - **Naamgeving**: kebab-case voor classes in css, Javascript en components in svelte gebruiken wij camelCase. Altijd engels, geen afkortingen
-- **Comments**: Moeilijke coden uitleggen en documenten onder vedelen in stukken, dus bijvoorbeeld animaties krijgen een lange comment. Voorbeeld: /*----------------------------------- Animatie --------------------------------------*/
+- **Comments**: Moeilijke coden uitleggen en documenten onder vedelen in stukken, dus bijvoorbeeld animaties krijgen een lange comment. Voorbeeld: /_----------------------------------- Animatie --------------------------------------_/
 - **Supports / Supporten van website op alle browsers**: @Supports gebruiken bij nieuwere functies en bij animaties.
 - **Witregels**: FDND conventies aanhouden
 
 ## Communicatie
+
 ### Remote
+
 - Via Teams chat / call in overleg
 - Github doormiddel van een @
 - Wanneer mogenlijk op werkdagen zsm reactie, binnen 24u
@@ -51,16 +54,13 @@ Wij volgen de gitflow van [gitkraken.com](https://www.gitkraken.com/learn/git/gi
 - Bij ziekte aangeven als je afwezig bent en of je evt thuis wel of niet verder kan werken
 - Bij blokkades eerst met het team overleggen, daarna met mede agency genoten, als er dan nog een blokkade is aan een docent vragen
 
- AFSRPAKEN: ELKE START VAN DE DAG EEN STAND-UP
+AFSRPAKEN: ELKE START VAN DE DAG EEN STAND-UP
 
- ## Team Canvas
+## Team Canvas
 
 <img width="2378" height="1682" alt="Team Canvas" src="https://github.com/user-attachments/assets/a7a0374c-76b5-4597-8cce-64ce5427a501" />
 
-
-
-## FDND conventies 
+## FDND conventies
 
 Voor het bouwen van deze website volgen wij de fdnd conventies:
 https://docs.fdnd.nl/conventies.html
-

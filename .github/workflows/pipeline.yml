@@ -39,8 +39,8 @@ jobs:
             - name: Check formatting
               run: npm run format:check
             # will be later added
-           # - name: Lint
-           #   run: npm run lint
+            # - name: Lint
+            #   run: npm run lint
             # checks if there is no erro with build.
             - name: Build project
               run: npm run build

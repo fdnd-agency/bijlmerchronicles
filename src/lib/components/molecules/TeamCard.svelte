@@ -84,7 +84,7 @@
         transition: all 0.15s ease-in-out;
     }
 
-    .item:hover .card-img img {
+    .item:hover .card-img picture {
         opacity: 0.6;
     }
 

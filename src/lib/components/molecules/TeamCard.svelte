@@ -1,31 +1,32 @@
 <script>
     export let member;
-
-    function getStaticImage(member) {
-        const firstName = member.name?.split(' ')[0];
-        return `/images/${firstName}.png`;
-      
- 
-    }
-
     const defaultImage = '/images/default.png';
+    $: imageId = member.picture ?? null;
 </script>
 
 <article class="single-item">
     <section class="item">
         <div class="card-img">
             <picture>
-                <source 
-                    srcset={`https://fdnd-agency.directus.app/assets/${member.picture}&format=avif`}
-                    type="image/avif"       
-                /> 
-                <source 
-                    srcset={`https://fdnd-agency.directus.app/assets/${member.picture}&format=webp`}
-                    type="image/webp"       
-                /> 
+                <source
+                    srcset={imageId
+                        ? `https://fdnd-agency.directus.app/assets/${imageId}&format=avif`
+                        : defaultImage}
+                    type="image/avif"
+                />
+
+                <source
+                    srcset={imageId
+                        ? `https://fdnd-agency.directus.app/assets/${imageId}&format=webp`
+                        : defaultImage}
+                    type="image/webp"
+                />
+
                 <enhanced:img
                     class="img-size"
-                    src={`https://fdnd-agency.directus.app/assets/${member.picture}`}
+                    src={imageId
+                        ? `https://fdnd-agency.directus.app/assets/${imageId}`
+                        : defaultImage}
                     alt=""
                     fetchpriority="high"
                     on:error={(e) => {

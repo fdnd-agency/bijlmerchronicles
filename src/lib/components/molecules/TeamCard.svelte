@@ -1,25 +1,38 @@
 <script>
     export let member;
-
-    function getStaticImage(member) {
-        const firstName = member.name?.split(' ')[0];
-        return `/images/${firstName}.png`;
-    }
-
     const defaultImage = '/images/default.png';
 </script>
 
 <article class="single-item">
     <section class="item">
         <div class="card-img">
-            <img
-                class="img-size"
-                src={getStaticImage(member)}
-                alt=""
-                on:error={(e) => {
-                    e.target.src = defaultImage;
-                }}
-            />
+            <picture>
+                <source
+                    srcset={member.picture
+                        ? `https://fdnd-agency.directus.app/assets/${member.picture}&format=avif`
+                        : defaultImage}
+                    type="image/avif"
+                />
+
+                <source
+                    srcset={member.picture
+                        ? `https://fdnd-agency.directus.app/assets/${member.picture}&format=webp`
+                        : defaultImage}
+                    type="image/webp"
+                />
+
+                <enhanced:img
+                    class="img-size"
+                    src={member.picture
+                        ? `https://fdnd-agency.directus.app/assets/${member.picture}`
+                        : defaultImage}
+                    alt=""
+                    fetchpriority="high"
+                    on:error={(e) => {
+                        e.target.src = defaultImage;
+                    }}
+                />
+            </picture>
 
             <aside class="overlay">
                 <span class="role">{member.role}</span>
@@ -71,7 +84,7 @@
         transition: all 0.15s ease-in-out;
     }
 
-    .item:hover .card-img img {
+    .item:hover .card-img picture {
         opacity: 0.6;
     }
 

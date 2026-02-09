@@ -68,12 +68,12 @@
         opacity: 0;
         position: absolute;
         top: 0;
-        transition: all 0.6s ease-in-out;
+        transition: all 0.4s ease-in-out;
         width: 100%;
     }
 
     .item:hover .card-img::after {
-        opacity: 0.7;
+        opacity: 1;
     }
 
     .img-size {

@@ -26,7 +26,7 @@
                 <enhanced:img
                     class="img-size"
                     src={`https://fdnd-agency.directus.app/assets/${member.picture}`}
-                    alt=""
+                    alt="{member.name} profile picture"
                     fetchpriority="high"
                     on:error={(e) => {
                         e.target.src = defaultImage;

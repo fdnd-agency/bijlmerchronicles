@@ -14,15 +14,25 @@
 <article class="single-item">
     <section class="item">
         <div class="card-img">
-            <enhanced:img
-                class="img-size"
-                src={`https://fdnd-agency.directus.app/assets/${member.picture}`}
-                alt=""
-                fetchpriority="high"
-                on:error={(e) => {
-                    e.target.src = defaultImage;
-                }}
-            />
+            <picture>
+                <source 
+                    srcset={`https://fdnd-agency.directus.app/assets/${member.picture}&format=avif`}
+                    type="image/avif"       
+                /> 
+                <source 
+                    srcset={`https://fdnd-agency.directus.app/assets/${member.picture}&format=webp`}
+                    type="image/webp"       
+                /> 
+                <enhanced:img
+                    class="img-size"
+                    src={`https://fdnd-agency.directus.app/assets/${member.picture}`}
+                    alt=""
+                    fetchpriority="high"
+                    on:error={(e) => {
+                        e.target.src = defaultImage;
+                    }}
+                />
+            </picture>
 
             <aside class="overlay">
                 <span class="role">{member.role}</span>

@@ -4,6 +4,8 @@
     function getStaticImage(member) {
         const firstName = member.name?.split(' ')[0];
         return `/images/${firstName}.png`;
+      
+ 
     }
 
     const defaultImage = '/images/default.png';
@@ -12,10 +14,11 @@
 <article class="single-item">
     <section class="item">
         <div class="card-img">
-            <img
+            <enhanced:img
                 class="img-size"
-                src={getStaticImage(member)}
+                src={`https://fdnd-agency.directus.app/assets/${member.picture}`}
                 alt=""
+                fetchpriority="high"
                 on:error={(e) => {
                     e.target.src = defaultImage;
                 }}

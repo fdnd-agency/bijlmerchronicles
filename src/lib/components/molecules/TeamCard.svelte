@@ -1,7 +1,6 @@
 <script>
     export let member;
     const defaultImage = '/images/default.png';
-    $: imageId = member.picture ?? null;
 </script>
 
 <article class="single-item">
@@ -9,23 +8,23 @@
         <div class="card-img">
             <picture>
                 <source
-                    srcset={imageId
-                        ? `https://fdnd-agency.directus.app/assets/${imageId}&format=avif`
+                    srcset={member.picture
+                        ? `https://fdnd-agency.directus.app/assets/${member.picture}&format=avif`
                         : defaultImage}
                     type="image/avif"
                 />
 
                 <source
-                    srcset={imageId
-                        ? `https://fdnd-agency.directus.app/assets/${imageId}&format=webp`
+                    srcset={member.picture
+                        ? `https://fdnd-agency.directus.app/assets/${member.picture}&format=webp`
                         : defaultImage}
                     type="image/webp"
                 />
 
                 <enhanced:img
                     class="img-size"
-                    src={imageId
-                        ? `https://fdnd-agency.directus.app/assets/${imageId}`
+                    src={member.picture
+                        ? `https://fdnd-agency.directus.app/assets/${member.picture}`
                         : defaultImage}
                     alt=""
                     fetchpriority="high"

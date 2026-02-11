@@ -4,4 +4,9 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 
 export default defineConfig({
     plugins: [enhancedImages(), sveltekit()],
+    build: {
+        minify: 'esbuild'
+   
+    }
+
 });

@@ -22,12 +22,12 @@ body {
 @layer typography {
     @font-face {
         font-family: 'Waukegan';
-        src: url($lib/assets/fonts/WaukeganLdo.ttf);
+        src: url($lib/assets/fonts/WaukeganLdo.woff) format('woff');
     }
 
     @font-face {
         font-family: 'WaukeganBlack';
-        src: url($lib/assets/fonts/WaukeganLdoBlack.ttf);
+        src: url($lib/assets/fonts/WaukeganLdoBlack.woff) format('woff');
     }
 
     :root {

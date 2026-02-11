@@ -100,7 +100,7 @@
     }
 
     .item:hover .card-img .overlay {
-        top: 50%;
+        top: 60%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -111,7 +111,7 @@
 
     /* SCROLLBARE TEKST */
     .overlay-text {
-        max-height: 160px; /* Hoeveel tekst zichtbaar is */
+        max-height: 250px; /* Hoeveel tekst zichtbaar is */
         overflow: hidden;
         margin-top: 10px;
         padding: 18px;

@@ -2,6 +2,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: var(--main-font);
     color: var(--color-text);
     background: var(--color-background);
@@ -10,6 +11,8 @@ body {
 
 body {
     width: 100%;
+    --height-member-picture: 380px;
+    --height-member-name: 180px;
 }
 
 :focus-visible {

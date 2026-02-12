@@ -1,5 +1,5 @@
 <script>
-    export let title = 'Navbardetailpagina';
+    export const title = 'Navbardetailpagina';
 </script>
 
 <div class="sidebar">

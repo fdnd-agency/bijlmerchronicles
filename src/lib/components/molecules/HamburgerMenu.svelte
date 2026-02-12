@@ -124,7 +124,7 @@
             }
         }
 
-        function handleScroll(event) {
+        function handleScroll(_event) {
             if (hamburgerButton.classList.contains('hamburger-is-open')) {
                 closeMenu();
                 resetHamburgerIcon();
@@ -143,7 +143,7 @@
             }
         }
 
-        function handleAnimationEndOnButton(event) {
+        function handleAnimationEndOnButton(_event) {
             hamburgerButton.classList.remove('bounce_animation');
         }
 

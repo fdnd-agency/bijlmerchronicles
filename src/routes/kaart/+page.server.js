@@ -31,9 +31,9 @@ export async function load({ fetch }) {
         });
 
         return { mapAddresses };
-    } catch (err) {
+    } catch (error) {
         // Als het fout gaat, log het de fout.
-        console.error('Error fetching Directus items', err);
+        error('Error fetching Directus items', error);
         return { mapAddresses: [] };
     }
 }

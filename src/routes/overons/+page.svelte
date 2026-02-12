@@ -1,5 +1,4 @@
 <script>
-    import TeamCard from '$lib/components/molecules/TeamCard.svelte';
     import TeamSection from '$lib/components/organisms/TeamSection.svelte';
 
     export let data;

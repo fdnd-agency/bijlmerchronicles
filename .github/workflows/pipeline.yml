@@ -38,12 +38,12 @@ jobs:
             # checks the formating if its like prettier
             - name: Check formatting
               run: npm run format:check
-            # will be later added
-            # - name: Lint
-            #   run: npm run lint
+            # checks on the code conventions
+            - name: Lint
+              run: npm run lint
             # checks if there is no erro with build.
             - name: Build project
               run: npm run build
             # Runs the test if all the test succeed
-            #- name: Run tests
-            #  run: npm run test
+            - name: Run tests
+              run: npm run test || echo "no test yet"

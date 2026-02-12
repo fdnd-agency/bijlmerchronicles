@@ -23,7 +23,7 @@ export async function load({ params, fetch }) {
 
         // Foutafhandeling
     } catch (error) {
-        console.error('Error fetching lemma from API', error);
+        error('Error fetching lemma from API', error);
         return { lemma: null };
     }
 }

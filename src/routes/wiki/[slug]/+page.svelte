@@ -1,7 +1,9 @@
 <script>
-    export let data;
+    import DOMPurify from 'isomorphic-dompurify';
 
+    export let data;
     const { lemma } = data;
+    const Body = DOMPurify.sanitize(lemma?.body);
 </script>
 
 <svelte:head>
@@ -25,7 +27,9 @@
 
     <!-- WIKI INHOUD (body) -->
     <article>
-        {@html lemma.body}
+        <!-- html tag was getting a warning because of XSS attack but Dompurfiy prevents XSS attack through getting rid of dangorus elements from html and make it more safe for the user to use -->
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+        {@html Body}
     </article>
 </section>
 

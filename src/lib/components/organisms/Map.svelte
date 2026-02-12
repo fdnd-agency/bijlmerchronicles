@@ -1,7 +1,5 @@
 <script>
     import { onDestroy, onMount } from 'svelte';
-    import { tick } from 'svelte';
-    import { javascript } from '$lib/utils/javascriptEnabled.svelte.js';
 
     let {
         mapAddresses,

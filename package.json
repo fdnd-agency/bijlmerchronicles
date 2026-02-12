@@ -32,6 +32,7 @@
     },
     "dependencies": {
         "@unpic/svelte": "^1.0.1",
+        "isomorphic-dompurify": "^3.0.0-rc.2",
         "leaflet": "^1.9.4"
     }
 }

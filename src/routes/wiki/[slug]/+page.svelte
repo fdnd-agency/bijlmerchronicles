@@ -3,7 +3,7 @@
 
     export let data;
     const { lemma } = data;
-    const Body = DOMPurify.sanitize(lemma.body);
+    const Body = DOMPurify.sanitize(lemma?.body);
 </script>
 
 <svelte:head>

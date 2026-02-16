@@ -3,11 +3,11 @@
 
     export let data;
     const { lemma } = data;
-    const Body = DOMPurify.sanitize(lemma?.body);
+    const Body = lemma ? DOMPurify.sanitize(lemma.body) : '';
 </script>
 
 <svelte:head>
-    <title>Wiki - {lemma.title}</title>
+    <title>Wiki - {lemma?.title ?? 'Wiki'}</title>
 </svelte:head>
 
 <section>

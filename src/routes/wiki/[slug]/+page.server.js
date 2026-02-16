@@ -1,15 +1,27 @@
+import { error } from '@sveltejs/kit';
+
 export async function load({ params, fetch }) {
     try {
-        // Haal het specifieke emibazo_lemma item op basis van de id uit de URL
         const lemmaSlug = params.slug;
-        const emibazoApiUrl = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${lemmaSlug}`;
 
-        const emibazoLemmaResponse = await fetch(emibazoApiUrl);
+        const url =
+            `https://fdnd-agency.directus.app/items/emibazo_lemma` +
+            `?filter[slug][_eq]=${lemmaSlug}`;
 
-        const emibazoLemmasData = await emibazoLemmaResponse.json();
-        const lemma = emibazoLemmasData.data[0];
+        const response = await fetch(url);
 
-        // Retourneer alleen de benodigde velden voor de wiki pagina
+        if (!response.ok) {
+            throw error(500, 'Failed to fetch API');
+        }
+
+        const json = await response.json();
+        const lemma = json.data?.[0];
+
+        // ✅ handle missing slug properly
+        if (!lemma) {
+            throw error(404, 'Lemma not found');
+        }
+
         return {
             lemma: {
                 lemma: lemma.id,
@@ -17,13 +29,14 @@ export async function load({ params, fetch }) {
                 title: lemma.title,
                 body: lemma.body,
                 address: lemma.address,
-                bouwjaar: lemma.bouwjaar,
-            },
+                bouwjaar: lemma.bouwjaar
+            }
         };
 
-        // Foutafhandeling
-    } catch (error) {
-        error('Error fetching lemma from API', error);
-        return { lemma: null };
+    } catch (err) {
+        error('Error fetching lemma from API:', err);
+
+        // show proper error page instead of 500 crash
+        throw error(500, 'Server error while loading lemma');
     }
 }

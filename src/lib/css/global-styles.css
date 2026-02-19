@@ -71,7 +71,7 @@ body {
         --color-primary-light: hsl(var(--primary-h), var(--primary-s), 75%);
         --color-primary-lighter: hsl(var(--primary-h), var(--primary-s), 80%);
         --color-primary-lightest: hsl(var(--primary-h), var(--primary-s), 90%);
- 
+
         --color-primary-dark: hsl(var(--primary-h), var(--primary-s), 40%);
         --color-primary-darker: hsl(var(--primary-h), var(--primary-s), 30%);
         --color-primary-darkest: hsl(var(--primary-h), var(--primary-s), 20%);
@@ -83,13 +83,37 @@ body {
 
         --color-secondary: hsl(var(--secondary-h), var(--secondary-s), 17%);
 
-        --color-secondary-light: hsl(var(--secondary-h), var(--secondary-s), 61%);
-        --color-secondary-lighter: hsl(var(--secondary-h), var(--secondary-s), 82%);
-        --color-secondary-lightest: hsl(var(--secondary-h), var(--secondary-s), 92%);
+        --color-secondary-light: hsl(
+            var(--secondary-h),
+            var(--secondary-s),
+            61%
+        );
+        --color-secondary-lighter: hsl(
+            var(--secondary-h),
+            var(--secondary-s),
+            82%
+        );
+        --color-secondary-lightest: hsl(
+            var(--secondary-h),
+            var(--secondary-s),
+            92%
+        );
 
-        --color-secondary-dark: hsl(var(--secondary-h), var(--secondary-s), 45%);
-        --color-secondary-darker: hsl(var(--secondary-h), var(--secondary-s), 35%);
-        --color-secondary-darkest: hsl(var(--secondary-h), var(--secondary-s), 25%);
+        --color-secondary-dark: hsl(
+            var(--secondary-h),
+            var(--secondary-s),
+            45%
+        );
+        --color-secondary-darker: hsl(
+            var(--secondary-h),
+            var(--secondary-s),
+            35%
+        );
+        --color-secondary-darkest: hsl(
+            var(--secondary-h),
+            var(--secondary-s),
+            25%
+        );
 
         /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
         --color-tertiary: hsl(94, 23%, 76%);
@@ -109,7 +133,7 @@ body {
         --color-neutral-lightest: hsl(88, var(--neutral-s), 83%);
 
         --color-neutral-dark: hsl(90, var(--neutral-s), 40%);
-        --color-neutral-darker: hsl(89, var(--neutral-s),, 25%);
+        --color-neutral-darker: hsl(89, var(--neutral-s), , 25%);
         --color-neutral-darkest: hsl(87, var(--neutral-s), 10%);
 
         /* --------------------------------------- pop-out-color - Hover ------------------------------------ */

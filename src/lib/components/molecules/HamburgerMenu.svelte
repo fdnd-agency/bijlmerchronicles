@@ -282,7 +282,7 @@
         bottom: 0;
 
         a {
-            color: #cebf8f;
+            color: hsl(46, 39%, 68%);
             font-size: var(--heading-1);
             text-decoration: none;
             width: 100%;

@@ -63,55 +63,55 @@ body {
     :root {
         /* --------------------------------------- Primary Color Family - Gold/Accent ( Typography for heading and box shadows ) ------------------------------------ */
 
-        --color-primary: #cebf8f;
+        --color-primary: hsl(46, 39%, 68%);
 
-        --color-primary-light: #d8cca7;
-        --color-primary-lighter: #e0d7b8;
-        --color-primary-lightest: #efebdc;
+        --color-primary-light: hsl(45, 39%, 75%);
+        --color-primary-lighter: hsl(47, 39%, 80%);
+        --color-primary-lightest: hsl(47, 37%, 90%);
 
-        --color-primary-dark: #8e7b3e;
-        --color-primary-darker: #6a5c2f;
-        --color-primary-darkest: #473d1f;
+        --color-primary-dark: hsl(46, 39%, 40%);
+        --color-primary-darker: hsl(46, 39%, 30%);
+        --color-primary-darkest: hsl(45, 39%, 20%);
 
         /* --------------------------------------- Secondary Color Family - Forest/Secondar ( Background for shapes / foreground text color ) ------------------------------------ */
 
-        --color-secondary: #263b1c;
+        --color-secondary: hsl(101, 36%, 17%);
 
-        --color-secondary-100: #e8f2e3;
-        --color-secondary-200: #cbe1c1;
-        --color-secondary-300: #8fbf78;
-        --color-secondary-400: #649c4a;
-        --color-secondary-500: #4e7939;
-        --color-secondary-600: #385629;
+        --color-secondary-100: hsl(100, 37%, 92%);
+        --color-secondary-200: hsl(101, 35%, 82%);
+        --color-secondary-300: hsl(101, 36%, 61%);
+        --color-secondary-400: hsl(101, 36%, 45%);
+        --color-secondary-500: hsl(100, 36%, 35%);
+        --color-secondary-600: hsl(100, 35%, 25%);
 
         /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
-        --color-tertiary: #bfcfb3;
+        --color-tertiary: hsl(94, 23%, 76%);
 
         /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
 
-        --accent-color: #dbe6d5;
+        --accent-color: hsl(99, 25%, 87%);
 
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
-        --color-neutral: #edf0ea;
+        --color-neutral: hsl(90, 17%, 93%);
 
-        --color-neutral-200: #d4dbcc;
-        --color-neutral-300: #b2bfa6;
-        --color-neutral-400: #8fa17c;
-        --color-neutral-500: #667755;
-        --color-neutral-600: #404a35;
-        --color-neutral-700: #1a1e15;
+        --color-neutral-200: hsl(88, 17%, 83%);
+        --color-neutral-300: hsl(91, 16%, 70%);
+        --color-neutral-400: hsl(89, 16%, 56%);
+        --color-neutral-500: hsl(90, 17%, 40%);
+        --color-neutral-600: hsl(89, 17%, 25%);
+        --color-neutral-700: hsl(87, 18%, 10%);
 
         /* --------------------------------------- pop-out-color - Hover ------------------------------------ */
 
-        --pop-out-color: #3171a2;
+        --pop-out-color: hsl(206, 54%, 41%);
 
-        --pop-out-color-500: #7eb1d8;
-        --pop-out-color-600: #3b89c4;
+        --pop-out-color-500: hsl(206, 54%, 67%);
+        --pop-out-color-600: hsl(206, 54%, 50%);
 
         /* --------------------------------------- Link styling ------------------------------------ */
 
-        --link-color: #3478ff;
+        --link-color: hsl(220, 100%, 60%);
 
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 

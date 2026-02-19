@@ -42,18 +42,18 @@
     h3 {
         margin: 0;
         font-size: clamp(1.1rem, 2vw, 1.4rem);
-        color: var(--color-neutral-700);
+        color: var(--color-neutral-darkest);
     }
 
     .divider {
         height: 1px;
-        background: var(--color-neutral-700);
+        background: var(--color-neutral-darkest);
         margin: clamp(4px, 1vh, 10px) 0;
     }
 
     details summary {
         cursor: pointer;
-        color: var(--color-secondary-600);
+        color: var(--color-secondary-darkest);
         font-size: clamp(0.9rem, 1.8vw, 1.1rem);
     }
 
@@ -96,7 +96,7 @@
     details a {
         display: block;
         margin: clamp(4px, 1vh, 8px) 0;
-        color: var(--color-neutral-700);
+        color: var(--color-neutral-darkest);
         text-decoration: none;
         font-size: clamp(0.8rem, 1.6vw, 1rem);
         position: relative;

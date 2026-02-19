@@ -95,7 +95,7 @@
             font-size: var(--paragraph-size);
 
             &:hover {
-                color: var(--pop-out-color-500);
+                color: var(--pop-out-color-light);
             }
 
             /* --------------------------------------- Login / 'aanmelden' Button styling ---------------------------------------  */
@@ -250,7 +250,7 @@
                 }
 
                 &::before {
-                    background-color: var(--pop-out-color-500);
+                    background-color: var(--pop-out-color-light);
                 }
             }
         }

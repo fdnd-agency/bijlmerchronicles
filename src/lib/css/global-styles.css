@@ -91,14 +91,6 @@ body {
         --color-secondary-darker: hsl(var(--secondary-h), var(--secondary-s), 35%);
         --color-secondary-darkest: hsl(var(--secondary-h), var(--secondary-s), 25%);
 
-
-        /* --color-secondary-100: hsl(100, 37%, 92%);
-        --color-secondary-200: hsl(101, 35%, 82%);
-        --color-secondary-300: hsl(101, 36%, 61%);
-        --color-secondary-400: hsl(101, 36%, 45%);
-        --color-secondary-500: hsl(100, 36%, 35%);
-        --color-secondary-600: hsl(100, 35%, 25%); */
-
         /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
         --color-tertiary: hsl(94, 23%, 76%);
 
@@ -120,14 +112,6 @@ body {
         --color-neutral-darker: hsl(89, var(--neutral-s),, 25%);
         --color-neutral-darkest: hsl(87, var(--neutral-s), 10%);
 
-        /* --color-neutral-200: hsl(88, 17%, 83%);
-        --color-neutral-300: hsl(91, 16%, 70%);
-        --color-neutral-400: hsl(89, 16%, 56%);
-        --color-neutral-500: hsl(90, 17%, 40%);
-        --color-neutral-600: hsl(89, 17%, 25%);
-        --color-neutral-700: hsl(87, 18%, 10%); */
-
-
         /* --------------------------------------- pop-out-color - Hover ------------------------------------ */
 
         --pop-out-h: 206;
@@ -137,10 +121,6 @@ body {
 
         --pop-out-color-light: hsl(var(--pop-out-h), var(--pop-out-s), 67%);
         --pop-out-color-dark: hsl(var(--pop-out-h), var(--pop-out-s), 50%);
-/* 
-        --pop-out-color-500: hsl(206, 54%, 67%);
-        --pop-out-color-600: hsl(206, 54%, 50%); */
-
 
         /* --------------------------------------- Link styling ------------------------------------ */
 

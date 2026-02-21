@@ -74,10 +74,6 @@ Wij volgen de gitflow van [gitkraken.com](https://www.gitkraken.com/learn/git/gi
 
 AFSRPAKEN: ELKE START VAN DE DAG EEN STAND-UP
 
-## Team Canvas
-
-<img width="2378" height="1682" alt="Team Canvas" src="https://github.com/user-attachments/assets/a7a0374c-76b5-4597-8cce-64ce5427a501" />
-
 ## FDND conventies
 
 Voor het bouwen van deze website volgen wij de fdnd conventies:

@@ -9,7 +9,7 @@ export async function load({ params, fetch }) {
             `?filter[slug][_eq]=${lemmaSlug}`;
 
         const response = await fetch(url);
-
+        console.log('params.slug:', params.slug);
         if (!response.ok) {
             throw error(500, 'Failed to fetch API');
         }
@@ -29,10 +29,9 @@ export async function load({ params, fetch }) {
                 title: lemma.title,
                 body: lemma.body,
                 address: lemma.address,
-                bouwjaar: lemma.bouwjaar
-            }
+                bouwjaar: lemma.bouwjaar,
+            },
         };
-
     } catch (err) {
         error('Error fetching lemma from API:', err);
 

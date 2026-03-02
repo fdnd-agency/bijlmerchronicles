@@ -1,26 +1,24 @@
 import { error } from '@sveltejs/kit';
-export const ssr = false;
-export const prerender = false;
 
-export async function load({ params }) {
-    const lemmaSlug = params.slug;
 
-    const url =
-        `https://fdnd-agency.directus.app/items/emibazo_lemma` +
-        `?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
-
+export async function load({ params, fetch }) {
     try {
+        const lemmaSlug = params.slug;
+
+        const url =
+            `https://fdnd-agency.directus.app/items/emibazo_lemma` +
+            `?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
+
         const response = await fetch(url);
 
-        // If Directus itself fails → real server problem
         if (!response.ok) {
-            throw error(response.status, 'Failed to fetch API');
+            throw error(500, 'Failed to fetch API');
         }
 
         const json = await response.json();
-        const lemma = json.data?.[0] ?? null;
+        const lemma = json.data?.[0];
 
-        // Proper 404 (allowed — does NOT crash SSR)
+        // ✅ handle missing slug properly
         if (!lemma) {
             throw error(404, 'Lemma not found');
         }
@@ -32,24 +30,14 @@ export async function load({ params }) {
                 title: lemma.title,
                 body: lemma.body,
                 address: lemma.address,
-                bouwjaar: lemma.bouwjaar
-            }
+                bouwjaar: lemma.bouwjaar,
+            },
         };
-
     } catch (err) {
-        // IMPORTANT:
-        // If it's already a SvelteKit HTTP error, rethrow it
-        if (err?.status) {
-            throw err;
-        }
-
         // eslint-disable-next-line no-console
-        console.error('Directus fetch failed:', err);
+        console.error('Error fetching lemma from API:', err);
 
-        // Instead of crashing SSR with 500,
-        // return safe fallback data
-        return {
-            lemma: null
-        };
+        // show proper error page instead of 500 crash
+        throw error(500, 'Server error while loading lemma');
     }
 }

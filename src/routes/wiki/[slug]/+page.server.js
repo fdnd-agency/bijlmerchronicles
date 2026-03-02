@@ -1,5 +1,7 @@
 import { error } from '@sveltejs/kit';
 
+export const prerender = false;
+
 export async function load({ params, fetch }) {
     try {
         const lemmaSlug = params.slug;
@@ -33,7 +35,8 @@ export async function load({ params, fetch }) {
             },
         };
     } catch (err) {
-        error('Error fetching lemma from API:', err);
+        // eslint-disable-next-line no-console
+        console.error('Error fetching lemma from API:', err);
 
         // show proper error page instead of 500 crash
         throw error(500, 'Server error while loading lemma');

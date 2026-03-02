@@ -33,7 +33,8 @@ export async function load({ fetch }) {
         return { mapAddresses };
     } catch (error) {
         // Als het fout gaat, log het de fout.
-        error('Error fetching Directus items', error);
+        // eslint-disable-next-line no-console
+        console.error('Error fetching Directus items', error);
         return { mapAddresses: [] };
     }
 }

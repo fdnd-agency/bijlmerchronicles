@@ -1,43 +1,50 @@
-import { error } from '@sveltejs/kit';
+export const prerender = false;
 
-
-export async function load({ params, fetch }) {
+// Helper: fetch with timeout
+async function fetchWithTimeout(url, timeout = 5000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
     try {
-        const lemmaSlug = params.slug;
+        const res = await fetch(url, { signal: controller.signal });
+        return res;
+    } finally {
+        clearTimeout(id);
+    }
+}
 
-        const url =
-            `https://fdnd-agency.directus.app/items/emibazo_lemma` +
-            `?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
+export async function load({ params }) {
+    const lemmaSlug = params.slug;
+    const url = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
 
-        const response = await fetch(url);
+    try {
+        const res = await fetchWithTimeout(url, 5000); // 5s timeout
 
-        if (!response.ok) {
-            throw error(500, 'Failed to fetch API');
+        if (!res.ok) {
+            // SSR-safe logging
+              // eslint-disable-next-line no-console
+            console.error(`Directus API error: ${res.status}`);
+            return { lemma: null };
         }
 
-        const json = await response.json();
-        const lemma = json.data?.[0];
-
-        // ✅ handle missing slug properly
-        if (!lemma) {
-            throw error(404, 'Lemma not found');
-        }
+        const json = await res.json();
+        const lemma = json.data?.[0] ?? null;
 
         return {
-            lemma: {
-                lemma: lemma.id,
-                slug: lemma.slug,
-                title: lemma.title,
-                body: lemma.body,
-                address: lemma.address,
-                bouwjaar: lemma.bouwjaar,
-            },
+            lemma: lemma
+                ? {
+                      id: lemma.id,
+                      slug: lemma.slug,
+                      title: lemma.title,
+                      body: lemma.body,
+                      address: lemma.address,
+                      bouwjaar: lemma.bouwjaar,
+                  }
+                : null,
         };
     } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error('Error fetching lemma from API:', err);
-
-        // show proper error page instead of 500 crash
-        throw error(500, 'Server error while loading lemma');
+        // SSR-safe logging
+         // eslint-disable-next-line no-console
+        console.error('SSR fetch failed:', err);
+        return { lemma: null };
     }
 }

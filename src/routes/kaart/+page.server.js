@@ -1,17 +1,22 @@
 // Link van de directus API ophalen
-export async function load({ fetch }) {
+export const prerender = false;
+
+export async function load() {
     const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
     const link = `${DIRECTUS_BASE}/items/emibazo_lemma`;
 
     try {
-        // fetch() haalt data op uit de API. Daarna word het omgezet in JSON zodat wij het kunnen gebruiken.
-        const mapResponse = await fetch(link);
+        const res = await fetch(link);
 
-        if (!mapResponse.ok) {
-            throw new Error(`Directus API failed: ${mapResponse.status}`);
+        // If API fails, return safe empty array instead of throwing
+        if (!res.ok) {
+            // eslint-disable-next-line no-console
+            console.error(`Directus API error: ${res.status}`);
+            return { mapAddresses: [] };
         }
-        const mapResponseJSON = await mapResponse.json();
-        const items = mapResponseJSON.data ?? [];
+
+        const json = await res.json();
+        const items = json.data ?? [];
 
         // Voor elk item worden alleen de benodigde velden meegenomen
         const mapAddresses = items.map((it) => ({

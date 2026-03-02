@@ -6,10 +6,10 @@ export async function load({ params, fetch }) {
 
         const url =
             `https://fdnd-agency.directus.app/items/emibazo_lemma` +
-            `?filter[slug][_eq]=${lemmaSlug}`;
+            `?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
 
         const response = await fetch(url);
-        console.log('params.slug:', params.slug);
+
         if (!response.ok) {
             throw error(500, 'Failed to fetch API');
         }

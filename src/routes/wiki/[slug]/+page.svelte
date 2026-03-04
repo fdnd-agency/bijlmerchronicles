@@ -1,37 +1,50 @@
 <script>
     import DOMPurify from 'isomorphic-dompurify';
 
-    export let data;
-    const { lemma } = data;
-    const Body = lemma ? DOMPurify.sanitize(lemma.body) : '';
+    const { data } = $props();
+    const lemma = $derived(data.lemma);
+    const Body = $derived(lemma ? DOMPurify.sanitize(lemma.body) : '');
 </script>
 
 <svelte:head>
-    <title>Wiki - {lemma.title}</title>
+    <title>Wiki - {lemma?.title ?? 'Wiki'}</title>
 </svelte:head>
 
-<section>
-    <a href="/kaart" class="back-link-kaart">← Terug naar kaart</a>
+{#if lemma}
+    <section>
+        <a href="/kaart" class="back-link-kaart">← Terug naar kaart</a>
 
-    <h1>{lemma.title}</h1>
+        <h1>{lemma.title}</h1>
 
-    <aside>
-        {#if lemma.address}
-            <p><strong>Adres:</strong> {lemma.address}</p>
-        {/if}
+        <aside>
+            {#if lemma.address}
+                <p><strong>Adres:</strong> {lemma.address}</p>
+            {/if}
 
-        {#if lemma.bouwjaar}
-            <p><strong>Bouwjaar:</strong> {lemma.bouwjaar}</p>
-        {/if}
-    </aside>
+            {#if lemma.bouwjaar}
+                <p><strong>Bouwjaar:</strong> {lemma.bouwjaar}</p>
+            {/if}
+        </aside>
 
-    <!-- WIKI INHOUD (body) -->
-    <article>
-        <!-- html tag was getting a warning because of XSS attack but Dompurfiy prevents XSS attack through getting rid of dangorus elements from html and make it more safe for the user to use -->
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-        {@html Body}
-    </article>
-</section>
+        <!-- WIKI INHOUD (body) -->
+        <article>
+            <!-- html tag was getting a warning because of XSS attack but Dompurfiy prevents XSS attack through getting rid of dangorus elements from html and make it more safe for the user to use -->
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            {@html Body}
+        </article>
+    </section>
+{:else}
+    <section>
+        <a href="/kaart" class="back-link-kaart">← Terug naar kaart</a>
+        <div class="error-message">
+            <h1>Lemma niet gevonden</h1>
+            <p>
+                Het gevraagde lemma kon niet worden geladen. Probeer het later
+                opnieuw.
+            </p>
+        </div>
+    </section>
+{/if}
 
 <style>
     :root {
@@ -99,6 +112,18 @@
             width: 80vw;
             background-color: var(--color-secondary);
             height: 2px;
+        }
+    }
+
+    .error-message {
+        text-align: center;
+        padding: var(--spacing-wiki-page);
+        h1 {
+            color: var(--color-error, #e74c3c);
+        }
+        p {
+            margin-top: 1rem;
+            font-size: var(--paragraph-2);
         }
     }
 </style>

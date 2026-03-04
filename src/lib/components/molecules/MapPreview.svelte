@@ -104,8 +104,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #717171c8;
-        color: #ffffff;
+        background-color: hsla(0, 0%, 44%, 0.784);
+        color: hsl(0, 0%, 100%);
         text-decoration: none;
         padding: 0.6em;
         border-radius: 0.6rem;

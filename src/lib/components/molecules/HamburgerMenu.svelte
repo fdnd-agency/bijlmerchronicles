@@ -229,14 +229,14 @@
 
             &:hover {
                 path {
-                    stroke: var(--pop-out-color-500);
+                    stroke: var(--pop-out-color-light);
                 }
             }
 
             path {
                 position: absolute;
                 fill: none;
-                stroke: var(--color-neutral-600);
+                stroke: var(--color-neutral-darker);
                 stroke-width: 3;
                 stroke-linecap: round;
             }
@@ -282,7 +282,7 @@
         bottom: 0;
 
         a {
-            color: #cebf8f;
+            color: hsl(46, 39%, 68%);
             font-size: var(--heading-1);
             text-decoration: none;
             width: 100%;
@@ -297,7 +297,7 @@
             }
 
             &:hover {
-                background-color: var(--color-secondary-600);
+                background-color: var(--color-secondary-darkest);
             }
 
             &:focus-visible {

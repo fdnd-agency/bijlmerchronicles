@@ -63,55 +63,68 @@ body {
     :root {
         /* --------------------------------------- Primary Color Family - Gold/Accent ( Typography for heading and box shadows ) ------------------------------------ */
 
-        --color-primary: #cebf8f;
+        --primary-h: 46;
+        --primary-s: 39%;
 
-        --color-primary-light: #d8cca7;
-        --color-primary-lighter: #e0d7b8;
-        --color-primary-lightest: #efebdc;
+        --color-primary: hsl(var(--primary-h), var(--primary-s), 68%);
 
-        --color-primary-dark: #8e7b3e;
-        --color-primary-darker: #6a5c2f;
-        --color-primary-darkest: #473d1f;
+        --color-primary-light: hsl(var(--primary-h), var(--primary-s), 75%);
+        --color-primary-lighter: hsl(var(--primary-h), var(--primary-s), 80%);
+        --color-primary-lightest: hsl(var(--primary-h), var(--primary-s), 90%);
+
+        --color-primary-dark: hsl(var(--primary-h), var(--primary-s), 40%);
+        --color-primary-darker: hsl(var(--primary-h), var(--primary-s), 30%);
+        --color-primary-darkest: hsl(var(--primary-h), var(--primary-s), 20%);
 
         /* --------------------------------------- Secondary Color Family - Forest/Secondar ( Background for shapes / foreground text color ) ------------------------------------ */
 
-        --color-secondary: #263b1c;
+        --secondary-h: 100;
+        --secondary-s: 36%;
 
-        --color-secondary-100: #e8f2e3;
-        --color-secondary-200: #cbe1c1;
-        --color-secondary-300: #8fbf78;
-        --color-secondary-400: #649c4a;
-        --color-secondary-500: #4e7939;
-        --color-secondary-600: #385629;
+        --color-secondary: hsl(var(--secondary-h), var(--secondary-s), 17%);
+
+        --color-secondary-light: hsl(var(--secondary-h), var(--secondary-s), 61%);
+        --color-secondary-lighter: hsl(var(--secondary-h), var(--secondary-s), 82%);
+        --color-secondary-lightest: hsl(var(--secondary-h), var(--secondary-s), 92%);
+
+        --color-secondary-dark: hsl(var(--secondary-h), var(--secondary-s), 45%);
+        --color-secondary-darker: hsl(var(--secondary-h), var(--secondary-s), 35%);
+        --color-secondary-darkest: hsl(var(--secondary-h), var(--secondary-s), 25%);
 
         /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
-        --color-tertiary: #bfcfb3;
+        --color-tertiary: hsl(94, 23%, 76%);
 
         /* --------------------------------------- Accent Color / Box shadows and form styling ) ------------------------------------ */
 
-        --accent-color: #dbe6d5;
+        --accent-color: hsl(99, 25%, 87%);
 
         /* --------------------------------------- Neutral Color Family - Base/Background ------------------------------------ */
 
-        --color-neutral: #edf0ea;
+        --neutral-s: 17%;
 
-        --color-neutral-200: #d4dbcc;
-        --color-neutral-300: #b2bfa6;
-        --color-neutral-400: #8fa17c;
-        --color-neutral-500: #667755;
-        --color-neutral-600: #404a35;
-        --color-neutral-700: #1a1e15;
+        --color-neutral: hsl(90, var(--neutral-s), 93%);
+
+        --color-neutral-light: hsl(89, var(--neutral-s), 56%);
+        --color-neutral-lighter: hsl(91, var(--neutral-s), 70%);
+        --color-neutral-lightest: hsl(88, var(--neutral-s), 83%);
+
+        --color-neutral-dark: hsl(90, var(--neutral-s), 40%);
+        --color-neutral-darker: hsl(89, var(--neutral-s), 25%);
+        --color-neutral-darkest: hsl(87, var(--neutral-s), 10%);
 
         /* --------------------------------------- pop-out-color - Hover ------------------------------------ */
 
-        --pop-out-color: #3171a2;
+        --pop-out-h: 206;
+        --pop-out-s: 54%;
 
-        --pop-out-color-500: #7eb1d8;
-        --pop-out-color-600: #3b89c4;
+        --pop-out-color: hsl(var(--pop-out-h), var(--pop-out-s), 41%);
+
+        --pop-out-color-light: hsl(var(--pop-out-h), var(--pop-out-s), 67%);
+        --pop-out-color-dark: hsl(var(--pop-out-h), var(--pop-out-s), 50%);
 
         /* --------------------------------------- Link styling ------------------------------------ */
 
-        --link-color: #3478ff;
+        --link-color: hsl(220, 100%, 60%);
 
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 

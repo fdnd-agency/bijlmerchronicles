@@ -1,11 +1,17 @@
 export const prerender = false;
 
 // Helper: fetch with timeout
-async function fetchWithTimeout(url, timeout = 5000) {
+async function fetchWithTimeout(url, timeout = 10000) {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
     try {
-        const res = await fetch(url, { signal: controller.signal });
+        const res = await fetch(url, { 
+            signal: controller.signal,
+            headers: {
+                'Accept': 'application/json',
+                'User-Agent': 'SvelteKit-App'
+            }
+        });
         return res;
     } finally {
         clearTimeout(id);
@@ -17,7 +23,7 @@ export async function load({ params }) {
     const url = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
 
     try {
-        const res = await fetchWithTimeout(url, 5000); // 5s timeout
+        const res = await fetchWithTimeout(url, 10000); // 10s timeout
 
         if (!res.ok) {
             // SSR-safe logging

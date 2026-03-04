@@ -1,9 +1,29 @@
 <script>
-    import DOMPurify from 'isomorphic-dompurify';
+    import { browser } from '$app/environment';
 
     const { data } = $props();
     const lemma = $derived(data.lemma);
-    const Body = $derived(lemma ? DOMPurify.sanitize(lemma.body) : '');
+
+    // Store sanitized body - starts with raw HTML, sanitized on client
+    let sanitizedBody = $state('');
+
+    // Sanitize HTML on the client after hydration
+    $effect(() => {
+        if (lemma?.body) {
+            if (browser) {
+                // Dynamically import DOMPurify only on client
+                import('isomorphic-dompurify').then((mod) => {
+                    sanitizedBody = mod.default.sanitize(lemma.body);
+                }).catch(() => {
+                    sanitizedBody = lemma.body;
+                });
+            } else {
+                sanitizedBody = lemma.body;
+            }
+        } else {
+            sanitizedBody = '';
+        }
+    });
 </script>
 
 <svelte:head>
@@ -30,7 +50,7 @@
         <article>
             <!-- html tag was getting a warning because of XSS attack but Dompurfiy prevents XSS attack through getting rid of dangorus elements from html and make it more safe for the user to use -->
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-            {@html Body}
+            {@html sanitizedBody}
         </article>
     </section>
 {:else}

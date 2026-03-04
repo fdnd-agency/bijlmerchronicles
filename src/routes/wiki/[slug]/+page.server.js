@@ -1,38 +1,29 @@
-export const prerender = false;
-
 export async function load({ params, fetch }) {
-    const lemmaSlug = params.slug;
-    const url = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
-
     try {
-        const res = await fetch(url);
+        // Haal het specifieke emibazo_lemma item op basis van de id uit de URL
+        const lemmaSlug = params.slug;
+        const emibazoApiUrl = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${lemmaSlug}`;
 
-        if (!res.ok) {
-            // SSR-safe logging
-            // eslint-disable-next-line no-console
-            console.error(`Directus API error: ${res.status}`);
-            return { lemma: null };
-        }
+        const emibazoLemmaResponse = await fetch(emibazoApiUrl);
 
-        const json = await res.json();
-        const lemma = json.data?.[0] ?? null;
+        const emibazoLemmasData = await emibazoLemmaResponse.json();
+        const lemma = emibazoLemmasData.data[0];
 
+        // Retourneer alleen de benodigde velden voor de wiki pagina
         return {
-            lemma: lemma
-                ? {
-                      id: lemma.id,
-                      slug: lemma.slug,
-                      title: lemma.title,
-                      body: lemma.body,
-                      address: lemma.address,
-                      bouwjaar: lemma.bouwjaar,
-                  }
-                : null,
+            lemma: {
+                lemma: lemma.id,
+                slug: lemma.slug,
+                title: lemma.title,
+                body: lemma.body,
+                address: lemma.address,
+                bouwjaar: lemma.bouwjaar,
+            },
         };
-    } catch (err) {
-        // SSR-safe logging
-        // eslint-disable-next-line no-console
-        console.error('SSR fetch failed:', err);
+
+        // Foutafhandeling
+    } catch (error) {
+        error('Error fetching lemma from API', error);
         return { lemma: null };
     }
 }

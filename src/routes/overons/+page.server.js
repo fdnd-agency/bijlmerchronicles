@@ -1,22 +1,9 @@
 export const prerender = false;
 
-// Helper: fetch with timeout
-async function fetchWithTimeout(url, timeout = 5000) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
+export async function load({ fetch }) {
     try {
-        const res = await fetch(url, { signal: controller.signal });
-        return res;
-    } finally {
-        clearTimeout(id);
-    }
-}
-
-export async function load() {
-    try {
-        const res = await fetchWithTimeout(
+        const res = await fetch(
             'https://fdnd-agency.directus.app/items/emibazo_persoon?fields=*',
-            5000,
         );
 
         if (!res.ok) {

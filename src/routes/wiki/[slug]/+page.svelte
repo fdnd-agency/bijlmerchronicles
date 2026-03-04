@@ -1,30 +1,32 @@
-<script>
-    import { browser } from '$app/environment';
+    <script>
+        import { browser } from '$app/environment';
 
-    const { data } = $props();
-    const lemma = $derived(data.lemma);
+        const { data } = $props();
+        const lemma = $derived(data.lemma);
 
-    // Store sanitized body - starts with raw HTML, sanitized on client
-    let sanitizedBody = $state('');
+        // Store sanitized body - starts with raw HTML, sanitized on client
+        let sanitizedBody = $state('');
 
-    // Sanitize HTML on the client after hydration
-    $effect(() => {
-        if (lemma?.body) {
-            if (browser) {
-                // Dynamically import DOMPurify only on client
-                import('isomorphic-dompurify').then((mod) => {
-                    sanitizedBody = mod.default.sanitize(lemma.body);
-                }).catch(() => {
+        // Sanitize HTML on the client after hydration
+        $effect(() => {
+            if (lemma?.body) {
+                if (browser) {
+                    // Dynamically import DOMPurify only on client
+                    import('isomorphic-dompurify')
+                        .then((mod) => {
+                            sanitizedBody = mod.default.sanitize(lemma.body);
+                        })
+                        .catch(() => {
+                            sanitizedBody = lemma.body;
+                        });
+                } else {
                     sanitizedBody = lemma.body;
-                });
+                }
             } else {
-                sanitizedBody = lemma.body;
+                sanitizedBody = '';
             }
-        } else {
-            sanitizedBody = '';
-        }
-    });
-</script>
+        });
+    </script>
 
 <svelte:head>
     <title>Wiki - {lemma?.title ?? 'Wiki'}</title>

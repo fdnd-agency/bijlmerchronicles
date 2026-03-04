@@ -38,7 +38,10 @@
         <a href="/kaart" class="back-link-kaart">← Terug naar kaart</a>
         <div class="error-message">
             <h1>Lemma niet gevonden</h1>
-            <p>Het gevraagde lemma kon niet worden geladen. Probeer het later opnieuw.</p>
+            <p>
+                Het gevraagde lemma kon niet worden geladen. Probeer het later
+                opnieuw.
+            </p>
         </div>
     </section>
 {/if}

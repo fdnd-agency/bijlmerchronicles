@@ -16,7 +16,7 @@ export async function load() {
     try {
         const res = await fetchWithTimeout(
             'https://fdnd-agency.directus.app/items/emibazo_persoon?fields=*',
-            5000
+            5000,
         );
 
         if (!res.ok) {

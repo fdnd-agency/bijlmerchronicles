@@ -5,12 +5,12 @@ async function fetchWithTimeout(url, timeout = 10000) {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
     try {
-        const res = await fetch(url, { 
+        const res = await fetch(url, {
             signal: controller.signal,
             headers: {
-                'Accept': 'application/json',
-                'User-Agent': 'SvelteKit-App'
-            }
+                Accept: 'application/json',
+                'User-Agent': 'SvelteKit-App',
+            },
         });
         return res;
     } finally {

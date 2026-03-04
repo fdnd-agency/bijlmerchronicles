@@ -1,29 +1,11 @@
 export const prerender = false;
 
-// Helper: fetch with timeout
-async function fetchWithTimeout(url, timeout = 10000) {
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
-    try {
-        const res = await fetch(url, {
-            signal: controller.signal,
-            headers: {
-                Accept: 'application/json',
-                'User-Agent': 'SvelteKit-App',
-            },
-        });
-        return res;
-    } finally {
-        clearTimeout(id);
-    }
-}
-
-export async function load() {
+export async function load({ fetch }) {
     const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
     const link = `${DIRECTUS_BASE}/items/emibazo_lemma`;
 
     try {
-        const res = await fetchWithTimeout(link, 10000); // 10s timeout
+        const res = await fetch(link);
 
         if (!res.ok) {
             // eslint-disable-next-line no-console

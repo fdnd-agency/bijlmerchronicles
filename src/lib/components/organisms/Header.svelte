@@ -12,7 +12,7 @@
 
     <div class="links-nav-container" aria-hidden="true">
         <a href="/nieuwsbriefhehre">Nieuwsbrief</a>
-        <a href="/overons">Over ons</a>
+        <a href="/overons">Wie is wie</a>
         <a href="/helpgewegwg">Help center</a>
         <a href="/kaart">Kaart</a>
         <a href="/wikiwegwge">Wiki</a>
@@ -95,7 +95,7 @@
             font-size: var(--paragraph-size);
 
             &:hover {
-                color: var(--pop-out-color-500);
+                color: var(--pop-out-color-light);
             }
 
             /* --------------------------------------- Login / 'aanmelden' Button styling ---------------------------------------  */
@@ -250,7 +250,7 @@
                 }
 
                 &::before {
-                    background-color: var(--pop-out-color-500);
+                    background-color: var(--pop-out-color-light);
                 }
             }
         }

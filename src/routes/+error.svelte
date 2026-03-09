@@ -21,14 +21,14 @@
     }
     h1 {
         order: 1;
-        color: var(--color-secondary-600);
+        color: var(--color-secondary-darkest);
         font-size: var(--heading-1);
         text-align: center;
         margin: 0;
     }
     h2 {
         order: 0;
-        color: var(--color-secondary-400);
+        color: var(--color-secondary-dark);
         font-size: var(--heading-3);
     }
     p {
@@ -46,7 +46,7 @@
         text-decoration: none;
         font-size: var(--paragraph-size);
         &:hover {
-            color: var(--pop-out-color-500);
+            color: var(--pop-out-color-light);
         }
 
         /* --------------------------------------- Login / 'aanmelden' Button styling ---------------------------------------  */
@@ -103,7 +103,7 @@
             }
 
             &::before {
-                background-color: var(--pop-out-color-500);
+                background-color: var(--pop-out-color-light);
             }
         }
     }

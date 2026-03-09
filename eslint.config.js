@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import svelte from 'eslint-plugin-svelte';
+import globals from 'globals';
 
 export default [
     js.configs.recommended,
@@ -8,6 +9,14 @@ export default [
 
     {
         ignores: ['.netlify/**', 'build/**', '.svelte-kit/**'],
+    },
+
+    {
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+            },
+        },
     },
 
     {
@@ -25,8 +34,9 @@ export default [
         files: ['**/*.svelte'],
         rules: {
             // Svelte-specifiek
-            'svelte/no-at-html-tags': 'error',
+            'svelte/no-at-html-tags': 'warn',
             'svelte/no-unused-svelte-ignore': 'error',
+            'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
         },
     },
 ];

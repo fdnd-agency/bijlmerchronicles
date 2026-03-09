@@ -3,9 +3,9 @@
 
     export let type = 'Searchbar';
     let query = '';
-
+    // unfinisheed page error with eslint
     function handleSearchClick() {
-        console.log(`Zoeken naar: ${query}`);
+        //     const search = new console.log(`Zoeken naar: ${query}`);
     }
 </script>
 

@@ -1,3 +1,5 @@
+import argon2 from 'argon2';
+
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
@@ -16,14 +18,32 @@ export const actions = {
         }
 
         if (password !== confirmPassword) {
-            return { success: false, error: 'Wachtwoorden komen niet overeen.' };
+            return {
+                success: false,
+                error: 'Wachtwoorden komen niet overeen.',
+            };
         }
 
         if (password.length < 8) {
-            return { success: false, error: 'Wachtwoord moet minimaal 8 tekens bevatten.' };
+            return {
+                success: false,
+                error: 'Wachtwoord moet minimaal 8 tekens bevatten.',
+            };
+        }
+
+        const passwordRegex = new RegExp(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};\':"\\\\|,.<>\\/?]).{8,}$',
+        );
+        if (!passwordRegex.test(password)) {
+            return {
+                success: false,
+                error: 'Wachtwoord moet minimaal één hoofdletter,  één kleine letter, één cijfer en één speciaal teken bevatten.',
+            };
         }
 
         try {
+            const hashedPassword = await argon2.hash(password);
+
             const res = await fetch(`${DIRECTUS_BASE}/items/emibazo_user`, {
                 method: 'POST',
                 headers: {
@@ -32,7 +52,7 @@ export const actions = {
                 },
                 body: JSON.stringify({
                     email,
-                    password,
+                    password: hashedPassword,
                     role: 1,
                 }),
             });

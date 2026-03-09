@@ -9,20 +9,26 @@
     <div class="register-hero">
         <div class="hero-background"></div>
         <h1>Aanmelden</h1>
-        <p class="subtitle">
-            Word lid van de Bijlmer Chronicles community en ontdek de rijke geschiedenis van Amsterdam-Zuidoost.
-        </p>
     </div>
 
     <div class="form-wrapper">
         {#if form?.success}
             <div class="success-card">
                 <h2>Welkom!</h2>
-                <p>Je account is succesvol aangemaakt. Je kunt nu inloggen en de encyclopedie verkennen.</p>
+                <p>
+                    Je account is succesvol aangemaakt. Je kunt nu inloggen en
+                    de encyclopedie verkennen.
+                </p>
                 <a href="/" class="btn-home">Naar de homepagina</a>
             </div>
         {:else}
-            <form class="register-form" method="POST" use:enhance>
+            <form
+                class="register-form"
+                method="POST"
+                use:enhance={() =>
+                    ({ result, update }) =>
+                        update({ reset: !result?.data?.error })}
+            >
                 {#if form?.error}
                     <div class="error-message" role="alert">{form.error}</div>
                 {/if}
@@ -60,10 +66,12 @@
                     />
                 </div>
 
-                <button type="submit" class="btn-submit">Account aanmaken</button>
+                <button type="submit" class="btn-submit"
+                    >Account aanmaken</button
+                >
 
                 <p class="login-link">
-                    Heb je al een account? <a href="/">Inloggen</a>
+                    Heb je al een account? <a href="/inlog">Inloggen</a>
                 </p>
             </form>
         {/if}
@@ -97,17 +105,6 @@
         margin: 0 0 1rem 0;
     }
 
-    .register-hero .subtitle {
-        font-family: var(--main-font);
-        font-size: var(--paragraph-3);
-        color: var(--color-primary-lighter);
-        position: relative;
-        z-index: 2;
-        max-width: 38rem;
-        margin: 0;
-        text-align: left;
-    }
-
     @supports (
         clip-path: shape(
                 from 0% 4.58%,
@@ -132,9 +129,9 @@
                 line to 98.28% 0%,
                 curve to 100% 5% with 99.5% 0%/100% 2%,
                 line to 100% 92%,
-                curve to 96% 100% with 100% 97%/99% 100%,
+                curve to 96% 10% with 100% 97%/99% 100%,
                 line to 3% 98%,
-                curve to 0% 90% with 1% 98%/0% 95%,
+                curve to 0% 80% with 1% 98%/0% 95%,
                 close
             );
         }
@@ -200,7 +197,9 @@
         background-color: var(--color-neutral);
         color: var(--color-secondary);
         box-sizing: border-box;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
     }
 
     .form-group input::placeholder {
@@ -228,7 +227,9 @@
         border-radius: 0.5rem;
         cursor: pointer;
         box-shadow: 0.25rem 0.25rem 0.1rem 0.04rem var(--color-secondary-dark);
-        transition: background-color 0.2s ease, transform 0.1s ease;
+        transition:
+            background-color 0.2s ease,
+            transform 0.1s ease;
     }
 
     .btn-submit:hover {
@@ -317,10 +318,6 @@
     @media (min-width: 37.5rem) {
         .register-hero {
             padding: 3rem 3rem 4rem;
-        }
-
-        .register-hero .subtitle {
-            font-size: var(--paragraph-2);
         }
 
         .form-wrapper {

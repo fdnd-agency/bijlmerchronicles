@@ -19,10 +19,10 @@
     </div>
 
     <aside class="loginNsignup-container">
-        <a href="/" class="login-button"
+        <a href="/inlog" class="login-button"
             ><span class="login-button-border">Inloggen</span></a
         >
-        <a href="/" class="signup-button"
+        <a href="/aanmelden" class="signup-button"
             ><span class="signup-button-border">Aanmelden</span></a
         >
     </aside>

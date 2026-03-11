@@ -1,11 +1,9 @@
 import { redirect } from '@sveltejs/kit';
 import argon2 from 'argon2';
-import { DIRECTUS_TOKEN } from '$env/static/private';
 
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
-const TOKEN = DIRECTUS_TOKEN;
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -23,7 +21,9 @@ export const actions = {
             const userRes = await fetch(
                 `${DIRECTUS_BASE}/items/emibazo_user?filter[email][_eq]=${encodeURIComponent(email)}`,
                 {
-                    headers: { Authorization: `Bearer ${TOKEN}` },
+                    headers: {
+                        Authorization: `Bearer mK0AWJSBAnjDmCmIPbH5QXovwbkIM2o4`,
+                    },
                 },
             );
 

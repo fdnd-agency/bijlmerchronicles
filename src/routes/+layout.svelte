@@ -8,7 +8,7 @@
     // https://svelte.dev/docs/svelte/$derived
     const seo = $derived(getSeoForPath($page.url.pathname));
 
-    let { children } = $props();
+    let { children, data } = $props();
 </script>
 
 <svelte:head>
@@ -20,7 +20,7 @@
 </svelte:head>
 
 <header>
-    <Header />
+    <Header user={data.user} />
 </header>
 
 <main>

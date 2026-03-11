@@ -4,6 +4,7 @@ import argon2 from 'argon2';
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
+const TOKEN = 'mK0AWJSBAnjDmCmIPbH5QXovwbkIM2o4';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -21,9 +22,7 @@ export const actions = {
             const userRes = await fetch(
                 `${DIRECTUS_BASE}/items/emibazo_user?filter[email][_eq]=${encodeURIComponent(email)}`,
                 {
-                    headers: {
-                        Authorization: `Bearer mK0AWJSBAnjDmCmIPbH5QXovwbkIM2o4`,
-                    },
+                    headers: { Authorization: `Bearer ${TOKEN}` },
                 },
             );
 

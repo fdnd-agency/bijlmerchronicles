@@ -140,4 +140,55 @@ export const actions = {
             };
         }
     },
+
+    delete: async ({ request, fetch, cookies }) => {
+        const session = cookies.get('user_session');
+        let user = null;
+        if (session) {
+            try {
+                user = JSON.parse(session);
+            } catch {
+                /* ignore */
+            }
+        }
+
+        if (!user || user.role !== 2) {
+            return { success: false, error: 'Geen toegang.' };
+        }
+
+        const formData = await request.formData();
+        const id = formData.get('id')?.toString().trim();
+
+        if (!id) {
+            return { success: false, error: 'Geen id opgegeven.' };
+        }
+
+        try {
+            const res = await fetch(
+                `${DIRECTUS_BASE}/items/emibazo_persoon/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: { Authorization: `Bearer ${TOKEN}` },
+                },
+            );
+
+            if (!res.ok && res.status !== 204) {
+                const errBody = await res.json().catch(() => null);
+                const msg =
+                    errBody?.errors?.[0]?.message || `HTTP ${res.status}`;
+                // eslint-disable-next-line no-console
+                console.error('Directus delete error:', msg);
+                return { success: false, error: msg };
+            }
+
+            return { success: true, deleted: true };
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error('Delete fetch failed:', err);
+            return {
+                success: false,
+                error: 'Kan geen verbinding maken met de server.',
+            };
+        }
+    },
 };

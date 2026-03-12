@@ -16,6 +16,7 @@
     let formValues = $state({ name: '', role: '', bio: '' });
     let showSuccess = $state(false);
     let successTimer = null;
+    let showDeleteModal = $state(false);
 
     function triggerSuccess() {
         showSuccess = true;
@@ -31,12 +32,14 @@
         formValues.name = person.name ?? '';
         formValues.role = person.role ?? '';
         formValues.bio = person.bio ?? '';
+        showDeleteModal = false;
     }
 
     function newPerson() {
         selectedId = null;
         selectedPhoto = null;
         formValues = { name: '', role: '', bio: '' };
+        showDeleteModal = false;
     }
 
     function photoUrl(photo) {
@@ -106,92 +109,173 @@
                     </ul>
                 </div>
 
-                <form
-                    class="person-form"
-                    method="POST"
-                    action="?/upsert"
-                    enctype="multipart/form-data"
-                    use:enhance={() =>
-                        async ({ result, update }) => {
-                            await update({ reset: false });
-                            if (
-                                result.type === 'success' ||
-                                result.data?.success
-                            ) {
-                                await invalidateAll();
-                                triggerSuccess();
-                            }
-                        }}
-                >
-                    {#if form?.error}
-                        <p class="form-error">{form.error}</p>
-                    {/if}
-                    {#if showSuccess}
-                        <p class="form-success">Opgeslagen!</p>
-                    {/if}
-
-                    <!-- Hidden id field: present when editing, absent when creating -->
-                    {#if selectedId}
-                        <input type="hidden" name="id" value={selectedId} />
-                    {/if}
-
-                    <div class="form-group">
-                        <label for="name">name</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            bind:value={formValues.name}
-                            required
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="role">functie/role</label>
-                        <input
-                            type="text"
-                            id="role"
-                            name="role"
-                            bind:value={formValues.role}
-                        />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="bio">bio beschrijving</label>
-                        <textarea
-                            id="bio"
-                            name="bio"
-                            rows="6"
-                            bind:value={formValues.bio}
-                        ></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="photo">foto</label>
-                        {#if selectedPhoto}
-                            <div class="photo-preview">
-                                <img
-                                    src={photoUrl(selectedPhoto)}
-                                    alt="huidige foto"
-                                />
-                            </div>
+                <div class="form-column">
+                    <form
+                        class="person-form"
+                        method="POST"
+                        action="?/upsert"
+                        enctype="multipart/form-data"
+                        use:enhance={() =>
+                            async ({ result, update }) => {
+                                await update({ reset: false });
+                                if (
+                                    result.type === 'success' ||
+                                    result.data?.success
+                                ) {
+                                    await invalidateAll();
+                                    triggerSuccess();
+                                }
+                            }}
+                    >
+                        {#if form?.error}
+                            <p class="form-error">{form.error}</p>
                         {/if}
-                        <label class="upload-btn">
-                            {selectedPhoto ? 'foto vervangen' : 'upload foto'}
-                            <input
-                                type="file"
-                                id="photo"
-                                name="photo"
-                                accept="image/*"
-                                class="sr-only"
-                            />
-                        </label>
-                    </div>
+                        {#if showSuccess}
+                            <p class="form-success">Opgeslagen!</p>
+                        {/if}
 
-                    <button type="submit" class="confirm-btn">
-                        {selectedId ? 'opslaan' : 'aanmaken'}
-                    </button>
-                </form>
+                        <!-- Hidden id field: present when editing, absent when creating -->
+                        {#if selectedId}
+                            <input type="hidden" name="id" value={selectedId} />
+                        {/if}
+
+                        <div class="form-group">
+                            <label for="name">name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                bind:value={formValues.name}
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">functie/role</label>
+                            <input
+                                type="text"
+                                id="role"
+                                name="role"
+                                bind:value={formValues.role}
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">bio beschrijving</label>
+                            <textarea
+                                id="bio"
+                                name="bio"
+                                rows="6"
+                                bind:value={formValues.bio}
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photo">foto</label>
+                            {#if selectedPhoto}
+                                <div class="photo-preview">
+                                    <img
+                                        src={photoUrl(selectedPhoto)}
+                                        alt="huidige foto"
+                                    />
+                                </div>
+                            {/if}
+                            <label class="upload-btn">
+                                {selectedPhoto
+                                    ? 'foto vervangen'
+                                    : 'upload foto'}
+                                <input
+                                    type="file"
+                                    id="photo"
+                                    name="photo"
+                                    accept="image/*"
+                                    class="sr-only"
+                                />
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            {#if selectedId}
+                                <button
+                                    type="button"
+                                    class="delete-btn"
+                                    onclick={() => (showDeleteModal = true)}
+                                >
+                                    verwijder persoon
+                                </button>
+                            {/if}
+                            <button type="submit" class="confirm-btn">
+                                {selectedId ? 'opslaan' : 'aanmaken'}
+                            </button>
+                        </div>
+                    </form>
+
+                    {#if showDeleteModal}
+                        <div
+                            class="modal-overlay"
+                            role="dialog"
+                            aria-modal="true"
+                            tabindex="-1"
+                            onclick={(e) => {
+                                if (e.target === e.currentTarget)
+                                    showDeleteModal = false;
+                            }}
+                            onkeydown={(e) => {
+                                if (e.key === 'Escape') showDeleteModal = false;
+                            }}
+                        >
+                            <div class="modal">
+                                <p class="modal-message">
+                                    Weet je zeker dat je <strong
+                                        >{formValues.name}</strong
+                                    > wilt verwijderen?
+                                </p>
+                                <div class="modal-actions">
+                                    <form
+                                        method="POST"
+                                        action="?/delete"
+                                        use:enhance={() =>
+                                            async ({ result, update }) => {
+                                                await update({ reset: false });
+                                                if (
+                                                    result.type === 'success' ||
+                                                    result.data?.deleted
+                                                ) {
+                                                    selectedId = null;
+                                                    selectedPhoto = null;
+                                                    formValues = {
+                                                        name: '',
+                                                        role: '',
+                                                        bio: '',
+                                                    };
+                                                    showDeleteModal = false;
+                                                    await invalidateAll();
+                                                }
+                                            }}
+                                    >
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value={selectedId}
+                                        />
+                                        <button
+                                            type="submit"
+                                            class="modal-confirm-btn"
+                                            >Ja, verwijder</button
+                                        >
+                                    </form>
+                                    <button
+                                        type="button"
+                                        class="modal-cancel-btn"
+                                        onclick={() =>
+                                            (showDeleteModal = false)}
+                                        >Annuleren</button
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+                </div>
             </div>
         {/if}
     </section>
@@ -338,6 +422,99 @@
         background-color: hsl(var(--secondary-h), var(--secondary-s), 35%);
     }
 
+    /* Form action row */
+    .form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    /* Delete button */
+    .delete-btn {
+        background-color: transparent;
+        border: 1px solid hsl(0, 60%, 45%);
+        color: hsl(0, 60%, 40%);
+        padding: 0.35rem 0.75rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+    }
+
+    .delete-btn:hover {
+        background-color: hsl(0, 60%, 45%);
+        color: white;
+    }
+
+    /* Modal */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal {
+        background-color: hsl(var(--primary-h), var(--primary-s), 95%);
+        border: 2px solid hsl(var(--secondary-h), var(--secondary-s), 17%);
+        border-radius: 6px;
+        padding: 1.5rem 2rem;
+        max-width: 380px;
+        width: 90%;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-message {
+        font-size: 1rem;
+        color: hsl(var(--secondary-h), var(--secondary-s), 17%);
+        margin-bottom: 1.25rem;
+        line-height: 1.5;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    .modal-confirm-btn {
+        background-color: hsl(0, 60%, 45%);
+        color: white;
+        border: none;
+        padding: 0.4rem 1rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.2s ease;
+    }
+
+    .modal-confirm-btn:hover {
+        background-color: hsl(0, 60%, 35%);
+    }
+
+    .modal-cancel-btn {
+        background-color: transparent;
+        border: 1px solid hsl(var(--secondary-h), var(--secondary-s), 40%);
+        color: hsl(var(--secondary-h), var(--secondary-s), 25%);
+        padding: 0.4rem 1rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.2s ease;
+    }
+
+    .modal-cancel-btn:hover {
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 80%);
+    }
+
     /* Form */
     .person-form {
         background-color: hsl(var(--primary-h), var(--primary-s), 68%);
@@ -351,7 +528,7 @@
 
     .form-group label {
         display: block;
-        color: hsl(var(--secondary-h), var(--secondary-s), 17%);
+
         margin-bottom: 0.25rem;
         font-size: 0.9rem;
     }
@@ -401,8 +578,6 @@
         border-radius: 2px;
         cursor: pointer;
         font-size: 0.9rem;
-        float: right;
-        margin-top: 1.5rem;
         transition: background-color 0.2s ease;
     }
 

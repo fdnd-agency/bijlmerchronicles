@@ -1,44 +1,48 @@
 <script>
-    let persons = $state([
-        { id: 1, name: 'persoon 1', role: 'docent' },
-        { id: 2, name: 'persoon 2', role: '' },
-        { id: 3, name: 'persoon 3', role: '' },
-        { id: 4, name: 'persoon 4', role: '' },
-        { id: 5, name: 'persoon 5', role: '' },
-        { id: 6, name: 'persoon 6', role: '' },
-        { id: 7, name: 'persoon 7', role: '' },
-        { id: 8, name: 'persoon 8', role: '' },
-        { id: 9, name: 'persoon 8', role: '' }
-    ]);
+    import { enhance } from '$app/forms';
+    import { invalidateAll } from '$app/navigation';
 
-    let formData = $state({
-        name: '',
-        role: '',
-        bio: '',
-        photo: null
-    });
+    const DIRECTUS_ASSETS = 'https://fdnd-agency.directus.app/assets';
 
-    // eslint-disable-next-line no-unused-vars
-    let selectedPerson = $state(null);
+    /** @type {import('./$types').PageData} */
+    const { data, form } = $props();
+
+    const persons = $derived(data.persons ?? []);
+    const user = $derived(data.user);
+    const isAdmin = $derived(user?.role === 2);
+
+    let selectedId = $state(null);
+    let selectedPhoto = $state(null);
+    let formValues = $state({ name: '', role: '', bio: '' });
+    let showSuccess = $state(false);
+    let successTimer = null;
+
+    function triggerSuccess() {
+        showSuccess = true;
+        clearTimeout(successTimer);
+        successTimer = setTimeout(() => {
+            showSuccess = false;
+        }, 3000);
+    }
 
     function viewPerson(person) {
-        selectedPerson = person;
-        formData.name = person.name;
-        formData.role = person.role || '';
-        formData.bio = '';
-        formData.photo = null;
+        selectedId = person.id;
+        selectedPhoto = person.picture ?? null;
+        formValues.name = person.name ?? '';
+        formValues.role = person.role ?? '';
+        formValues.bio = person.bio ?? '';
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log('Form submitted:', formData);
+    function newPerson() {
+        selectedId = null;
+        selectedPhoto = null;
+        formValues = { name: '', role: '', bio: '' };
     }
 
-    function handlePhotoUpload(event) {
-        const file = event.target.files?.[0];
-        if (file) {
-            formData.photo = file;
-        }
+    function photoUrl(photo) {
+        if (!photo) return null;
+        if (photo.startsWith?.('http')) return photo;
+        return `${DIRECTUS_ASSETS}/${photo}`;
     }
 </script>
 
@@ -54,75 +58,142 @@
     <section class="content">
         <h1>persoon</h1>
 
-        <div class="main-content">
-            <div class="person-list-container">
-                <div class="person-list-header">
-                    <span>persoon naam</span>
-                    <span>role</span>
-                    <span></span>
-                </div>
-                <ul class="person-list">
-                    {#each persons as person}
-                        <li>
-                            <span class="person-name">{person.name}</span>
-                            <span class="person-role">{person.role}</span>
-                            <button 
-                                type="button" 
-                                class="view-btn"
-                                onclick={() => viewPerson(person)}
-                            >
-                                bekijk meer
-                            </button>
-                        </li>
-                    {/each}
-                </ul>
-            </div>
-
-            <form class="person-form" onsubmit={handleSubmit}>
-                <div class="form-group">
-                    <label for="name">name</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        bind:value={formData.name}
-                    />
-                </div>
-
-                <div class="form-group">
-                    <label for="role">functie/role</label>
-                    <input 
-                        type="text" 
-                        id="role" 
-                        bind:value={formData.role}
-                    />
-                </div>
-
-                <div class="form-group">
-                    <label for="bio">bio beschrijving</label>
-                    <textarea 
-                        id="bio" 
-                        rows="6"
-                        bind:value={formData.bio}
-                    ></textarea>
+        {#if !isAdmin}
+            <p class="access-denied">
+                Geen toegang. Alleen beheerders kunnen deze pagina bekijken.
+            </p>
+        {:else}
+            <div class="main-content">
+                <div class="person-list-container">
+                    <div class="person-list-header">
+                        <span></span>
+                        <span>persoon naam</span>
+                        <span>role</span>
+                        <button
+                            type="button"
+                            class="new-btn"
+                            onclick={newPerson}
+                        >
+                            nieuw persoon
+                        </button>
+                    </div>
+                    <ul class="person-list">
+                        {#each persons as person (person.id)}
+                            <li class:selected={selectedId === person.id}>
+                                {#if person.picture}
+                                    <img
+                                        src={photoUrl(person.picture)}
+                                        alt={person.name}
+                                        class="person-thumb"
+                                    />
+                                {:else}
+                                    <span class="person-thumb placeholder"
+                                    ></span>
+                                {/if}
+                                <span class="person-name">{person.name}</span>
+                                <span class="person-role"
+                                    >{person.role ?? ''}</span
+                                >
+                                <button
+                                    type="button"
+                                    class="view-btn"
+                                    onclick={() => viewPerson(person)}
+                                >
+                                    bekijk meer
+                                </button>
+                            </li>
+                        {/each}
+                    </ul>
                 </div>
 
-                <div class="form-group">
-                    <label for="photo">foto</label>
-                    <label class="upload-btn">
-                        upload foto
-                        <input 
-                            type="file" 
-                            id="photo" 
-                            accept="image/*"
-                            onchange={handlePhotoUpload}
-                            class="sr-only"
+                <form
+                    class="person-form"
+                    method="POST"
+                    action="?/upsert"
+                    enctype="multipart/form-data"
+                    use:enhance={() =>
+                        async ({ result, update }) => {
+                            await update({ reset: false });
+                            if (
+                                result.type === 'success' ||
+                                result.data?.success
+                            ) {
+                                await invalidateAll();
+                                triggerSuccess();
+                            }
+                        }}
+                >
+                    {#if form?.error}
+                        <p class="form-error">{form.error}</p>
+                    {/if}
+                    {#if showSuccess}
+                        <p class="form-success">Opgeslagen!</p>
+                    {/if}
+
+                    <!-- Hidden id field: present when editing, absent when creating -->
+                    {#if selectedId}
+                        <input type="hidden" name="id" value={selectedId} />
+                    {/if}
+
+                    <div class="form-group">
+                        <label for="name">name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            bind:value={formValues.name}
+                            required
                         />
-                    </label>
-                </div>
+                    </div>
 
-                <button type="submit" class="confirm-btn">confirm</button>
-            </form>
-        </div>
+                    <div class="form-group">
+                        <label for="role">functie/role</label>
+                        <input
+                            type="text"
+                            id="role"
+                            name="role"
+                            bind:value={formValues.role}
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">bio beschrijving</label>
+                        <textarea
+                            id="bio"
+                            name="bio"
+                            rows="6"
+                            bind:value={formValues.bio}
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo">foto</label>
+                        {#if selectedPhoto}
+                            <div class="photo-preview">
+                                <img
+                                    src={photoUrl(selectedPhoto)}
+                                    alt="huidige foto"
+                                />
+                            </div>
+                        {/if}
+                        <label class="upload-btn">
+                            {selectedPhoto ? 'foto vervangen' : 'upload foto'}
+                            <input
+                                type="file"
+                                id="photo"
+                                name="photo"
+                                accept="image/*"
+                                class="sr-only"
+                            />
+                        </label>
+                    </div>
+
+                    <button type="submit" class="confirm-btn">
+                        {selectedId ? 'opslaan' : 'aanmaken'}
+                    </button>
+                </form>
+            </div>
+        {/if}
     </section>
 </div>
 
@@ -214,7 +285,7 @@
 
     .person-list-header {
         display: grid;
-        grid-template-columns: 1fr 100px 80px;
+        grid-template-columns: 36px 1fr 100px 80px;
         gap: 0.5rem;
         padding: 0.25rem 0.5rem;
         color: hsl(var(--secondary-h), var(--secondary-s), 17%);
@@ -233,7 +304,7 @@
 
     .person-list li {
         display: grid;
-        grid-template-columns: 1fr 100px 80px;
+        grid-template-columns: 36px 1fr 100px 80px;
         gap: 0.5rem;
         align-items: center;
         padding: 0.4rem 0.5rem;
@@ -285,7 +356,7 @@
         font-size: 0.9rem;
     }
 
-    .form-group input[type="text"],
+    .form-group input[type='text'],
     .form-group textarea {
         width: 100%;
         padding: 0.4rem;
@@ -300,7 +371,9 @@
 
     .form-group textarea {
         resize: vertical;
-        min-height: 80px;
+        min-height: 120px;
+        line-height: 1.6;
+        font-size: 0.95rem;
     }
 
     .upload-btn {
@@ -344,6 +417,109 @@
         }
     }
 
+    /* Access denied */
+    .access-denied {
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 17%);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 4px;
+    }
+
+    /* Form feedback */
+    .form-error {
+        background-color: hsl(0, 70%, 90%);
+        color: hsl(0, 70%, 30%);
+        border: 1px solid hsl(0, 70%, 70%);
+        padding: 0.4rem 0.75rem;
+        border-radius: 2px;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .form-success {
+        background-color: hsl(120, 50%, 88%);
+        color: hsl(120, 50%, 25%);
+        border: 1px solid hsl(120, 50%, 65%);
+        padding: 0.4rem 0.75rem;
+        border-radius: 2px;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+        animation: success-fade 3s ease forwards;
+    }
+
+    @keyframes success-fade {
+        0% {
+            opacity: 1;
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* Person thumbnail */
+    .person-thumb {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    .person-thumb.placeholder {
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 40%);
+        display: inline-block;
+    }
+
+    /* Selected row highlight */
+    .person-list li.selected {
+        background-color: hsl(var(--primary-h), var(--primary-s), 85%);
+        outline: 2px solid hsl(var(--secondary-h), var(--secondary-s), 25%);
+    }
+
+    /* Photo preview in form */
+    .photo-preview {
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 2px solid hsl(var(--secondary-h), var(--secondary-s), 17%);
+        width: 100%;
+        max-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 10%);
+    }
+
+    .photo-preview img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Sidebar layout needs to stretch full height for logout placement */
+    /* (Already handled by space-between on the main .sidebar rule above) */
+
+    .new-btn {
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 25%);
+        color: white;
+        border: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: background-color 0.2s ease;
+        white-space: nowrap;
+        width: fit-content;
+    }
+
+    .new-btn:hover {
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 35%);
+    }
+
     @media (max-width: 600px) {
         .admin-container {
             display: flex;
@@ -379,10 +555,10 @@
 
         .person-list-header,
         .person-list li {
-            grid-template-columns: 1fr auto;
+            grid-template-columns: 36px 1fr auto;
         }
 
-        .person-list-header span:nth-child(2),
+        .person-list-header span:nth-child(3),
         .person-role {
             display: none;
         }

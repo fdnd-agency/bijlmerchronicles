@@ -24,7 +24,16 @@
 
     <aside class="loginNsignup-container">
         {#if username}
-            <span class="logged-in-user">{username}</span>
+            <div class="user-menu">
+                <span class="logged-in-user">{username}</span>
+                <div class="user-dropdown">
+                    <form method="POST" action="/logout">
+                        <button type="submit" class="dropdown-logout"
+                            >Uitloggen</button
+                        >
+                    </form>
+                </div>
+            </div>
         {:else}
             <a href="/inlog" class="login-button"
                 ><span class="login-button-border">Inloggen</span></a
@@ -229,6 +238,53 @@
             border: solid 1px var(--accent-color);
             border-radius: var(--border-radius);
             white-space: nowrap;
+            background: none;
+            cursor: default;
+            user-select: none;
+        }
+
+        /* User dropdown */
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            min-width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .user-menu:hover .user-dropdown {
+            display: block;
+        }
+
+        .dropdown-logout {
+            display: block;
+            width: 100%;
+            padding: 0.4rem 0.75rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--main-font);
+            font-size: var(--paragraph-size);
+            color: var(--color-secondary);
+            text-align: left;
+            white-space: nowrap;
+            border-radius: var(--border-radius);
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: var(--color-primary-light);
+                color: var(--main-font);
+            }
         }
 
         /* --------------------------------------- BUTTON STYLING ---------------------------------------  */

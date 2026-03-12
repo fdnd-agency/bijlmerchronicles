@@ -1,6 +1,10 @@
 <script>
     import logo from '$lib/assets/logo.avif';
     import { HamburgerMenu } from '$lib';
+
+    let { user = null } = $props();
+
+    const username = $derived(user?.email?.split('@')[0] ?? null);
 </script>
 
 <nav>
@@ -19,12 +23,16 @@
     </div>
 
     <aside class="loginNsignup-container">
-        <a href="/" class="login-button"
-            ><span class="login-button-border">Inloggen</span></a
-        >
-        <a href="/" class="signup-button"
-            ><span class="signup-button-border">Aanmelden</span></a
-        >
+        {#if username}
+            <span class="logged-in-user">{username}</span>
+        {:else}
+            <a href="/inlog" class="login-button"
+                ><span class="login-button-border">Inloggen</span></a
+            >
+            <a href="/aanmelden" class="signup-button"
+                ><span class="signup-button-border">Aanmelden</span></a
+            >
+        {/if}
     </aside>
 
     <div class="hamburger-container">
@@ -209,6 +217,18 @@
                     display: block;
                 }
             }
+        }
+
+        /* --------------------------------------- LOGGED IN USER STYLING ---------------------------------------  */
+
+        .logged-in-user {
+            font-family: var(--main-font-black);
+            font-size: var(--paragraph-size);
+            color: var(--color-secondary);
+            padding: 0.25rem 0.75rem;
+            border: solid 1px var(--accent-color);
+            border-radius: var(--border-radius);
+            white-space: nowrap;
         }
 
         /* --------------------------------------- BUTTON STYLING ---------------------------------------  */

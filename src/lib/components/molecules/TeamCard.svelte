@@ -76,6 +76,7 @@
         position: absolute;
         bottom: -100%;
         width: var(--width);
+        min-width: 90%;
         height: var(--height-member-picture);
         background: var(--color-secondary);
         color: var(--color-primary-lightest);

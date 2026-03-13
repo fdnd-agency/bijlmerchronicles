@@ -5,6 +5,7 @@
     let { user = null } = $props();
 
     const username = $derived(user?.email?.split('@')[0] ?? null);
+    let showLogoutModal = $state(false);
 </script>
 
 <nav>
@@ -24,7 +25,17 @@
 
     <aside class="loginNsignup-container">
         {#if username}
-            <span class="logged-in-user">{username}</span>
+            <div class="user-menu">
+                <button type="button" class="logged-in-user">{username}</button>
+                <div class="user-dropdown">
+                    <button
+                        type="button"
+                        class="dropdown-logout"
+                        onclick={() => (showLogoutModal = true)}
+                        >Uitloggen</button
+                    >
+                </div>
+            </div>
         {:else}
             <a href="/inlog" class="login-button"
                 ><span class="login-button-border">Inloggen</span></a
@@ -41,6 +52,39 @@
 
     <div class="bottom-border-bevel"></div>
 </nav>
+
+{#if showLogoutModal}
+    <div
+        class="logout-modal-overlay"
+        role="dialog"
+        aria-modal="true"
+        tabindex="-1"
+        onclick={(e) => {
+            if (e.target === e.currentTarget) showLogoutModal = false;
+        }}
+        onkeydown={(e) => {
+            if (e.key === 'Escape') showLogoutModal = false;
+        }}
+    >
+        <div class="logout-modal">
+            <p class="logout-modal-message">
+                Weet je zeker dat je wilt uitloggen?
+            </p>
+            <div class="logout-modal-actions">
+                <form method="POST" action="/logout">
+                    <button type="submit" class="logout-modal-confirm"
+                        >Ja, uitloggen</button
+                    >
+                </form>
+                <button
+                    type="button"
+                    class="logout-modal-cancel"
+                    onclick={() => (showLogoutModal = false)}>Annuleren</button
+                >
+            </div>
+        </div>
+    </div>
+{/if}
 
 <style>
     @layer general-styling {
@@ -229,6 +273,62 @@
             border: solid 1px var(--accent-color);
             border-radius: var(--border-radius);
             white-space: nowrap;
+            background: none;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: color-mix(
+                    in srgb,
+                    var(--accent-color) 15%,
+                    transparent
+                );
+            }
+        }
+
+        /* User dropdown */
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            padding-top: 4px;
+            right: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            min-width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .user-menu:hover .user-dropdown {
+            display: block;
+        }
+
+        .dropdown-logout {
+            display: block;
+            width: 100%;
+            padding: 0.4rem 0.75rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--main-font);
+            font-size: var(--paragraph-size);
+            color: var(--color-secondary);
+            text-align: left;
+            white-space: nowrap;
+            border-radius: var(--border-radius);
+            transition: background-color 0.15s ease;
+
+            &:hover {
+                background-color: var(--color-primary-light);
+                color: var(--main-font);
+            }
         }
 
         /* --------------------------------------- BUTTON STYLING ---------------------------------------  */
@@ -311,6 +411,75 @@
                 @media (min-width: 750px) {
                     transform: rotate(0.9deg);
                 }
+            }
+        }
+
+        /* --------------------------------------- LOGOUT MODAL ---------------------------------------  */
+
+        .logout-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .logout-modal {
+            background-color: var(--color-background);
+            border: 2px solid var(--color-secondary);
+            border-radius: 6px;
+            padding: 1.5rem 2rem;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .logout-modal-message {
+            font-size: 1rem;
+            color: var(--color-secondary);
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .logout-modal-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .logout-modal-confirm {
+            background-color: var(--color-secondary);
+            color: var(--color-background);
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: var(--paragraph-size);
+            font-family: var(--main-font);
+            transition: opacity 0.2s ease;
+            word-spacing: 0.2rem;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .logout-modal-cancel {
+            background-color: transparent;
+            border: 1px solid var(--color-secondary);
+            color: var(--color-secondary);
+            padding: 0.4rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: var(--paragraph-size);
+            font-family: var(--main-font);
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: var(--color-secondary);
+                color: var(--color-background);
             }
         }
     }

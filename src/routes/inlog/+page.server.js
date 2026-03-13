@@ -77,7 +77,7 @@ export const actions = {
 
             // Admins (role === 2) go to /admin, everyone else to homepage
             if (user.role === 2) {
-                throw redirect(302, '/admin');
+                throw redirect(302, '/admin/persoon');
             }
 
             throw redirect(302, '/');

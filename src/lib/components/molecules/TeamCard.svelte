@@ -49,7 +49,7 @@
         position: relative;
         margin: 0;
         height: 560px;
-        background: var(--color-secondary);
+        background-color: var(--color-secondary);
         overflow: hidden;
     }
 
@@ -125,8 +125,16 @@
     }
 
     .team-card:hover {
+        h3 {
+            color: var(--pop-out-color-light);
+        }
+
         .member-info {
             bottom: var(--height-member-name);
+        }
+
+        .member-role {
+            color: var(--pop-out-color-light);
         }
     }
 </style>

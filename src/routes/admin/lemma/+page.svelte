@@ -1,6 +1,6 @@
 <script>
     import { enhance } from '$app/forms';
-    import { invalidateAll } from '$app/navigation';
+    import { goto, invalidateAll } from '$app/navigation';
 
     /** @type {import('./$types').PageData} */
     const { data, form } = $props();
@@ -32,6 +32,16 @@
     let leaflet = $state(null);
     let map = $state(null);
     let marker = $state(null);
+
+    function normalizeBouwjaar(value) {
+        const text = value?.toString?.().trim() ?? '';
+        const match = text.match(/\b(\d{4})\b/);
+        return match ? match[1] : '';
+    }
+
+    function keepYearOnly(value) {
+        return (value?.toString?.() ?? '').replace(/\D/g, '').slice(0, 4);
+    }
 
     function triggerSuccess() {
         showSuccess = true;
@@ -79,7 +89,7 @@
         formValues.summary = lemma.summary ?? '';
         formValues.body = lemma.body ?? '';
         formValues.slug = lemma.slug ?? '';
-        formValues.bouwjaar = lemma.bouwjaar ?? '';
+        formValues.bouwjaar = normalizeBouwjaar(lemma.bouwjaar);
         showDeleteModal = false;
 
         // Extract geolocation from object or WKT string
@@ -249,10 +259,20 @@
                         use:enhance={() =>
                             async ({ result, update }) => {
                                 await update({ reset: false });
+
                                 if (
                                     result.type === 'success' ||
                                     result.data?.success
                                 ) {
+                                    if (result.data?.lemmaId && !selectedId) {
+                                        selectedId = result.data.lemmaId;
+                                    }
+
+                                    if (result.data?.previewUrl) {
+                                        await goto(result.data.previewUrl);
+                                        return;
+                                    }
+
                                     await invalidateAll();
                                     triggerSuccess();
                                 }
@@ -306,7 +326,14 @@
                                 type="text"
                                 id="bouwjaar"
                                 name="bouwjaar"
+                                inputmode="numeric"
+                                maxlength="4"
                                 bind:value={formValues.bouwjaar}
+                                oninput={(e) => {
+                                    formValues.bouwjaar = keepYearOnly(
+                                        e.currentTarget.value,
+                                    );
+                                }}
                             />
                         </div>
 
@@ -319,22 +346,16 @@
                                 ></label
                             >
                             <div class="map-wrapper" use:initMap></div>
-                            <div class="geo-inputs">
-                                <input
-                                    type="text"
-                                    name="geo_lat"
-                                    placeholder="latitude"
-                                    bind:value={formValues.geo_lat}
-                                    readonly
-                                />
-                                <input
-                                    type="text"
-                                    name="geo_lng"
-                                    placeholder="longitude"
-                                    bind:value={formValues.geo_lng}
-                                    readonly
-                                />
-                            </div>
+                            <input
+                                type="hidden"
+                                name="geo_lat"
+                                bind:value={formValues.geo_lat}
+                            />
+                            <input
+                                type="hidden"
+                                name="geo_lng"
+                                bind:value={formValues.geo_lng}
+                            />
                         </div>
 
                         <div class="form-group">
@@ -381,7 +402,20 @@
                                     verwijder lemma
                                 </button>
                             {/if}
-                            <button type="submit" class="confirm-btn">
+                            <button
+                                type="submit"
+                                name="intent"
+                                value="preview"
+                                class="preview-btn"
+                            >
+                                preview
+                            </button>
+                            <button
+                                type="submit"
+                                name="intent"
+                                value="save"
+                                class="confirm-btn"
+                            >
                                 {selectedId ? 'opslaan' : 'aanmaken'}
                             </button>
                         </div>
@@ -680,24 +714,6 @@
         z-index: 0;
     }
 
-    .geo-inputs {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-    }
-
-    .geo-inputs input {
-        width: 100%;
-        padding: 0.4rem;
-        border: 2px solid hsl(var(--secondary-h), var(--secondary-s), 17%);
-        border-radius: 2px;
-        background-color: hsl(var(--primary-h), var(--primary-s), 85%);
-        color: hsl(var(--secondary-h), var(--secondary-s), 17%);
-        font-family: var(--main-font);
-        font-size: 0.85rem;
-        box-sizing: border-box;
-    }
-
     /* ─── Upload button ─── */
     .upload-btn {
         display: inline-block;
@@ -757,6 +773,24 @@
 
     .confirm-btn:hover {
         background-color: hsl(var(--secondary-h), var(--secondary-s), 35%);
+    }
+
+    .preview-btn {
+        background-color: transparent;
+        border: 1px solid hsl(var(--secondary-h), var(--secondary-s), 25%);
+        color: hsl(var(--secondary-h), var(--secondary-s), 25%);
+        padding: 0.35rem 0.75rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+    }
+
+    .preview-btn:hover {
+        background-color: hsl(var(--secondary-h), var(--secondary-s), 25%);
+        color: white;
     }
 
     /* ─── Modal ─── */

@@ -1,0 +1,35 @@
+@startuml preview_lemma
+title Use Case Diagram - Preview Lemma
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Admin" as Admin
+actor "Directus API" as Directus
+
+rectangle "Bijlmer Chronicles Admin Systeem" {
+	usecase "Open lemma beheer" as UC_Open
+	usecase "Selecteer bestaand lemma\nof start nieuw lemma" as UC_Select
+	usecase "Bewerk lemma velden" as UC_Edit
+	usecase "Klik op Preview" as UC_ClickPreview
+	usecase "Valideer admin sessie" as UC_Auth
+	usecase "Sla lemma op (upsert)" as UC_Upsert
+	usecase "Redirect naar\npreview URL" as UC_Redirect
+	usecase "Laad lemma voor preview" as UC_Load
+	usecase "Toon preview pagina" as UC_Render
+	usecase "Terug naar lemma beheer" as UC_Back
+}
+
+Admin --> UC_Open
+Admin --> UC_Select
+Admin --> UC_Edit
+Admin --> UC_ClickPreview
+Admin --> UC_Back
+Admin --> UC_Redirect
+Admin --> UC_Render
+
+Directus --> UC_Upsert
+Directus --> UC_Load
+Directus --> UC_Auth
+
+@enduml

@@ -32,12 +32,66 @@
     let leaflet = $state(null);
     let map = $state(null);
     let marker = $state(null);
+    let bodyEditor = $state(null);
+    let bodyImageInput = $state(null);
 
     function normalizeBouwjaar(value) {
         const text = value?.toString?.().trim() ?? '';
         const match = text.match(/\b(\d{4})\b/);
         return match ? match[1] : '';
     }
+
+    function applyBodyCommand(command, value = null) {
+        if (!bodyEditor) return;
+        bodyEditor.focus();
+        document.execCommand(command, false, value);
+        formValues.body = bodyEditor.innerHTML;
+    }
+
+    function insertBodyLink() {
+        const url = window.prompt('Voer een URL in:');
+        if (url) applyBodyCommand('createLink', url);
+    }
+
+    function insertBodyImage() {
+        if (bodyImageInput) {
+            bodyImageInput.click();
+        }
+    }
+
+    function handleBodyImageUpload(event) {
+        const file = event.currentTarget.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const imgUrl = reader.result;
+            if (typeof imgUrl !== 'string') return;
+
+            const imgHtml = `<img src="${imgUrl}" alt="Afbeelding" class="body-image" />`;
+
+            if (bodyEditor) {
+                bodyEditor.focus();
+                document.execCommand('insertHTML', false, imgHtml);
+                formValues.body = bodyEditor.innerHTML;
+            }
+        };
+
+        reader.readAsDataURL(file);
+        event.currentTarget.value = '';
+    }
+
+    function onBodyInput() {
+        if (!bodyEditor) return;
+        formValues.body = bodyEditor.innerHTML;
+    }
+
+    $effect(() => {
+        if (!bodyEditor) return;
+        if (bodyEditor.innerHTML !== (formValues.body ?? '')) {
+            bodyEditor.innerHTML = formValues.body ?? '';
+        }
+    });
 
     function keepYearOnly(value) {
         return (value?.toString?.() ?? '').replace(/\D/g, '').slice(0, 4);
@@ -311,13 +365,117 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="body">beschrijving (body)</label>
-                            <textarea
-                                id="body"
+                            <label for="body-editor">beschrijving (body)</label>
+                            <div
+                                class="rich-editor"
+                                role="group"
+                                aria-label="Body editor"
+                            >
+                                <div class="rich-toolbar">
+                                    <button
+                                        type="button"
+                                        onclick={() => applyBodyCommand('bold')}
+                                        aria-label="Vet">B</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand('italic')}
+                                        aria-label="Cursief"><i>I</i></button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand('underline')}
+                                        aria-label="Onderstrepen"
+                                        ><u>U</u></button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand(
+                                                'formatBlock',
+                                                '<h2>',
+                                            )}
+                                        aria-label="Kop 2">H2</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand(
+                                                'formatBlock',
+                                                '<h3>',
+                                            )}
+                                        aria-label="Kop 3">H3</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand(
+                                                'insertUnorderedList',
+                                            )}
+                                        aria-label="Opsomming">UL</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand(
+                                                'insertOrderedList',
+                                            )}
+                                        aria-label="Genummerde lijst">OL</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand(
+                                                'formatBlock',
+                                                '<blockquote>',
+                                            )}
+                                        aria-label="Citaat">Q</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={insertBodyLink}
+                                        aria-label="Link">Link</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={insertBodyImage}
+                                        aria-label="Afbeelding">Img</button
+                                    >
+                                    <button
+                                        type="button"
+                                        onclick={() =>
+                                            applyBodyCommand(
+                                                'formatBlock',
+                                                '<pre>',
+                                            )}
+                                        aria-label="Code">&lt;/&gt;</button
+                                    >
+                                </div>
+                                <div
+                                    id="body-editor"
+                                    class="rich-content"
+                                    contenteditable="true"
+                                    role="textbox"
+                                    aria-multiline="true"
+                                    oninput={onBodyInput}
+                                    bind:this={bodyEditor}
+                                ></div>
+                            </div>
+                            <input
+                                type="hidden"
                                 name="body"
-                                rows="8"
-                                bind:value={formValues.body}
-                            ></textarea>
+                                value={formValues.body}
+                            />
+                            <input
+                                type="file"
+                                id="body-image-input"
+                                class="sr-only"
+                                accept="image/*"
+                                onchange={handleBodyImageUpload}
+                                bind:this={bodyImageInput}
+                            />
                         </div>
 
                         <div class="form-group">
@@ -684,8 +842,7 @@
         opacity: 0.7;
     }
 
-    .form-group input[type='text'],
-    .form-group textarea {
+    .form-group input[type='text'] {
         width: 100%;
         padding: 0.4rem;
         border: 2px solid hsl(var(--secondary-h), var(--secondary-s), 17%);
@@ -697,11 +854,62 @@
         box-sizing: border-box;
     }
 
-    .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
+    .rich-editor {
+        border: 2px solid hsl(var(--secondary-h), var(--secondary-s), 17%);
+        border-radius: 2px;
+        overflow: hidden;
+        background: hsl(var(--primary-h), var(--primary-s), 85%);
+    }
+
+    .rich-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-items: center;
+        padding: 0.5rem;
+        border-bottom: 1px solid
+            hsl(var(--secondary-h), var(--secondary-s), 17%);
+        background: hsl(var(--primary-h), var(--primary-s), 75%);
+    }
+
+    .rich-toolbar button {
+        border: 1px solid hsl(var(--secondary-h), var(--secondary-s), 17%);
+        border-radius: 3px;
+        background: hsl(var(--primary-h), var(--primary-s), 68%);
+        color: hsl(var(--secondary-h), var(--secondary-s), 17%);
+        min-width: 2rem;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        font-family: var(--main-font);
+        transition: background-color 0.2s ease;
+    }
+
+    .rich-toolbar button:hover {
+        background: hsl(var(--primary-h), var(--primary-s), 60%);
+    }
+
+    .rich-content {
+        min-height: 220px;
+        padding: 0.75rem;
+        background: hsl(var(--primary-h), var(--primary-s), 85%);
+        color: #000000;
         line-height: 1.6;
         font-size: 0.95rem;
+        outline: none;
+    }
+
+    .rich-content:focus {
+        box-shadow: inset 0 0 0 1px
+            hsl(var(--secondary-h), var(--secondary-s), 35%);
+    }
+
+    .rich-content :global(.body-image) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 2px;
+        margin: 0.75rem 0;
+        display: block;
     }
 
     /* ─── Map ─── */

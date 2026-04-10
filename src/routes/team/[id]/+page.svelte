@@ -60,12 +60,12 @@
         background-color: var(--color-primary-light);
         margin: 1rem 0;
         border: 3px solid var(--color-secondary);
-    }
 
-    .profile-picture img {
-        width: 100%;
-        height: auto;
-        display: block;
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
     }
 
     .role {
@@ -100,13 +100,13 @@
             border: 3px solid var(--color-secondary);
             aspect-ratio: 3 / 4;
             overflow: hidden;
-        }
 
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
         }
 
         h1 {

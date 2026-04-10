@@ -1,6 +1,6 @@
 <script>
     let { data } = $props();
-    const defaultImage = '/default-profile.png';
+    const defaultImage = '/images/default.png';
 </script>
 
 {#if data && data.member}

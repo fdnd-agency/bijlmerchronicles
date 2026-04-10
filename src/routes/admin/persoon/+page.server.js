@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit';
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
-const TOKEN = 'mK0AWJSBAnjDmCmIPbH5QXovwbkIM2o4';
+const TOKEN = 'KgmHEY4JMPOziWmiyxp03MuT4mT26bcs';
 
 export async function load({ fetch, cookies }) {
     const session = cookies.get('user_session');

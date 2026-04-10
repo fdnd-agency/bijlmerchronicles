@@ -48,7 +48,7 @@ export const actions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer mK0AWJSBAnjDmCmIPbH5QXovwbkIM2o4',
+                    Authorization: 'Bearer KgmHEY4JMPOziWmiyxp03MuT4mT26bcs',
                 },
                 body: JSON.stringify({
                     email,

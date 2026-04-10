@@ -5,6 +5,12 @@ export const prerender = false;
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
 const TOKEN = 'KgmHEY4JMPOziWmiyxp03MuT4mT26bcs';
 
+function normalizeBouwjaar(value) {
+    const text = value?.toString?.().trim() ?? '';
+    const match = text.match(/\b(\d{4})\b/);
+    return match ? match[1] : '';
+}
+
 export async function load({ fetch, cookies }) {
     const session = cookies.get('user_session');
     let user = null;
@@ -23,7 +29,7 @@ export async function load({ fetch, cookies }) {
 
     try {
         const res = await fetch(
-            `${DIRECTUS_BASE}/items/emibazo_persoon?fields=*`,
+            `${DIRECTUS_BASE}/items/emibazo_lemma?fields=*`,
             {
                 headers: { Authorization: `Bearer ${TOKEN}` },
             },
@@ -32,15 +38,15 @@ export async function load({ fetch, cookies }) {
         if (!res.ok) {
             // eslint-disable-next-line no-console
             console.error(`Directus API error: ${res.status}`);
-            return { persons: [], user };
+            return { lemmas: [], user };
         }
 
         const json = await res.json();
-        return { persons: json.data ?? [], user };
+        return { lemmas: json.data ?? [], user };
     } catch (err) {
         // eslint-disable-next-line no-console
-        console.error('SSR fetch failed for admin/persoon:', err);
-        return { persons: [], user };
+        console.error('SSR fetch failed for admin/lemma:', err);
+        return { lemmas: [], user };
     }
 }
 
@@ -63,18 +69,34 @@ export const actions = {
         }
 
         const formData = await request.formData();
+        const intent = formData.get('intent')?.toString().trim() || 'save';
         const id = formData.get('id')?.toString().trim() || null;
-        const name = formData.get('name')?.toString().trim();
-        const role = formData.get('role')?.toString().trim();
-        const bio = formData.get('bio')?.toString().trim();
-        const photoFile = formData.get('photo');
+        const title = formData.get('title')?.toString().trim();
+        const address = formData.get('address')?.toString().trim();
+        const summary = formData.get('summary')?.toString().trim();
+        const body = formData.get('body')?.toString().trim();
+        const slug = formData.get('slug')?.toString().trim();
+        const bouwjaarRaw = formData.get('bouwjaar')?.toString().trim();
+        const bouwjaar = normalizeBouwjaar(bouwjaarRaw);
+        const geoLat = formData.get('geo_lat')?.toString().trim();
+        const geoLng = formData.get('geo_lng')?.toString().trim();
+        const posterFile = formData.get('posterimage');
 
-        // Upload photo to Directus files if one was provided
-        let photoId = null;
-        if (photoFile && photoFile.size > 0) {
+        // Build geolocation object if coordinates are provided
+        let geolocation = null;
+        if (geoLat && geoLng) {
+            geolocation = {
+                type: 'Point',
+                coordinates: [parseFloat(geoLng), parseFloat(geoLat)],
+            };
+        }
+
+        // Upload poster image to Directus files if one was provided
+        let posterId = null;
+        if (posterFile && posterFile.size > 0) {
             try {
                 const fileForm = new FormData();
-                fileForm.append('file', photoFile);
+                fileForm.append('file', posterFile);
                 const fileRes = await fetch(`${DIRECTUS_BASE}/files`, {
                     method: 'POST',
                     headers: { Authorization: `Bearer ${TOKEN}` },
@@ -82,7 +104,7 @@ export const actions = {
                 });
                 if (fileRes.ok) {
                     const fileJson = await fileRes.json();
-                    photoId = fileJson.data?.id ?? null;
+                    posterId = fileJson.data?.id ?? null;
                 } else {
                     // eslint-disable-next-line no-console
                     console.error('File upload failed:', fileRes.status);
@@ -93,31 +115,32 @@ export const actions = {
             }
         }
 
-        const body = { name, role, bio };
-        if (photoId) body.picture = photoId;
+        const payload = { title, address, summary, body, slug, bouwjaar };
+        if (geolocation) payload.geolocation = geolocation;
+        if (posterId) payload.posterimage = posterId;
 
         try {
             let res;
             if (id) {
                 res = await fetch(
-                    `${DIRECTUS_BASE}/items/emibazo_persoon/${id}`,
+                    `${DIRECTUS_BASE}/items/emibazo_lemma/${id}`,
                     {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',
                             Authorization: `Bearer ${TOKEN}`,
                         },
-                        body: JSON.stringify(body),
+                        body: JSON.stringify(payload),
                     },
                 );
             } else {
-                res = await fetch(`${DIRECTUS_BASE}/items/emibazo_persoon`, {
+                res = await fetch(`${DIRECTUS_BASE}/items/emibazo_lemma`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${TOKEN}`,
                     },
-                    body: JSON.stringify(body),
+                    body: JSON.stringify(payload),
                 });
             }
 
@@ -126,11 +149,30 @@ export const actions = {
                 const msg =
                     errBody?.errors?.[0]?.message || `HTTP ${res.status}`;
                 // eslint-disable-next-line no-console
-                console.error('Directus persoon error:', msg);
+                console.error('Directus lemma error:', msg);
                 return { success: false, error: msg };
             }
 
-            return { success: true };
+            const responseBody = await res.json().catch(() => null);
+            const savedId =
+                responseBody?.data?.id ?? responseBody?.data?.[0]?.id ?? id;
+
+            if (intent === 'preview') {
+                if (!savedId) {
+                    return {
+                        success: false,
+                        error: 'Preview kon niet worden geopend.',
+                    };
+                }
+
+                return {
+                    success: true,
+                    lemmaId: savedId,
+                    previewUrl: `/admin/lemma/preview?id=${encodeURIComponent(savedId)}`,
+                };
+            }
+
+            return { success: true, lemmaId: savedId };
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error('Fetch failed:', err);
@@ -165,7 +207,7 @@ export const actions = {
 
         try {
             const res = await fetch(
-                `${DIRECTUS_BASE}/items/emibazo_persoon/${id}`,
+                `${DIRECTUS_BASE}/items/emibazo_lemma/${id}`,
                 {
                     method: 'DELETE',
                     headers: { Authorization: `Bearer ${TOKEN}` },

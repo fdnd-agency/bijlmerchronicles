@@ -3,7 +3,13 @@ import { redirect } from '@sveltejs/kit';
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
-const TOKEN = 'mK0AWJSBAnjDmCmIPbH5QXovwbkIM2o4';
+const TOKEN = 'KgmHEY4JMPOziWmiyxp03MuT4mT26bcs';
+
+function normalizeBouwjaar(value) {
+    const text = value?.toString?.().trim() ?? '';
+    const match = text.match(/\b(\d{4})\b/);
+    return match ? match[1] : '';
+}
 
 export async function load({ fetch, cookies }) {
     const session = cookies.get('user_session');
@@ -63,13 +69,15 @@ export const actions = {
         }
 
         const formData = await request.formData();
+        const intent = formData.get('intent')?.toString().trim() || 'save';
         const id = formData.get('id')?.toString().trim() || null;
         const title = formData.get('title')?.toString().trim();
         const address = formData.get('address')?.toString().trim();
         const summary = formData.get('summary')?.toString().trim();
         const body = formData.get('body')?.toString().trim();
         const slug = formData.get('slug')?.toString().trim();
-        const bouwjaar = formData.get('bouwjaar')?.toString().trim();
+        const bouwjaarRaw = formData.get('bouwjaar')?.toString().trim();
+        const bouwjaar = normalizeBouwjaar(bouwjaarRaw);
         const geoLat = formData.get('geo_lat')?.toString().trim();
         const geoLng = formData.get('geo_lng')?.toString().trim();
         const posterFile = formData.get('posterimage');
@@ -145,7 +153,26 @@ export const actions = {
                 return { success: false, error: msg };
             }
 
-            return { success: true };
+            const responseBody = await res.json().catch(() => null);
+            const savedId =
+                responseBody?.data?.id ?? responseBody?.data?.[0]?.id ?? id;
+
+            if (intent === 'preview') {
+                if (!savedId) {
+                    return {
+                        success: false,
+                        error: 'Preview kon niet worden geopend.',
+                    };
+                }
+
+                return {
+                    success: true,
+                    lemmaId: savedId,
+                    previewUrl: `/admin/lemma/preview?id=${encodeURIComponent(savedId)}`,
+                };
+            }
+
+            return { success: true, lemmaId: savedId };
         } catch (err) {
             // eslint-disable-next-line no-console
             console.error('Fetch failed:', err);

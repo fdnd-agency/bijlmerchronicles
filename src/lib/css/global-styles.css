@@ -43,7 +43,7 @@ body {
 
         /* --------------------------------------- Heading levels ------------------------------------ */
 
-        --heading-1: clamp(1.875rem, 4.74vw, 4rem);
+        --heading-1: clamp(1.875rem, 4.74vw, 3.5rem);
 
         --heading-2: clamp(2.5rem, 4vw, 3.25rem);
 
@@ -83,37 +83,25 @@ body {
 
         --color-secondary: hsl(var(--secondary-h), var(--secondary-s), 17%);
 
-        --color-secondary-light: hsl(
-            var(--secondary-h),
-            var(--secondary-s),
-            61%
-        );
-        --color-secondary-lighter: hsl(
-            var(--secondary-h),
-            var(--secondary-s),
-            82%
-        );
-        --color-secondary-lightest: hsl(
-            var(--secondary-h),
-            var(--secondary-s),
-            92%
-        );
+        --color-secondary-light: hsl(var(--secondary-h),
+                var(--secondary-s),
+                61%);
+        --color-secondary-lighter: hsl(var(--secondary-h),
+                var(--secondary-s),
+                82%);
+        --color-secondary-lightest: hsl(var(--secondary-h),
+                var(--secondary-s),
+                92%);
 
-        --color-secondary-dark: hsl(
-            var(--secondary-h),
-            var(--secondary-s),
-            45%
-        );
-        --color-secondary-darker: hsl(
-            var(--secondary-h),
-            var(--secondary-s),
-            35%
-        );
-        --color-secondary-darkest: hsl(
-            var(--secondary-h),
-            var(--secondary-s),
-            25%
-        );
+        --color-secondary-dark: hsl(var(--secondary-h),
+                var(--secondary-s),
+                45%);
+        --color-secondary-darker: hsl(var(--secondary-h),
+                var(--secondary-s),
+                35%);
+        --color-secondary-darkest: hsl(var(--secondary-h),
+                var(--secondary-s),
+                25%);
 
         /* --------------------------------------- Tertiary Color Family - Used for card variations ------------------------------------ */
         --color-tertiary: hsl(94, 23%, 76%);
@@ -152,15 +140,12 @@ body {
 
         /* ---------------------------------------  Fonts and their retrospective purpose (stel je heb een nieuw item, voeg dan deze hieraan toe, en pas de kleuren van hierboven toe, bekijk in figma wat je nodig heb ------------------------------------ */
 
-        --color-background: var(
-            --color-neutral
-        ); /* Background color for our whole page */
-        --color-text: var(
-            --color-secondary
-        ); /* Text-color used for majority of the page */
-        --color-text-light: var(
-            --color-primary
-        ); /* Text-color used for the majority of headings */
+        --color-background: var(--color-neutral);
+        /* Background color for our whole page */
+        --color-text: var(--color-secondary);
+        /* Text-color used for majority of the page */
+        --color-text-light: var(--color-primary);
+        /* Text-color used for the majority of headings */
 
         --background-hamburger-pop-up: var(--color-secondary);
 
@@ -170,6 +155,7 @@ body {
         --wiki-p-mobile: var(--paragraph-3);
     }
 }
+
 /* --------------------------------------- Accessibility ------------------------------------ */
 
 @layer accessibility {
@@ -188,8 +174,10 @@ body {
 }
 
 @layer hamburger-menu {
+
     /* Add blur when hamburger has the 'open' class. Closing class is added so the animation only fades back out again after the full hamburger has closed  */
     body:has(.hamburger-menu-nav.open) {
+
         main,
         footer {
             user-select: none;

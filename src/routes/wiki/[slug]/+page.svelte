@@ -1,32 +1,43 @@
-<script>
-    import { browser } from '$app/environment';
+    <script>
+        import { browser } from '$app/environment';
 
-    const { data } = $props();
-    const lemma = $derived(data.lemma);
+        const { data } = $props();
+        const lemma = $derived(data.lemma);
 
-    // Store sanitized body - starts with raw HTML, sanitized on client
-    let sanitizedBody = $state('');
+        // Store sanitized body - starts with raw HTML, sanitized on client
+        let sanitizedBody = $state('');
+        let texts = $state([]);
+        let images = $state([]);
 
-    // Sanitize HTML on the client after hydration
-    $effect(() => {
-        if (lemma?.body) {
-            if (browser) {
-                // Dynamically import DOMPurify only on client
-                import('isomorphic-dompurify')
-                    .then((mod) => {
-                        sanitizedBody = mod.default.sanitize(lemma.body);
-                    })
-                    .catch(() => {
-                        sanitizedBody = lemma.body;
-                    });
+        texts = lemma.body.replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean);
+        images = lemma.body.match(/<img ([^>]+)>/g).map((img) => img.match(/src="([^"]+)"/)?.[1]) || [];
+
+        console.log(lemma.body);
+
+        console.log(texts);
+        console.log('images:')
+        console.log(images);
+
+        // Sanitize HTML on the client after hydration
+        $effect(() => {
+            if (lemma?.body) {
+                if (browser) {
+                    // Dynamically import DOMPurify only on client
+                    import('isomorphic-dompurify')
+                        .then((mod) => {
+                            sanitizedBody = mod.default.sanitize(lemma.body);
+                        })
+                        .catch(() => {
+                            sanitizedBody = lemma.body;
+                        });
+                } else {
+                    sanitizedBody = lemma.body;
+                }
             } else {
-                sanitizedBody = lemma.body;
+                sanitizedBody = '';
             }
-        } else {
-            sanitizedBody = '';
-        }
-    });
-</script>
+        });
+    </script>
 
 <svelte:head>
     <title>Wiki - {lemma?.title ?? 'Wiki'}</title>
@@ -50,9 +61,24 @@
 
         <!-- WIKI INHOUD (body) -->
         <article>
-            <!-- html tag was getting a warning because of XSS attack but Dompurfiy prevents XSS attack through getting rid of dangorus elements from html and make it more safe for the user to use -->
-            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-            {@html sanitizedBody}
+            <div class="center">
+                <div class="halfwidth">
+                    <img src="{images[0]}" alt="">
+                    {texts[0]}
+                    <p>{texts[1]}</p>
+                </div>
+            </div>
+            <div>
+                <img src="{images[1]}" alt="" class="halfwidth">
+                <p>{texts[2]}</p>
+            </div>
+            <div>
+                <p>{texts[3]} {texts[4]}</p>
+                <img src="{images[2]}" alt="" class="halfwidth">
+            </div>
+            {#each texts.slice(5) as text}
+                <p>{text}</p>
+            {/each}
         </article>
     </section>
 {:else}
@@ -79,6 +105,28 @@
         padding: var(--spacing-wiki-page);
         text-wrap: balance;
         position: relative;
+    }
+
+    img {
+        height: auto;
+        margin: var(--spacing-wiki-page) 0;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    div.center {
+        flex-direction: column;
+    }
+    .halfwidth {
+        max-width: 50%;
+        flex-direction: column;
     }
 
     a {

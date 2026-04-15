@@ -10,7 +10,7 @@
         let texts = $state([]);
         let images = $state([]);
 
-        texts = lemma.body.replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean);
+        texts = lemma.body.replaceAll(/<[^>]+>/g, ' ').replaceAll(/&ndash/g, '').split(/\s{2,}/).filter(Boolean);
         let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
         images = matches ? matches.map((img) => img.match(/src="([^"]+)"/)?.[1]) : [];
 

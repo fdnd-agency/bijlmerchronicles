@@ -1,3 +1,4 @@
+    <!-- svelte-ignore state_referenced_locally -->
     <script>
         import { browser } from '$app/environment';
 

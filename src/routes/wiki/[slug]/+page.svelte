@@ -9,10 +9,15 @@
         let sanitizedBody = $state('');
         let texts = $state([]);
         let images = $state([]);
-
-        texts = lemma.body.replaceAll(/<[^>]+>/g, ' ').replaceAll(/&ndash/g, '').split(/\s{2,}/).filter(Boolean);
         let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
         images = matches ? matches.map((img) => img.match(/src="([^"]+)"/)?.[1]) : [];
+        function decodeHtmlEntities(str) {
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = str;
+            return textarea.value;
+        }
+
+        texts = decodeHtmlEntities(lemma.body).replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean);
 
         // Sanitize HTML on the client after hydration
         $effect(() => {

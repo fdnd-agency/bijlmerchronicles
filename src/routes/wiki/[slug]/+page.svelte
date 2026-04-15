@@ -10,13 +10,8 @@
         let images = $state([]);
 
         texts = lemma.body.replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean);
-        images = lemma.body.match(/<img ([^>]+)>/g).map((img) => img.match(/src="([^"]+)"/)?.[1]) || [];
-
-        console.log(lemma.body);
-
-        console.log(texts);
-        console.log('images:')
-        console.log(images);
+        let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
+        images = matches ? matches.map((img) => img.match(/src="([^"]+)"/)?.[1]) : [];
 
         // Sanitize HTML on the client after hydration
         $effect(() => {
@@ -63,18 +58,18 @@
         <article>
             <div class="center">
                 <div class="halfwidth">
-                    <img src="{images[0]}" alt="">
-                    {texts[0]}
+                    <img src="{images[0] ?? ''}" alt="">
+                    <p>{texts[0]}</p>
                     <p>{texts[1]}</p>
                 </div>
             </div>
             <div>
-                <img src="{images[1]}" alt="" class="halfwidth">
+                <img src="{images[1] ?? ''}" alt="" class="halfwidth">
                 <p>{texts[2]}</p>
             </div>
             <div>
                 <p>{texts[3]} {texts[4]}</p>
-                <img src="{images[2]}" alt="" class="halfwidth">
+                <img src="{images[2] ?? ''}" alt="" class="halfwidth">
             </div>
             {#each texts.slice(5) as text}
                 <p>{text}</p>

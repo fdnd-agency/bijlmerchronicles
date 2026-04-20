@@ -71,7 +71,7 @@ export const actions = {
                     path: '/',
                     httpOnly: true,
                     sameSite: 'strict',
-                    maxAge: 60 * 60 * 24 * 7, // 7 days
+                    maxAge: 60 * 60 * 24 * 1, // 1 days
                 },
             );
 

@@ -4,6 +4,7 @@
     const links = [
         { href: '/admin/lemma', label: "Lemma's", key: 'lemma' },
         { href: '/admin/persoon', label: 'persoon', key: 'persoon' },
+        { href: '/admin/roles', label: 'roles', key: 'roles' },
         { href: '/admin/comments', label: 'comments', key: 'comments' },
     ];
 </script>

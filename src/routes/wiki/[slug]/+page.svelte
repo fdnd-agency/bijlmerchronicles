@@ -5,9 +5,7 @@
 
         const { data } = $props();
         const lemma = $derived(data.lemma);
-
-        // Store sanitized body - starts with raw HTML, sanitized on client
-        let sanitizedBody = $state('');
+        
         let texts = $state([]);
         let images = $state([]);
         let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
@@ -20,26 +18,6 @@
         onMount(() => {
             texts = decodeHtmlEntities(lemma.body).replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean) ?? [];
         })
-
-        // Sanitize HTML on the client after hydration
-        $effect(() => {
-            if (lemma?.body) {
-                if (browser) {
-                    // Dynamically import DOMPurify only on client
-                    import('isomorphic-dompurify')
-                        .then((mod) => {
-                            sanitizedBody = mod.default.sanitize(lemma.body);
-                        })
-                        .catch(() => {
-                            sanitizedBody = lemma.body;
-                        });
-                } else {
-                    sanitizedBody = lemma.body;
-                }
-            } else {
-                sanitizedBody = '';
-            }
-        });
     </script>
 
 <svelte:head>

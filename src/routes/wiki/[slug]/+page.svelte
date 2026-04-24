@@ -1,6 +1,7 @@
     <!-- svelte-ignore state_referenced_locally -->
     <script>
         import { browser } from '$app/environment';
+        import { onMount } from 'svelte';
 
         const { data } = $props();
         const lemma = $derived(data.lemma);
@@ -16,8 +17,9 @@
             textarea.innerHTML = str;
             return textarea.value;
         }
-
-        texts = decodeHtmlEntities(lemma.body).replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean);
+        onMount(() => {
+            texts = decodeHtmlEntities(lemma.body).replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean) ?? [];
+        })
 
         // Sanitize HTML on the client after hydration
         $effect(() => {
@@ -110,9 +112,10 @@
 
     img {
         height: auto;
-        margin: var(--spacing-wiki-page) 0;
         object-fit: cover;
         width: 100%;
+        margin: 10px;
+        border-radius: 20px;
     }
     
     div {

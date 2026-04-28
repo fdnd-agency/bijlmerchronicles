@@ -75,6 +75,31 @@ describe('admin lemma preview load', () => {
         });
     });
 
+    it('allows moderators to open the preview page', async () => {
+        // Arrange
+        const event = createEvent({
+            session: JSON.stringify({ id: 7, role: 3 }),
+        });
+
+        // Act
+        const result = await load(event);
+
+        // Assert
+        expect(result).toEqual({
+            draft: {
+                id: null,
+                title: '',
+                address: '',
+                summary: '',
+                body: '',
+                slug: '',
+                bouwjaar: '',
+                geo_lat: '',
+                geo_lng: '',
+            },
+        });
+    });
+
     it('returns query-based draft and skips lemma fetch when no id is provided', async () => {
         // Arrange
         const fetch = vi.fn();

@@ -150,7 +150,7 @@
 </script>
 
 <div class="admin-container">
-    <AdminSidebar active="lemma" />
+    <AdminSidebar active="lemma" userRole={user?.role ?? null} />
 
     <section class="content">
         <h1>Lemma's</h1>

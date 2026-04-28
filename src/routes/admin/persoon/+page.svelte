@@ -77,7 +77,7 @@
 </script>
 
 <div class="admin-container">
-    <AdminSidebar active="persoon" />
+    <AdminSidebar active="persoon" userRole={user?.role ?? null} />
 
     <section class="content">
         <h1>persoon</h1>

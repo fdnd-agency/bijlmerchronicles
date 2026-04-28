@@ -73,6 +73,22 @@ describe('admin roles route', () => {
 			});
 		});
 
+		it('redirects to home when user is moderator', async () => {
+			// Arrange
+			const event = createEvent({
+				session: JSON.stringify({ id: 3, role: 3 }),
+			});
+
+			// Act
+			const loadResult = load(event);
+
+			// Assert
+			await expect(loadResult).rejects.toMatchObject({
+				status: 302,
+				location: '/',
+			});
+		});
+
 	
 		it('returns empty users when Directus responds non-ok', async () => {
 			// Arrange
@@ -118,6 +134,22 @@ describe('admin roles route', () => {
 			const fetch = vi.fn();
 			const cookies = {
 				get: vi.fn().mockReturnValue(JSON.stringify({ id: 4, role: 1 })),
+			};
+
+			// Act
+			const result = await actions.upsert({ request, fetch, cookies });
+
+			// Assert
+			expect(result).toEqual({ success: false, error: 'Geen toegang.' });
+			expect(fetch).not.toHaveBeenCalled();
+		});
+
+		it('returns no access for moderators', async () => {
+			// Arrange
+			const request = createRequestWithFormData([]);
+			const fetch = vi.fn();
+			const cookies = {
+				get: vi.fn().mockReturnValue(JSON.stringify({ id: 4, role: 3 })),
 			};
 
 			// Act

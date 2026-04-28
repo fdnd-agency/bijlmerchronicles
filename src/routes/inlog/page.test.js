@@ -161,6 +161,39 @@ describe('inlog route action', () => {
         expect(cookies.set).toHaveBeenCalledTimes(1);
     });
 
+    it('sets session cookie and redirects moderator to /admin/persoon', async () => {
+        // Arrange
+        const request = createRequestWithFormData([
+            ['email', 'moderator@example.com'],
+            ['password', 'correct-password'],
+        ]);
+        const fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: vi.fn().mockResolvedValue({
+                data: [
+                    {
+                        id: 55,
+                        email: 'moderator@example.com',
+                        password: 'moderator-hash',
+                        role: 3,
+                    },
+                ],
+            }),
+        });
+        const cookies = { set: vi.fn() };
+        argon2.verify.mockResolvedValue(true);
+
+        // Act
+        const actionResult = actions.default({ request, fetch, cookies });
+
+        // Assert
+        await expect(actionResult).rejects.toMatchObject({
+            status: 302,
+            location: '/admin/persoon',
+        });
+        expect(cookies.set).toHaveBeenCalledTimes(1);
+    });
+
     it('sets session cookie and redirects non-admin to home', async () => {
         // Arrange
         const request = createRequestWithFormData([

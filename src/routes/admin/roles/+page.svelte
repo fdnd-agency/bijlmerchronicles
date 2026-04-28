@@ -70,7 +70,7 @@
 </script>
 
 <div class="admin-container">
-    <AdminSidebar active="roles" />
+    <AdminSidebar active="roles" userRole={user?.role ?? null} />
 
     <section class="content">
         <h1>roles</h1>

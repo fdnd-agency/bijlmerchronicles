@@ -59,6 +59,29 @@ describe('admin lemma route', () => {
             });
         });
 
+        it('allows moderators to load the page', async () => {
+            // Arrange
+            const fetch = vi.fn().mockResolvedValue({
+                ok: true,
+                json: vi.fn().mockResolvedValue({
+                    data: [{ id: 1, title: 'Lemma 1' }],
+                }),
+            });
+            const event = createEvent({
+                session: JSON.stringify({ id: 6, role: 3 }),
+                fetch,
+            });
+
+            // Act
+            const result = await load(event);
+
+            // Assert
+            expect(result).toEqual({
+                lemmas: [{ id: 1, title: 'Lemma 1' }],
+                user: { id: 6, role: 3 },
+            });
+        });
+
         it('returns lemmas and user when Directus fetch succeeds', async () => {
             // Arrange
             const fetch = vi.fn().mockResolvedValue({
@@ -144,6 +167,31 @@ describe('admin lemma route', () => {
             // Assert
             expect(result).toEqual({ success: false, error: 'Geen toegang.' });
             expect(fetch).not.toHaveBeenCalled();
+        });
+
+        it('allows moderators to save lemmas', async () => {
+            // Arrange
+            const request = createRequestWithFormData([
+                ['title', 'New Lemma'],
+                ['address', 'Street 12'],
+                ['summary', 'Summary'],
+                ['body', '<p>Body</p>'],
+                ['slug', 'new-lemma'],
+                ['bouwjaar', '1978'],
+            ]);
+            const fetch = vi.fn().mockResolvedValue({
+                ok: true,
+                json: vi.fn().mockResolvedValue({ data: { id: 43 } }),
+            });
+            const cookies = {
+                get: vi.fn().mockReturnValue(JSON.stringify({ id: 6, role: 3 })),
+            };
+
+            // Act
+            const result = await actions.upsert({ request, fetch, cookies });
+
+            // Assert
+            expect(result).toEqual({ success: true, lemmaId: 43 });
         });
 
         it('creates a lemma with normalized bouwjaar and geolocation', async () => {

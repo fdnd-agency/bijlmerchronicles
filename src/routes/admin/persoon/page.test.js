@@ -73,6 +73,29 @@ describe('admin persoon route', () => {
 			});
 		});
 
+		it('allows moderators to load the page', async () => {
+			// Arrange
+			const fetch = vi.fn().mockResolvedValue({
+				ok: true,
+				json: vi.fn().mockResolvedValue({
+					data: [{ id: 1, name: 'Persoon 1' }],
+				}),
+			});
+			const event = createEvent({
+				session: JSON.stringify({ id: 9, role: 3 }),
+				fetch,
+			});
+
+			// Act
+			const result = await load(event);
+
+			// Assert
+			expect(result).toEqual({
+				persons: [{ id: 1, name: 'Persoon 1' }],
+				user: { id: 9, role: 3 },
+			});
+		});
+
 		it('returns persons and user when Directus fetch succeeds', async () => {
 			// Arrange
 			const fetch = vi.fn().mockResolvedValue({
@@ -156,6 +179,31 @@ describe('admin persoon route', () => {
 			// Assert
 			expect(result).toEqual({ success: false, error: 'Geen toegang.' });
 			expect(fetch).not.toHaveBeenCalled();
+		});
+
+		it('allows moderators to create persons', async () => {
+			// Arrange
+			const request = createRequestWithFormData([
+				['name', 'Nieuwe Persoon'],
+				['role', 'Onderzoeker'],
+				['bio', 'Biografie'],
+			]);
+			const fetch = vi.fn().mockResolvedValue({ ok: true });
+			const cookies = {
+				get: vi.fn().mockReturnValue(JSON.stringify({ id: 9, role: 3 })),
+			};
+
+			// Act
+			const result = await actions.upsert({ request, fetch, cookies });
+
+			// Assert
+			expect(result).toEqual({ success: true });
+			expect(fetch).toHaveBeenCalledWith(
+				'https://fdnd-agency.directus.app/items/emibazo_persoon',
+				expect.objectContaining({
+					method: 'POST',
+				}),
+			);
 		});
 
 		it('creates a person when no id is provided', async () => {

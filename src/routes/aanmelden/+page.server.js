@@ -1,8 +1,23 @@
+import { redirect } from '@sveltejs/kit';
 import argon2 from 'argon2';
 
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
+
+const EMAIL_EXISTS_ERROR =
+    'Dit e-mailadres is al in gebruik. Log in of gebruik een ander e-mailadres.';
+
+const parseDirectusError = async (response) => {
+    const body = await response.json().catch(() => null);
+    const message = body?.errors?.[0]?.message || '';
+
+    if (/unique|al in gebruik|bestaat al/i.test(message)) {
+        return EMAIL_EXISTS_ERROR;
+    }
+
+    return message || 'Er is iets misgegaan. Probeer het opnieuw.';
+};
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -58,17 +73,20 @@ export const actions = {
             });
 
             if (!res.ok) {
-                const body = await res.json().catch(() => null);
-                const msg =
-                    body?.errors?.[0]?.message ||
-                    'Er is iets misgegaan. Probeer het opnieuw.';
+                const msg = await parseDirectusError(res);
                 // eslint-disable-next-line no-console
                 console.error('Directus create user error:', res.status, msg);
-                return { success: false, error: msg };
+
+                return {
+                    success: false,
+                    error: msg,
+                };
             }
 
-            return { success: true };
+            throw redirect(303, '/inlog');
         } catch (err) {
+            if (err?.status === 303) throw err;
+
             // eslint-disable-next-line no-console
             console.error('Registration fetch failed:', err);
             return {

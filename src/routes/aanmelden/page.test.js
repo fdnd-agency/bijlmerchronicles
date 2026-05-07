@@ -9,6 +9,9 @@ vi.mock('argon2', () => ({
 import argon2 from 'argon2';
 import { actions, prerender } from './+page.server.js';
 
+const emailExistsError =
+    'Dit e-mailadres is al in gebruik. Log in of gebruik een ander e-mailadres.';
+
 const createRequestWithFormData = (entries) => ({
     formData: vi.fn().mockResolvedValue(new Map(entries)),
 });
@@ -113,7 +116,7 @@ describe('aanmelden route action', () => {
         expect(fetch).not.toHaveBeenCalled();
     });
 
-    it('returns success true when registration succeeds', async () => {
+    it('redirects to login when registration succeeds', async () => {
         // Arrange
         const request = createRequestWithFormData([
             ['email', 'new@example.com'],
@@ -126,7 +129,10 @@ describe('aanmelden route action', () => {
         });
 
         // Act
-        const result = await actions.default({ request, fetch });
+        await expect(actions.default({ request, fetch })).rejects.toMatchObject({
+            status: 303,
+            location: '/inlog',
+        });
 
         // Assert
         expect(argon2.hash).toHaveBeenCalledWith('Password1!');
@@ -146,10 +152,9 @@ describe('aanmelden route action', () => {
                 }),
             }),
         );
-        expect(result).toEqual({ success: true });
     });
 
-    it('returns API error message when Directus create user fails', async () => {
+    it('returns a friendly message when Directus create user fails because the email already exists', async () => {
         // Arrange
         const request = createRequestWithFormData([
             ['email', 'existing@example.com'],
@@ -171,7 +176,7 @@ describe('aanmelden route action', () => {
         // Assert
         expect(result).toEqual({
             success: false,
-            error: 'Email bestaat al.',
+            error: emailExistsError,
         });
     });
 

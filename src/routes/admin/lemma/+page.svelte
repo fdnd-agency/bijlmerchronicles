@@ -8,9 +8,10 @@
     /** @type {import('./$types').PageData} */
     const { data, form } = $props();
 
+    import { canManageContent } from '$lib/utils/access.js';
+
     const lemmas = $derived(data.lemmas ?? []);
     const user = $derived(data.user);
-    const isAdmin = $derived(user?.role === 2);
 
     const EMPTY_FORM_VALUES = {
         title: '',
@@ -155,9 +156,9 @@
     <section class="content">
         <h1>Lemma's</h1>
 
-        {#if !isAdmin}
+        {#if !canManageContent(user)}
             <p class="access-denied">
-                Geen toegang. Alleen beheerders kunnen deze pagina bekijken.
+                Geen toegang. Alleen beheerders en moderators kunnen deze pagina bekijken.
             </p>
         {:else}
             <div class="main-content">

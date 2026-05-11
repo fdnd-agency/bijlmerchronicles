@@ -8,20 +8,28 @@ function normalizeBouwjaar(value) {
 
 export async function load({ params, fetch }) {
     const lemmaSlug = params.slug;
-    const url = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
+    const urlLemma = `https://fdnd-agency.directus.app/items/emibazo_lemma?filter[slug][_eq]=${encodeURIComponent(lemmaSlug)}`;
+    const urlAllLemmas = `https://fdnd-agency.directus.app/items/emibazo_lemma`;
+    const urlAllPeople = `https://fdnd-agency.directus.app/items/emibazo_persoon`;
 
     try {
-        const res = await fetch(url);
+        const resLemma = await fetch(urlLemma);
+        const resAllLemmas = await fetch(urlAllLemmas);
+        const resAllPeople = await fetch(urlAllPeople);
 
-        if (!res.ok) {
+        if (!resLemma.ok || !resAllLemmas.ok || !resAllPeople.ok) {
             // SSR-safe logging
             // eslint-disable-next-line no-console
             console.error(`Directus API error: ${res.status}`);
-            return { lemma: null };
+            return { lemma: null, allLemmas: [], allPeople: [] };
         }
 
-        const json = await res.json();
-        const lemma = json.data?.[0] ?? null;
+        const jsonLemma = await resLemma.json();
+        const jsonAllLemmas = await resAllLemmas.json();
+        const jsonAllPeople = await resAllPeople.json();
+        const lemma = jsonLemma.data?.[0] ?? null;
+        const allLemmas = jsonAllLemmas.data ?? [];
+        const allPeople = jsonAllPeople.data ?? [];
 
         return {
             lemma: lemma
@@ -34,11 +42,20 @@ export async function load({ params, fetch }) {
                       bouwjaar: normalizeBouwjaar(lemma.bouwjaar),
                   }
                 : null,
+            allLemmas: allLemmas.map((l) => ({
+                id: l.id,
+                slug: l.slug,
+                title: l.title,
+            })),
+            allPeople: allPeople.map((p) => ({
+                id: p.id,
+                name: p.name,
+            })),
         };
     } catch (err) {
         // SSR-safe logging
         // eslint-disable-next-line no-console
         console.error('SSR fetch failed:', err);
-        return { lemma: null };
+        return { lemma: null, allLemmas: [], allPeople: [] };
     }
 }

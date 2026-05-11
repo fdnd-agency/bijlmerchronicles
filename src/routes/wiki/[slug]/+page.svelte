@@ -1,24 +1,119 @@
-    <!-- svelte-ignore state_referenced_locally -->
-    <script>
-        import { browser } from '$app/environment';
-        import { onMount } from 'svelte';
+<!-- svelte-ignore state_referenced_locally -->
+<script>
+    const { data } = $props();
+    const lemma = $derived(data.lemma);
 
-        const { data } = $props();
-        const lemma = $derived(data.lemma);
-        
-        let texts = $state([]);
-        let images = $state([]);
-        let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
-        images = matches ? matches.map((img) => img.match(/src="([^"]+)"/)?.[1]) : [];
-        function decodeHtmlEntities(str) {
-            const textarea = document.createElement('textarea');
-            textarea.innerHTML = str;
-            return textarea.value;
+    // alle lemma's
+    const allLemmas = $derived(data.allLemmas ?? []);
+    // alle personen
+    const allPeople = $derived(data.allPeople ?? []);
+    console.log('All Lemmas:', allLemmas);
+    console.log('All People:', allPeople);
+
+    let texts = $state([]);
+    let images = $state([]);
+
+    let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
+
+    images = matches
+        ? matches.map((img) => img.match(/src="([^"]+)"/)?.[1])
+        : [];
+
+    function decodeHtmlEntities(str) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = str;
+        return textarea.value;
+    }
+
+    function linkify(text, lemmas, allPeople) {
+        let result = text;
+
+        // === LEMMAS ===
+        for (const l of lemmas) {
+            let title = l.title?.trim();
+
+            if (!title) continue;
+            if (title.toLowerCase() === lemma.title.toLowerCase()) continue;
+
+            const variants = [title];
+
+            // split op &, en en ,
+            if (title.includes('&') || title.includes(',') || title.includes(' en ')) {
+                const splitTitles = title
+                    .split(/&|en|,/)
+                    .map((t) => t.trim())
+                    .filter(Boolean);
+
+                variants.push(...splitTitles);
+            }
+
+            for (const variant of variants) {
+                const escaped = variant.replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    '\\$&',
+                );
+
+                const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
+
+                result = result.replace(
+                    regex,
+                    `<a href="/wiki/${l.slug}" class="wiki-link">$1</a>`,
+                );
+            }
         }
-        onMount(() => {
-            texts = decodeHtmlEntities(lemma.body).replaceAll(/<[^>]+>/g, ' ').split(/\s{2,}/).filter(Boolean) ?? [];
-        })
-    </script>
+
+        // === PEOPLE ===
+        for (const p of allPeople) {
+            let name = p.name?.trim();
+
+            if (!name) continue;
+
+            const variants = [name];
+
+            // split op &, en en ,
+            if (name.includes('&') || name.includes(',') || name.includes(' en ')) {
+                const splitNames = name
+                    .split(/&|en|,/)
+                    .map((t) => t.trim())
+                    .filter(Boolean);
+
+                variants.push(...splitNames);
+            }
+
+            for (const variant of variants) {
+                const escaped = variant.replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    '\\$&',
+                );
+
+                const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
+
+                result = result.replace(
+                    regex,
+                    `<a href="/team/${p.id}" class="person-link">$1</a>`,
+                );
+            }
+        }
+
+        return result;
+    }
+
+    $effect(() => {
+        if (!lemma?.body) return;
+
+        texts = decodeHtmlEntities(lemma.body)
+            .replaceAll(/<[^>]+>/g, ' ')
+            .split(/\s{2,}/)
+            .filter(Boolean)
+            .map((text) => linkify(text, allLemmas, allPeople));
+
+        let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
+
+        images = matches
+            ? matches.map((img) => img.match(/src="([^"]+)"/)?.[1])
+            : [];
+    });
+</script>
 
 <svelte:head>
     <title>Wiki - {lemma?.title ?? 'Wiki'}</title>
@@ -44,21 +139,21 @@
         <article>
             <div class="center">
                 <div class="halfwidth">
-                    <img src="{images[0] ?? ''}" alt="">
-                    <p>{texts[0]}</p>
-                    <p>{texts[1]}</p>
+                    <img src={images[0] ?? ''} alt="" />
+                    <p>{@html texts[0]}</p>
+                    <p>{@html texts[1]}</p>
                 </div>
             </div>
             <div>
-                <img src="{images[1] ?? ''}" alt="" class="halfwidth">
-                <p>{texts[2]}</p>
+                <img src={images[1] ?? ''} alt="" class="halfwidth" />
+                <p>{@html texts[2]}</p>
             </div>
             <div>
-                <p>{texts[3]} {texts[4]}</p>
-                <img src="{images[2] ?? ''}" alt="" class="halfwidth">
+                <p>{@html texts[3]} {@html texts[4]}</p>
+                <img src={images[2] ?? ''} alt="" class="halfwidth" />
             </div>
             {#each texts.slice(5) as text}
-                <p>{text}</p>
+                <p>{@html text}</p>
             {/each}
         </article>
     </section>
@@ -95,7 +190,18 @@
         margin: 10px;
         border-radius: 20px;
     }
-    
+
+
+    .wiki-link {
+        color: #2563eb;
+        text-decoration: underline;
+    }
+
+    .wiki-link:hover {
+        opacity: 0.8;
+    }
+
+
     div {
         display: flex;
         justify-content: center;

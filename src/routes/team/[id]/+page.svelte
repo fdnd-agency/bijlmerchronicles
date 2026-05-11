@@ -1,6 +1,107 @@
+<!-- svelte-ignore state_referenced_locally -->
 <script>
     let { data } = $props();
     const defaultImage = '/images/default.png';
+    
+    
+    // alle lemma's
+    const allLemmas = $derived(data.allLemmas ?? []);
+    // alle personen
+    const allPeople = $derived(data.allPeople ?? []);
+
+    console.log('All Lemmas:', allLemmas);
+    console.log('All People:', allPeople);
+
+    let texts = $state([]);
+    
+    function decodeHtmlEntities(str) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = str;
+        return textarea.value;
+    }
+
+    function linkify(text, lemmas, allPeople) {
+        let result = text;
+
+        // === LEMMAS ===
+        for (const l of lemmas) {
+            let title = l.title?.trim();
+
+            if (!title) continue;
+
+            const variants = [title];
+
+            // split op &, en en ,
+            if (title.includes('&') || title.includes(',') || title.includes(' en ')) {
+                const splitTitles = title
+                    .split(/&|en|,/)
+                    .map((t) => t.trim())
+                    .filter(Boolean);
+
+                variants.push(...splitTitles);
+            }
+
+            for (const variant of variants) {
+                const escaped = variant.replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    '\\$&',
+                );
+
+                const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
+
+                result = result.replace(
+                    regex,
+                    `<a href="/wiki/${l.slug}" class="wiki-link">$1</a>`,
+                );
+            }
+        }
+
+        // === PEOPLE ===
+        for (const p of allPeople) {
+            let name = p.name?.trim();
+
+            if (!name) continue;
+            if (name.toLowerCase() === data.member.name.toLowerCase()) continue;
+
+            const variants = [name];
+
+            // split op &, en en ,
+            if (name.includes('&') || name.includes(',') || name.includes(' en ')) {
+                const splitNames = name
+                    .split(/&|en|,/)
+                    .map((t) => t.trim())
+                    .filter(Boolean);
+
+                variants.push(...splitNames);
+            }
+
+            for (const variant of variants) {
+                const escaped = variant.replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    '\\$&',
+                );
+
+                const regex = new RegExp(`\\b(${escaped})\\b`, 'gi');
+
+                result = result.replace(
+                    regex,
+                    `<a href="/team/${p.id}" class="person-link">$1</a>`,
+                );
+            }
+        }
+
+        return result;
+    }
+
+    $effect(() => {
+        if (!data.member.bio) return;
+
+        texts = decodeHtmlEntities(data.member.bio)
+            .replaceAll(/<[^>]+>/g, ' ')
+            .split(/\s{2,}/)
+            .filter(Boolean)
+            .map((text) => linkify(text, data.allLemmas, data.allPeople));
+    });
 </script>
 
 {#if data && data.member}
@@ -30,9 +131,11 @@
 
         <p class="role">{data.member.role || 'Functie'}</p>
 
-        <p class="bio">
-            {data.member.bio || 'Geen biografie beschikbaar'}
-        </p>
+        <div class="bio">
+            {#each texts as text}
+                <p>{@html text}</p>
+            {/each}
+        </div>
     </main>
 {:else}
     <p>Laden of teamlid niet gevonden...</p>

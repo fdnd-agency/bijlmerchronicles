@@ -16,11 +16,11 @@
     </div>
 
     <div class="links-nav-container" aria-hidden="true">
-        <a href="/nieuwsbriefhehre">Nieuwsbrief</a>
         <a href="/overons">Wie is wie</a>
-        <a href="/helpgewegwg">Help center</a>
         <a href="/kaart">Kaart</a>
-        <a href="/wikiwegwge">Wiki</a>
+        <a href="/wiki">Wiki</a>
+        <a href="/ankerpunten">Ankerpunten</a>
+        <a href="/multiplier">Multiplier</a>
     </div>
 
     <aside class="loginNsignup-container">
@@ -240,11 +240,6 @@
                 gap: 5vw;
                 flex-grow: 2;
 
-                a {
-                    min-width: 5.5rem;
-                    max-width: 7rem;
-                }
-
                 a:nth-child(3) {
                     display: block;
                 }
@@ -252,12 +247,10 @@
         }
 
         /* @container header (width > 1625px) */
-        @media (min-width: 1625px) {
+        @media (min-width: 1680px) {
             .links-nav-container {
                 a:nth-child(4),
                 a:last-child {
-                    min-width: 3.5rem;
-                    max-width: 5rem;
                     display: block;
                 }
             }

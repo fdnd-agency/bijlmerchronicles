@@ -193,9 +193,12 @@
     popover="auto"
 >
     <ul>
-        <li><a href="/nieuwsbrie">Nieuwsbrief</a></li>
-        <li><a href="/overons">Over ons</a></li>
-        <li><a href="/helps">Help center</a></li>
+        <li><a href="/multiplier">Multiplier</a></li>
+        <li><a href="/overons">Wie is wie</a></li>
+        <li><a href="/ankerpunten">Ankerpunten</a></li>
+        <li><a href="/teaserlemma">Teaser Lemma's</a></li>
+        <li><a href="/prototype">Prototype Encyclopedie</a></li>
+        <li><a href="/glossary">Glossary in de maak</a></li>
         <li><a href="/kaart">Kaart</a></li>
         <li><a href="/wik">Wiki</a></li>
     </ul>
@@ -275,7 +278,7 @@
         width: 100%;
         height: 80%;
         background-color: var(--background-hamburger-pop-up);
-        padding: 0;
+        padding: 0 0 1rem 1rem;
         margin: 0;
         position: fixed;
         left: 0;
@@ -283,11 +286,10 @@
 
         a {
             color: hsl(46, 39%, 68%);
-            font-size: var(--heading-1);
+            font-size: var(--heading-2);
             text-decoration: none;
             width: 100%;
             height: 100%;
-            padding-left: 1rem;
             display: flex;
             align-items: center;
 

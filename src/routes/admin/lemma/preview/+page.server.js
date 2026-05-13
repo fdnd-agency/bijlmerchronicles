@@ -27,6 +27,10 @@ async function fetchLemmaById(fetch, id) {
     return json.data ?? null;
 }
 
+function canAccessAdmin(user) {
+    return user?.role === 2 || user?.role === 3;
+}
+
 export async function load({ url, fetch, cookies }) {
     const session = cookies.get('user_session');
     let user = null;
@@ -39,7 +43,7 @@ export async function load({ url, fetch, cookies }) {
         }
     }
 
-    if (!user || user.role !== 2) {
+    if (!canAccessAdmin(user)) {
         throw redirect(302, '/');
     }
 

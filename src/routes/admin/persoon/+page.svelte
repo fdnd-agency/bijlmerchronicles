@@ -11,9 +11,10 @@
     const DIRECTUS_ASSETS = 'https://fdnd-agency.directus.app/assets';
     const EMPTY_PERSON_FORM = { name: '', role: '', bio: '' };
 
+    import { canManageContent } from '$lib/utils/access.js';
+
     const persons = $derived(data.persons ?? []);
     const user = $derived(data.user);
-    const isAdmin = $derived(user?.role === 2);
 
     let selectedId = $state(null);
     let selectedPhoto = $state(null);
@@ -77,14 +78,14 @@
 </script>
 
 <div class="admin-container">
-    <AdminSidebar active="persoon" />
+    <AdminSidebar active="persoon" userRole={user?.role ?? null} />
 
     <section class="content">
         <h1>persoon</h1>
 
-        {#if !isAdmin}
+        {#if !canManageContent(user)}
             <p class="access-denied">
-                Geen toegang. Alleen beheerders kunnen deze pagina bekijken.
+                Geen toegang. Alleen beheerders en moderators kunnen deze pagina bekijken.
             </p>
         {:else}
             <div class="main-content">

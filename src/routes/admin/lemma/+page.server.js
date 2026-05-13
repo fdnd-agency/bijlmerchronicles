@@ -11,6 +11,10 @@ function normalizeBouwjaar(value) {
     return match ? match[1] : '';
 }
 
+function canAccessAdmin(user) {
+    return user?.role === 2 || user?.role === 3;
+}
+
 export async function load({ fetch, cookies }) {
     const session = cookies.get('user_session');
     let user = null;
@@ -23,7 +27,7 @@ export async function load({ fetch, cookies }) {
     }
 
     // Only admins (role 2) may access this page
-    if (!user || user.role !== 2) {
+    if (!canAccessAdmin(user)) {
         throw redirect(302, '/');
     }
 
@@ -64,7 +68,7 @@ export const actions = {
         }
 
         // Only admins (role 2) may write
-        if (!user || user.role !== 2) {
+        if (!canAccessAdmin(user)) {
             return { success: false, error: 'Geen toegang.' };
         }
 
@@ -194,7 +198,7 @@ export const actions = {
             }
         }
 
-        if (!user || user.role !== 2) {
+        if (!canAccessAdmin(user)) {
             return { success: false, error: 'Geen toegang.' };
         }
 

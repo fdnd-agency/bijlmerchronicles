@@ -75,8 +75,8 @@ export const actions = {
                 },
             );
 
-            // Admins (role === 2) go to /admin, everyone else to homepage
-            if (user.role === 2) {
+            // Admins and moderators go to /admin, everyone else to homepage
+            if (user.role === 2 || user.role === 3) {
                 throw redirect(302, '/admin/persoon');
             }
 

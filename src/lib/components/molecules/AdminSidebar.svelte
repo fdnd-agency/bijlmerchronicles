@@ -1,16 +1,21 @@
 <script>
-    let { active = '' } = $props();
+    let { active = '', userRole = null } = $props();
 
     const links = [
         { href: '/admin/lemma', label: "Lemma's", key: 'lemma' },
         { href: '/admin/persoon', label: 'persoon', key: 'persoon' },
+        { href: '/admin/roles', label: 'roles', key: 'roles', adminOnly: true },
         { href: '/admin/comments', label: 'comments', key: 'comments' },
     ];
+
+    const visibleLinks = $derived(
+        links.filter((link) => !link.adminOnly || userRole === 2),
+    );
 </script>
 
 <aside class="sidebar">
     <nav>
-        {#each links as link}
+        {#each visibleLinks as link}
             <a href={link.href} class:active={active === link.key}>
                 {link.label}
             </a>

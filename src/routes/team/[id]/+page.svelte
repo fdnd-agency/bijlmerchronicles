@@ -8,9 +8,6 @@
     // alle personen
     const allPeople = $derived(data.allPeople ?? []);
 
-    console.log('All Lemmas:', allLemmas);
-    console.log('All People:', allPeople);
-
     let texts = $state([]);
     
     function decodeHtmlEntities(str) {

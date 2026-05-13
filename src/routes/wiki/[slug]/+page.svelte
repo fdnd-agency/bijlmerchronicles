@@ -6,8 +6,6 @@
     const allLemmas = $derived(data.allLemmas ?? []);
     // alle personen
     const allPeople = $derived(data.allPeople ?? []);
-    console.log('All Lemmas:', allLemmas);
-    console.log('All People:', allPeople);
 
     let texts = $state([]);
     let images = $state([]);

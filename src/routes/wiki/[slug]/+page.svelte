@@ -190,17 +190,6 @@
         border-radius: 20px;
     }
 
-
-    .wiki-link {
-        color: #2563eb;
-        text-decoration: underline;
-    }
-
-    .wiki-link:hover {
-        opacity: 0.8;
-    }
-
-
     div {
         display: flex;
         justify-content: center;

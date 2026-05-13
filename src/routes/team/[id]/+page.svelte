@@ -1,4 +1,3 @@
-<!-- svelte-ignore state_referenced_locally -->
 <script>
     let { data } = $props();
     const defaultImage = '/images/default.png';

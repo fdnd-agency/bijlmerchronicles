@@ -20,7 +20,7 @@ export async function load({ params, fetch }) {
         if (!resLemma.ok || !resAllLemmas.ok || !resAllPeople.ok) {
             // SSR-safe logging
             // eslint-disable-next-line no-console
-            console.error(`Directus API error: ${res.status}`);
+            console.error(`Directus API error: ${resLemma.status}`);
             return { lemma: null, allLemmas: [], allPeople: [] };
         }
 

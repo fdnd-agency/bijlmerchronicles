@@ -1,4 +1,3 @@
-<!-- svelte-ignore state_referenced_locally -->
 <script>
     const { data } = $props();
     const lemma = $derived(data.lemma);

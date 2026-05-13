@@ -36,6 +36,8 @@ export async function load({ fetch, params }) {
             })),
         };
     } catch (err) {
+        // SSR-safe logging
+        // eslint-disable-next-line no-console
         console.error('Fout bij ophalen teamlid:', err);
         return { member: null, allLemmas: [], allPeople: [] };
     }

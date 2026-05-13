@@ -10,6 +10,7 @@
     let texts = $state([]);
     let images = $state([]);
 
+    // svelte-ignore state_referenced_locally
     let matches = lemma.body.match(/<img ([^>]+)>/g) ?? false;
 
     images = matches

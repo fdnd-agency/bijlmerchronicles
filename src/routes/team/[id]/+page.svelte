@@ -96,7 +96,7 @@
             .replaceAll(/<[^>]+>/g, ' ')
             .split(/\s{2,}/)
             .filter(Boolean)
-            .map((text) => linkify(text, data.allLemmas, data.allPeople));
+            .map((text) => linkify(text, allLemmas, allPeople));
     });
 </script>
 

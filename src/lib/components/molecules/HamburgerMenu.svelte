@@ -159,6 +159,11 @@
             document.removeEventListener('scroll', handleScroll);
         }
     });
+
+    let { user = null, onLogout = () => {} } = $props();
+
+    const username = $derived(user?.email?.split('@')[0] ?? null);
+    let showLogoutModal = $state(false);
 </script>
 
 <button
@@ -198,9 +203,30 @@
         <li><a href="/ankerpunten">Ankerpunten</a></li>
         <li><a href="/teaserlemma">Teaser Lemma's</a></li>
         <li><a href="/prototype">Prototype Encyclopedie</a></li>
-        <li><a href="/glossary">Glossary in de maak</a></li>
         <li><a href="/kaart">Kaart</a></li>
         <li><a href="/wik">Wiki</a></li>
+        <li>
+            <aside class="loginNsignup-container">
+                {#if username}
+                    <div class="user-menu">
+                        <div class="user-dropdown">
+                            <button
+                                type="button"
+                                class="dropdown-logout"
+                                onclick={() => onLogout()}>Uitloggen</button
+                            >
+                        </div>
+                    </div>
+                {:else}
+                    <a href="/inlog" class="login-button"
+                        ><span class="login-button-border">Inloggen</span></a
+                    >
+                    <a href="/aanmelden" class="signup-button"
+                        ><span class="signup-button-border">Aanmelden</span></a
+                    >
+                {/if}
+            </aside>
+        </li>
     </ul>
 </nav>
 

@@ -47,7 +47,7 @@
     </aside>
 
     <div class="hamburger-container">
-        <HamburgerMenu />
+        <HamburgerMenu {user} onLogout={() => (showLogoutModal = true)} />
     </div>
 
     <div class="bottom-border-bevel"></div>

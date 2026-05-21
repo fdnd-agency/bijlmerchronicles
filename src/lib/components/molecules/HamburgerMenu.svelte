@@ -461,11 +461,11 @@
                 width: 100%;
                 padding: 0.4rem 0.75rem;
                 background: none;
-                border: 1px solid var(--accent-color);
+                border: 1px solid var(--color-primary);
                 cursor: pointer;
                 font-family: var(--main-font);
                 font-size: var(--paragraph-size);
-                color: var(--accent-color);
+                color: var(--color-primary);
                 text-align: left;
                 white-space: nowrap;
                 border-radius: 0.4rem;

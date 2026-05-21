@@ -360,6 +360,127 @@
                     z-index: -1;
                 }
             }
+
+            /* --------------------------------------- Login / Aanmeld / Logout button styling ---------------------------------------  */
+
+            .loginNsignup-container {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                padding: 0.5rem 0;
+                height: 100%;
+            }
+
+            .login-button,
+            .signup-button {
+                --btn-width: 8rem;
+                --btn-height: 2rem;
+                --border-radius: 0.4rem;
+
+                width: var(--btn-width);
+                height: var(--btn-height);
+                position: relative;
+                border-radius: var(--border-radius);
+                text-decoration: none;
+                z-index: 1;
+                color: var(--color-primary);
+                font-size: var(--paragraph-size);
+
+                /* Schaduw blokje achter knop */
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: -0.15rem;
+                    right: 0.1rem;
+                    width: calc(var(--btn-width) + 0.2rem);
+                    height: calc(var(--btn-height) + 0.15rem);
+                    border-radius: inherit;
+                    z-index: -1;
+                }
+
+                span {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: var(--border-radius);
+                }
+            }
+
+            .login-button {
+                color: var(--color-primary);
+
+                &::before {
+                    background-color: var(--color-secondary);
+                }
+
+                span {
+                    border: solid 1px var(--accent-color);
+                }
+
+                &:hover {
+                    color: var(--color-secondary);
+
+                    span {
+                        border-color: var(--color-secondary);
+                    }
+
+                    &::before {
+                        background-color: var(--pop-out-color-light);
+                    }
+                }
+            }
+
+            .signup-button {
+                color: var(--color-primary-darker);
+
+                &::before {
+                    background-color: var(--color-primary-lighter);
+                }
+
+                span {
+                    border: solid 1px var(--color-primary-darker);
+                }
+
+                &:hover {
+                    color: var(--pop-out-color);
+
+                    span {
+                        border-color: var(--pop-out-color);
+                    }
+
+                    &::before {
+                        background-color: var(--accent-color);
+                    }
+                }
+            }
+
+            .dropdown-logout {
+                display: block;
+                width: 100%;
+                padding: 0.4rem 0.75rem;
+                background: none;
+                border: 1px solid var(--accent-color);
+                cursor: pointer;
+                font-family: var(--main-font);
+                font-size: var(--paragraph-size);
+                color: var(--accent-color);
+                text-align: left;
+                white-space: nowrap;
+                border-radius: 0.4rem;
+
+                @media (prefers-reduced-motion: no-preference) {
+                    transition:
+                        background-color 0.15s ease,
+                        color 0.15s ease;
+                }
+
+                &:hover {
+                    background-color: var(--color-primary-light);
+                    color: var(--color-secondary);
+                }
+            }
         }
     }
 
@@ -401,7 +522,7 @@
             corner-shape: bevel;
             border-top-right-radius: 100% 1rem;
         }
-        .hamburger-menu-nav a:hover {
+        .hamburger-menu-nav li:not(:last-child) a:hover {
             corner-shape: bevel;
             border-top-right-radius: 100% 1rem;
         }

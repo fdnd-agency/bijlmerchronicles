@@ -199,12 +199,12 @@
 >
     <ul>
         <li><a href="/multiplier">Multiplier</a></li>
-        <li><a href="/overons">Wie is wie</a></li>
+        <li><a href="/overons">Wat is emibazo?</a></li>
         <li><a href="/ankerpunten">Ankerpunten</a></li>
         <li><a href="/teaserlemma">Teaser Lemma's</a></li>
         <li><a href="/prototype">Prototype Encyclopedie</a></li>
         <li><a href="/kaart">Kaart</a></li>
-        <li><a href="/wik">Wiki</a></li>
+        <li><a href="/wiki">Wiki</a></li>
         <li>
             <aside class="loginNsignup-container">
                 {#if username}

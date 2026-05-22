@@ -163,7 +163,6 @@
     let { user = null, onLogout = () => {} } = $props();
 
     const username = $derived(user?.email?.split('@')[0] ?? null);
-    let showLogoutModal = $state(false);
 </script>
 
 <button

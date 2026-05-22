@@ -162,6 +162,10 @@
 
     let { user = null, onLogout = () => {} } = $props();
 
+    function canAccessAdmin(user) {
+        return user?.role === 2 || user?.role === 3;
+    }
+
     const username = $derived(user?.email?.split('@')[0] ?? null);
 </script>
 
@@ -197,6 +201,9 @@
     popover="auto"
 >
     <ul>
+        {#if user && canAccessAdmin(user)}
+            <li><a href="/admin/lemma">Admin panel</a></li>
+        {/if}
         <li><a href="/multiplier">Multiplier</a></li>
         <li><a href="/overons">Wat is emibazo?</a></li>
         <li><a href="/ankerpunten">Ankerpunten</a></li>
@@ -415,7 +422,7 @@
                 }
 
                 span {
-                    border: solid 1px var(--accent-color);
+                    border: solid 1px var(--color-primary);
                 }
 
                 &:hover {

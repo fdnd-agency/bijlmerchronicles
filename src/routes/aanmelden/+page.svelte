@@ -91,7 +91,7 @@
     .register-hero {
         position: relative;
         width: 100%;
-        padding: 2rem 1.25rem 3rem;
+        padding: 2rem 0 3rem;
         margin-top: -3.25rem;
         z-index: 2;
     }
@@ -102,7 +102,7 @@
         color: var(--color-primary);
         position: relative;
         z-index: 2;
-        margin: 0 0 1rem 0;
+        margin: 1.5rem;
     }
 
     @supports (
@@ -156,7 +156,6 @@
             inset: 0;
             background-color: var(--color-secondary);
             z-index: 0;
-            border-radius: 0 0 1rem 1rem;
         }
     }
 
@@ -164,7 +163,6 @@
     .form-wrapper {
         width: 100%;
         max-width: 30rem;
-        padding: 0 1.25rem;
         margin-top: 2rem;
     }
 
@@ -173,6 +171,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        padding-inline: 1.5rem;
     }
 
     .form-group {

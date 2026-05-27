@@ -16,8 +16,8 @@
     </div>
 
     <div class="links-nav-container" aria-hidden="true">
-        <a href="/overons">Wie is wie</a>
         <a href="/kaart">Kaart</a>
+        <a href="/overons">Wat is emibazo?</a>
         <a href="/wiki">Wiki</a>
         <a href="/ankerpunten">Ankerpunten</a>
         <a href="/multiplier">Multiplier</a>
@@ -47,7 +47,7 @@
     </aside>
 
     <div class="hamburger-container">
-        <HamburgerMenu />
+        <HamburgerMenu {user} onLogout={() => (showLogoutModal = true)} />
     </div>
 
     <div class="bottom-border-bevel"></div>

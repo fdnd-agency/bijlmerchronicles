@@ -17,6 +17,7 @@ export async function load({ fetch, params }) {
             member: json.data,
         };
     } catch (err) {
+        // eslint-disable-next-line no-console
         console.error('Fout bij ophalen teamlid:', err);
         return { member: null };
     }

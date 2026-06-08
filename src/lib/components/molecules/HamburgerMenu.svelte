@@ -205,7 +205,7 @@
             <li><a href="/admin/lemma">Admin panel</a></li>
         {/if}
         <li><a href="/multiplier">Multiplier</a></li>
-        <li><a href="/overons">Wat is emibazo?</a></li>
+        <li><a href="/overons">Wat is EMIBAZO?</a></li>
         <li><a href="/ankerpunten">Ankerpunten</a></li>
         <li><a href="/teaserlemma">Teaser Lemma's</a></li>
         <li><a href="/prototype">Prototype Encyclopedie</a></li>

@@ -17,7 +17,7 @@
 
     <div class="links-nav-container" aria-hidden="true">
         <a href="/kaart">Kaart</a>
-        <a href="/overons">Wat is emibazo?</a>
+        <a href="/overons">Wat is EMIBAZO?</a>
         <a href="/wiki">Wiki</a>
         <a href="/ankerpunten">Ankerpunten</a>
         <a href="/multiplier">Multiplier</a>
@@ -113,8 +113,8 @@
         @supports (corner-shape: bevel) {
             nav {
                 height: calc(
-                    var(--header-height) +
-                        var(--bevel-header-height-adjustment) * 1.6
+                    var(--header-height) + var(--bevel-header-height-adjustment) *
+                        1.6
                 );
                 corner-shape: bevel;
                 border-bottom-left-radius: 100%
@@ -397,8 +397,8 @@
                 height: 8px;
                 transform: rotate(2deg);
                 top: calc(
-                    var(--header-height) +
-                        var(--bevel-header-height-adjustment) * 0.96
+                    var(--header-height) + var(--bevel-header-height-adjustment) *
+                        0.96
                 );
 
                 @media (min-width: 750px) {

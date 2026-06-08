@@ -336,6 +336,7 @@
 
 <section class="map" class:js-enabled={jsEnabled}>
     <div bind:this={mapElement} class={mapClass}></div>
+    <!-- svelte-ignore event_directive_deprecated -->
     <button
         class="toggle-connections"
         on:click={() => {

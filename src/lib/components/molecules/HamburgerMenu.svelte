@@ -373,7 +373,6 @@
                 display: flex;
                 gap: 1rem;
                 align-items: center;
-                padding: 0.5rem 0;
                 height: 100%;
             }
 

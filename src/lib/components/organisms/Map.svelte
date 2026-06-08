@@ -225,7 +225,7 @@
 
                 let closeTimer = null;
                 newMarker._pinned = false;
-                newMarker.on('mouseover', function () {
+                newMarker.on('click', function () {
                     if (closeTimer) {
                         clearTimeout(closeTimer);
                         closeTimer = null;

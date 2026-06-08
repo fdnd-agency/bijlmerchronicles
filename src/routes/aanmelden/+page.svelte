@@ -91,7 +91,7 @@
     .register-hero {
         position: relative;
         width: 100%;
-        padding: 2rem 1.25rem 3rem;
+        padding: 2rem 0 3rem;
         margin-top: -3.25rem;
         z-index: 2;
     }
@@ -102,61 +102,26 @@
         color: var(--color-primary);
         position: relative;
         z-index: 2;
-        margin: 0 0 1rem 0;
+        margin: 1.5rem;
     }
 
-    @supports (
-        clip-path: shape(
-                from 0% 4.58%,
-                curve to 2.55% 0.49% with 0% 1.18%/1.38% -1.03%,
-                line to 98.28% 0%,
-                curve to 100% 5% with 99.5% 0%/100% 2%,
-                line to 100% 95%,
-                curve to 97% 100% with 100% 98%/99% 100%,
-                line to 3% 100%,
-                curve to 0% 95% with 1% 100%/0% 98%,
-                close
-            )
-    ) {
+    @supports (clip-path: polygon(0 0, 100% 0, 0 100%)) {
         .hero-background {
             position: absolute;
             inset: 0;
             background-color: var(--color-secondary);
             z-index: 0;
-            clip-path: shape(
-                from 0% 4.58%,
-                curve to 2.55% 0.49% with 0% 1.18%/1.38% -1.03%,
-                line to 98.28% 0%,
-                curve to 100% 5% with 99.5% 0%/100% 2%,
-                line to 100% 92%,
-                curve to 96% 10% with 100% 97%/99% 100%,
-                line to 3% 98%,
-                curve to 0% 80% with 1% 98%/0% 95%,
-                close
-            );
+            clip-path: polygon(0 0, 100% 0, 0 100%);
         }
     }
 
-    /* Fallback when clip-path shape() is not supported */
-    @supports not (
-        clip-path: shape(
-                from 0% 4.58%,
-                curve to 2.55% 0.49% with 0% 1.18%/1.38% -1.03%,
-                line to 98.28% 0%,
-                curve to 100% 5% with 99.5% 0%/100% 2%,
-                line to 100% 95%,
-                curve to 97% 100% with 100% 98%/99% 100%,
-                line to 3% 100%,
-                curve to 0% 95% with 1% 100%/0% 98%,
-                close
-            )
-    ) {
+    /* Fallback when clip-path polygon() is not supported */
+    @supports not (clip-path: polygon(0 0, 100% 0, 0 100%)) {
         .hero-background {
             position: absolute;
             inset: 0;
             background-color: var(--color-secondary);
             z-index: 0;
-            border-radius: 0 0 1rem 1rem;
         }
     }
 
@@ -164,7 +129,6 @@
     .form-wrapper {
         width: 100%;
         max-width: 30rem;
-        padding: 0 1.25rem;
         margin-top: 2rem;
     }
 
@@ -173,6 +137,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        padding-inline: 1.5rem;
     }
 
     .form-group {

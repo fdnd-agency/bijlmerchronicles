@@ -11,9 +11,11 @@
     let mapElement;
     let map = null;
     let markers = [];
+    let polylines = [];
     let leaflet = null;
     // local flag to show the map area when JS runs (avoid relying on external $state)
     let jsEnabled = $state(false);
+    let showConnections = $state(false);
 
     function createMarkerPopup(marker) {
         // Use leaflet popup if available (avoid global L dependency)
@@ -90,6 +92,10 @@
         // remove previous markers
         markers.forEach((m) => map.removeLayer(m));
         markers = [];
+
+        // remove previous lines
+        polylines.forEach((l) => map.removeLayer(l));
+        polylines = [];
 
         // Create marker icons per-marker below (use poster image when available).
         // Removed single static markerIcon; we will compute an icon per marker using
@@ -266,6 +272,52 @@
                 markers.push(newMarker);
             });
         }
+        // Draw lines between all lemma coordinates
+        const allCoords = [];
+
+        // gewone markers
+        if (Array.isArray(mapAddresses)) {
+            mapAddresses.forEach((marker) => {
+                const coords = [...(marker?.map?.coordinates ?? [])].reverse();
+
+                if (coords.length >= 2) {
+                    allCoords.push(coords);
+                }
+            });
+        }
+
+        // actieve markers
+        if (Array.isArray(activeMapAddresses)) {
+            activeMapAddresses.forEach((marker) => {
+                const coords = [...(marker?.map?.coordinates ?? [])].reverse();
+
+                if (coords.length >= 2) {
+                    allCoords.push(coords);
+                }
+            });
+        }
+
+        if (showConnections) {
+            // Connect every point with every other point
+            for (let i = 0; i < allCoords.length; i++) {
+                for (let j = i + 1; j < allCoords.length; j++) {
+                    const polyline = leaflet.polyline(
+                        [allCoords[i], allCoords[j]],
+                        {
+                            color: '#000000',
+                            weight: 2,
+                            opacity: 0.7,
+                            smoothFactor: 1,
+                            dashArray: '10, 5',
+                            className: 'map-line',
+                        }
+                    );
+
+                    polyline.addTo(map);
+                    polylines.push(polyline);
+                }
+            }
+        }
     }
 
     onMount(async () => {
@@ -284,6 +336,18 @@
 
 <section class="map" class:js-enabled={jsEnabled}>
     <div bind:this={mapElement} class={mapClass}></div>
+    <!-- svelte-ignore event_directive_deprecated -->
+    <button
+        class="toggle-connections"
+        on:click={() => {
+            showConnections = !showConnections;
+            updateMarkers();
+        }}
+    >
+        {showConnections
+            ? 'Verberg connecties'
+            : 'Toon connecties'}
+    </button>
 </section>
 
 <style>
@@ -294,6 +358,34 @@
         position: relative;
         z-index: 1;
     }
+
+    :global(.map-line) {
+        filter: drop-shadow(0 0 6px black);
+    }
+    
+    .toggle-connections {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+
+    padding: 0.75rem 1rem;
+
+    border: 3px solid black;
+    background: var(--color-neutral);
+
+    color: var(--color-secondary);
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 black;
+}
+
+.toggle-connections:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 black;
+}
 
     section.js-enabled {
         display: block;

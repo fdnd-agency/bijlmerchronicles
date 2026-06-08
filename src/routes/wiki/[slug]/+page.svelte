@@ -138,19 +138,24 @@
             <div class="center">
                 <div class="halfwidth">
                     <img src={images[0] ?? ''} alt="" />
+                    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                     <p>{@html texts[0]}</p>
+                    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                     <p>{@html texts[1]}</p>
                 </div>
             </div>
             <div>
                 <img src={images[1] ?? ''} alt="" class="halfwidth" />
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 <p>{@html texts[2]}</p>
             </div>
             <div>
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 <p>{@html texts[3]} {@html texts[4]}</p>
                 <img src={images[2] ?? ''} alt="" class="halfwidth" />
             </div>
             {#each texts.slice(5) as text}
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 <p>{@html text}</p>
             {/each}
         </article>

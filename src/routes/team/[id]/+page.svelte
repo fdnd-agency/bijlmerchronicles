@@ -129,6 +129,7 @@
 
         <div class="bio">
             {#each texts as text}
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
                 <p>{@html text}</p>
             {/each}
         </div>

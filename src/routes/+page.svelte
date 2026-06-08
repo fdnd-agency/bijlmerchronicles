@@ -6,7 +6,7 @@
 
 <h1>
     <div class="h1-background"></div>
-    ENCYCLOPEDIE MAPPING IMAGINARIES BIJLMER AMSTERDAM - ZUIDOOST
+    EMIBAZO: ENCYCLOPEDIE MAPPING IMAGINARIES BIJLMER AMSTERDAM-ZUIDOOST
 </h1>
 
 <section class="lemma-search-container">

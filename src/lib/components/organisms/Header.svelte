@@ -37,12 +37,20 @@
                 </div>
             </div>
         {:else}
-            <a href="/inlog" class="login-button"
-                ><span class="login-button-border">Inloggen</span></a
+            <a
+                href="/inlog"
+                class="login-button"
+                data-tooltip="Log in op je account"
             >
-            <a href="/aanmelden" class="signup-button"
-                ><span class="signup-button-border">Aanmelden</span></a
+                <span class="login-button-border">Inloggen</span>
+            </a>
+            <a
+                href="/aanmelden"
+                class="signup-button"
+                data-tooltip="Maak een nieuw account aan"
             >
+                <span class="signup-button-border">Aanmelden</span>
+            </a>
         {/if}
         <select class="lang-select" aria-label="Select language">
             <option value="nl">NL</option>
@@ -217,6 +225,31 @@
                     background-color: var(--color-background);
                     color: var(--color-secondary);
                     font-family: var(--main-font);
+                }
+            }
+
+            [data-tooltip] {
+                position: relative;
+
+                &::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: calc(100% + 0.5rem);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: var(--color-secondary);
+                    color: var(--color-primary);
+                    font-size: 0.75rem;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: var(--border-radius);
+                    white-space: nowrap;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 0.15s ease;
+                }
+
+                &:hover::after {
+                    opacity: 1;
                 }
             }
         }

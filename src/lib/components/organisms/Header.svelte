@@ -236,8 +236,8 @@
 
         /* --------------------------------------- MEDIA QUERIES ---------------------------------------  */
 
-        /* @container header (width > 570px) */
-        @media (min-width: 570px) {
+        /* @container header (width > 700px) */
+        @media (min-width: 700px) {
             .loginNsignup-container {
                 display: flex;
                 justify-content: center;
@@ -246,7 +246,7 @@
         }
 
         /* @container header (width > 700px) */
-        @media (min-width: 700px) {
+        @media (min-width: 900px) {
             .links-nav-container {
                 display: flex;
                 justify-content: center;
@@ -255,7 +255,7 @@
         }
 
         /* @container header (width > 810px) */
-        @media (min-width: 810px) {
+        @media (min-width: 1000px) {
             .links-nav-container {
                 gap: 5vw;
                 flex-grow: 2;
@@ -268,7 +268,7 @@
         }
 
         /* @container header (width > 1025px) */
-        @media (min-width: 1025px) {
+        @media (min-width: 1125px) {
             nav {
                 justify-content: space-between;
                 padding: 0;

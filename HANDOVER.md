@@ -82,6 +82,26 @@ The client wants to manage essentially everything herself.
 
 ---
 
+## Design system
+
+A design system was set up for EMIBAZO as part of the FDND Agency assignment. Its goal is to make the design consistent, scalable, and easy to hand over to a future team. Every choice is based on an interface inventory and live inspection of the existing website.
+
+[**Figma file**](https://www.figma.com/design/1MDK8LQPFwIbxLA76gQaQi/Interface-Inventory-Design-System?node-id=175-315&t=fRxBkWdSAGj62BPz-1)
+
+**What's delivered**
+
+- **Foundations** — all design tokens are documented in Figma and based on EMIBAZO's existing house style: colour (primary, secondary, text, background), typography (Waukegan LDO E, all sizes and weights), spacing (a 4px-based scale with semantic tokens), border radius (cards and buttons), and shadows (the hard shadow used on cards).
+- **Components** — built from the tokens, with relevant states documented: Primary Button (Login), Secondary Button (Register), Search Button, Search Input, Location card, Profile card, and Navigation.
+- **Documentation** — a "How to use this design system?" section in the Figma file explains how to design new pages, use existing components, and add new ones.
+
+**Still to expand**
+
+- Flesh out the hamburger menu component states.
+- Add hover and active states to the buttons.
+- Add do's & don'ts per component.
+
+---
+
 ## Notes for the next team
 
 Some of this was built under time pressure, so a few solutions are practical rather than final. Keep it maintainable for the students who come after you:

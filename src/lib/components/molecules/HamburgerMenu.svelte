@@ -231,6 +231,13 @@
                         ><span class="signup-button-border">Aanmelden</span></a
                     >
                 {/if}
+
+                <select class="lang-select" aria-label="Select language">
+                    <option value="nl">NL</option>
+                    <option value="en">EN</option>
+                    <option value="es">ES</option>
+                    <option value="pap">PAP</option>
+                </select>
             </aside>
         </li>
     </ul>
@@ -374,6 +381,46 @@
                 gap: 1rem;
                 align-items: center;
                 height: 100%;
+
+                .lang-select {
+                    background-color: transparent;
+                    border: 1px solid var(--color-primary);
+                    border-radius: var(--border-radius);
+                    color: var(--color-primary);
+                    height: var(--signup-login-button-height);
+                    font-family: var(--main-font);
+                    font-size: calc(var(--paragraph-size) * 0.85);
+                    padding: 0.2rem 0.5rem;
+                    padding-right: 1.4rem;
+                    cursor: pointer;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c4aa7a'/%3E%3C/svg%3E");
+                    background-repeat: no-repeat;
+                    background-position: right 0.4rem center;
+                    box-shadow: -2px -2px 0 var(--color-secondary);
+                    transition:
+                        background-color 0.15s ease,
+                        color 0.15s ease;
+
+                    &:hover {
+                        color: var(--color-secondary);
+                        border-color: var(--color-secondary);
+                        background-color: var(--pop-out-color-light);
+                        box-shadow: -2px -2px 0 var(--pop-out-color-light);
+                    }
+
+                    &:focus {
+                        outline: 2px solid var(--accent-color);
+                        outline-offset: 2px;
+                    }
+
+                    option {
+                        background-color: var(--color-background);
+                        color: var(--color-secondary);
+                        font-family: var(--main-font);
+                    }
+                }
             }
 
             .login-button,

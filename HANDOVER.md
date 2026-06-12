@@ -1,44 +1,100 @@
-# Handover
+# EMIBAZO — Project Handover
 
-Alle issues die niet zijn opgepakt staan in het [project board](https://github.com/orgs/fdnd-agency/projects/83) bij de column 'Product backlog'.
+> An interactive, map-based encyclopedia about Amsterdam-Zuidoost.
+> Built with SvelteKit (frontend) and Directus (backend).
 
-## De Status
+**For:** the next development team · FDND Agency
+**Backlog:** all unstarted issues live on the [project board](https://github.com/orgs/fdnd-agency/projects/83) under the **Product backlog** column.
 
-De huidige status van het project is dat de pagina de volgende pagina's bevat:
+---
 
-- Homepagina
-- Kaart met een dynamisch systeem om de lemma's uit de database op te halen
-- Wiki die de specifieke data toont van de lemma's
-- Admin panel
-- login pagina
-- aanmeld pagina
-- lemma layout veranderd
-- connecting the dots
-  
+## TL;DR
 
-## Belangrijke features
+The app works end to end: an interactive map pulls lemmas from the database, the wiki renders their content, and there's a working auth flow plus an admin dashboard. The main job ahead is making the site fully editable by administrators (text, images, SVGs, and the connections between lemmas), plus translation and a handful of scoped features. Start by reading our last few sprint reviews and the product backlog.
 
-Dit zijn de belangrijke en werkende features van de website:
+---
 
-- Een werkende map met dymanische punten van de database.
-- Bij de werkende map zijn er dots die naar lemma's verbinden
-- Een modal popup op de lemma's op de kaart.
-- Een uitgebreid hamburger menu.
-- Een werkende login en aanmeld pagina.
-- Een werkende admin dashboard waar alleen admin/moderator op kunnen.
+## What's built
 
-## Aandachtspunten of Uitdagingen
-De volgde team kan de laaste paar sprintreview's checken wat wij hebben gepresenteerd en wat er nog mist.
+### Pages
 
-### Detailpagina
+| Page | Notes |
+|------|-------|
+| Homepage | — |
+| Map | Dynamic system that fetches lemmas from the database |
+| Wiki | Displays the specific data for each lemma |
+| Admin panel | Restricted to admins and moderators |
+| Login | Working |
+| Registration | Working |
+| Lemma layout | Reworked |
+| Connecting the dots | Connections between lemmas |
 
-## Wat kan het volgende team doen?
-- Als je op Núria zoekt dat "nu" ook werkt ondanks dat er een streepje op hoort.
-- Het vertalen van de website.
-- Zij wil in principe alle tekst kunnen aanpassen. Alle tekst moet dynamisch worden.
-- Ook de svgtjes en plaatjes moeten dynamisch worden.
-- Als een nieuwe lemma wordt toegevoegd deze direct maken in de admin panel zodat je niet 2 keer de lemma aan het typen ben.
-- Catalaans bij de vertaling toevoegen.
-- Zorgen dat de lemma's gedownload kunnen worden als pdf's
-- Het maken van de nieuwe pagina's (Daarvoor moet nog content komen).
-- Het maken dat de verbinding tussen de lemma's aanpassbaar zijn dus dat je zelf op een lemma kan klikken en die kan verbinden met een andere lemma.
+### Working features
+
+- Interactive map with dynamic points loaded from the database.
+- Map dots that link through to their corresponding lemmas ("connecting the dots").
+- Modal popup for lemmas shown on the map.
+- Extensive hamburger menu.
+- Working login and registration pages.
+- Admin dashboard gated to admin/moderator roles only.
+
+---
+
+## Where to look first
+
+Review our **most recent sprint reviews** before anything else — they show exactly what was demoed and what's still missing, which is the fastest way to get current.
+
+One area still to flesh out is the **detail page**. Confirm with the client what each detail page should show and how it ties into the existing map and wiki views.
+
+---
+
+## Open work
+
+Grouped roughly by theme.
+
+### Editable / dynamic content
+The client wants to manage essentially everything herself.
+
+- Make **all text** editable — every piece of copy should become dynamic, not hardcoded.
+- Make **SVGs and images** dynamic too, not just text.
+- Make the **connections between lemmas editable** — let an admin click a lemma and link it to another directly.
+
+### Content workflow
+- When a new lemma is added, **create it straight from the admin panel** so it doesn't have to be typed twice.
+
+### Translation & search
+- **Translate** the website into multiple languages.
+- Add **Catalan** as one of the languages.
+- Make **search diacritic-insensitive** — e.g. typing "Nuria" should still match "Núria" even though the name officially carries the accent.
+
+### New features & pages
+- Allow lemmas to be **downloaded as PDFs**.
+- Build the **new pages** (content for these still needs to be delivered by the client).
+
+---
+
+## Suggested order of attack
+
+1. **Scope the "make everything editable" request with the client.** It ranges from simple text/image editing to a near page-builder. Agree on how far it goes and which pages come first before writing code — otherwise it balloons past the project timeline.
+2. **Fix the content workflow.** Creating lemmas directly in the admin panel is well-scoped, high-value, and removes duplicate typing. Good early win.
+3. **Translation + diacritic-insensitive search.** Self-contained and client-requested; can ship independently of the bigger dynamic-content work. Catalan included.
+4. **Detail pages, new pages, lemma PDF export, editable connections.** Build these out as content arrives and the system matures.
+
+---
+
+## Notes for the next team
+
+Some of this was built under time pressure, so a few solutions are practical rather than final. Keep it maintainable for the students who come after you:
+
+- Keep server files readable.
+- Keep Directus communication centralised.
+- Document the important systems.
+- Keep the admin panel consistent.
+- Avoid unnecessary duplication.
+- Discuss large features with the client *before* building them.
+
+---
+
+## Wrap-up
+
+The project is in a usable state — map, wiki, auth, and the admin dashboard all work, with lemmas loaded dynamically from the database. The biggest remaining effort is the fully-dynamic editing experience (text, images, SVGs, lemma connections), alongside translation, search improvements, and the new pages. Scope these carefully with the client; her expectations may call for a larger technical solution than the current setup. The recent sprint reviews and the product backlog are your best starting point.

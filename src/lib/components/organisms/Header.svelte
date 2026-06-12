@@ -44,6 +44,12 @@
                 ><span class="signup-button-border">Aanmelden</span></a
             >
         {/if}
+        <select class="lang-select" aria-label="Select language">
+            <option value="nl">NL</option>
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="pap">PAP</option>
+        </select>
     </aside>
 
     <div class="hamburger-container">
@@ -113,8 +119,8 @@
         @supports (corner-shape: bevel) {
             nav {
                 height: calc(
-                    var(--header-height) + var(--bevel-header-height-adjustment) *
-                        1.6
+                    var(--header-height) +
+                        var(--bevel-header-height-adjustment) * 1.6
                 );
                 corner-shape: bevel;
                 border-bottom-left-radius: 100%
@@ -162,7 +168,7 @@
             }
 
             .login-button-border {
-                border: solid 1px var(--accent-color);
+                border: solid 1px var(--color-primary);
             }
 
             .signup-button-border {
@@ -174,6 +180,45 @@
 
         .loginNsignup-container {
             display: none;
+
+            .lang-select {
+                background-color: var(--color-secondary);
+                border: 1px solid var(--color-primary);
+                border-radius: var(--border-radius);
+                color: var(--color-primary);
+                font-family: var(--main-font);
+                font-size: calc(var(--paragraph-size) * 0.85);
+                padding: 0.2rem 0.5rem;
+                padding-right: 1.4rem;
+                cursor: pointer;
+                appearance: none;
+                -webkit-appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c5d9bf'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 0.4rem center;
+                box-shadow: -2px -2px 0 var(--color-secondary);
+                transition:
+                    background-color 0.15s ease,
+                    color 0.15s ease;
+
+                &:hover {
+                    color: var(--color-secondary);
+                    border-color: var(--color-secondary);
+                    background-color: var(--pop-out-color-light);
+                    box-shadow: -2px -2px 0 var(--pop-out-color-light);
+                }
+
+                &:focus {
+                    outline: 2px solid var(--accent-color);
+                    outline-offset: 2px;
+                }
+
+                option {
+                    background-color: var(--color-background);
+                    color: var(--color-secondary);
+                    font-family: var(--main-font);
+                }
+            }
         }
 
         /* -- Each child starts on display none for mobile --  */
@@ -206,10 +251,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                a:nth-child(2) {
-                    display: block;
-                }
             }
         }
 
@@ -219,7 +260,8 @@
                 gap: 5vw;
                 flex-grow: 2;
 
-                a:first-child {
+                a:first-child,
+                a:nth-child(2) {
                     display: block;
                 }
             }
@@ -349,7 +391,7 @@
 
         /* -- Hover styling per button --  */
         .login-button {
-            color: var(--accent-color);
+            color: var(--color-primary);
 
             &::before {
                 background-color: var(--color-secondary);
@@ -397,8 +439,8 @@
                 height: 8px;
                 transform: rotate(2deg);
                 top: calc(
-                    var(--header-height) + var(--bevel-header-height-adjustment) *
-                        0.96
+                    var(--header-height) +
+                        var(--bevel-header-height-adjustment) * 0.96
                 );
 
                 @media (min-width: 750px) {

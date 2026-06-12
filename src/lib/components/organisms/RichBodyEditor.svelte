@@ -209,7 +209,7 @@
             hsl(var(--secondary-h), var(--secondary-s), 35%);
     }
 
-    .rich-content :global(.body-image) {
+    .rich-content :global(img) {
         max-width: 100%;
         height: auto;
         border-radius: 2px;

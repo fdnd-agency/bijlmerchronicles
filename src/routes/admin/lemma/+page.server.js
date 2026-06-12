@@ -119,7 +119,18 @@ export const actions = {
             }
         }
 
-        const payload = { title, address, summary, body, slug, bouwjaar };
+        // Stuur lege velden als null (niet als ""): Directus/Postgres kan een
+        // lege string niet casten naar getypte kolommen zoals bouwjaar
+        // (timestamp), wat de fout "invalid input syntax for type timestamp"
+        // veroorzaakt. null is geldig voor elk kolomtype.
+        const payload = {
+            title,
+            address: address || null,
+            summary: summary || null,
+            body: body || null,
+            slug: slug || null,
+            bouwjaar: bouwjaar || null,
+        };
         if (geolocation) payload.geolocation = geolocation;
         if (posterId) payload.posterimage = posterId;
 

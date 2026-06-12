@@ -85,22 +85,22 @@ describe('admin lemma preview load', () => {
         const result = await load(event);
 
         // Assert
-        expect(result).toEqual({
-            draft: {
-                id: null,
-                title: '',
-                address: '',
-                summary: '',
-                body: '',
-                slug: '',
-                bouwjaar: '',
-                geo_lat: '',
-                geo_lng: '',
-            },
+        expect(result.draft).toEqual({
+            id: null,
+            title: '',
+            address: '',
+            summary: '',
+            body: '',
+            slug: '',
+            bouwjaar: '',
+            geo_lat: '',
+            geo_lng: '',
         });
+        expect(result.allLemmas).toEqual([]);
+        expect(result.allPeople).toEqual([]);
     });
 
-    it('returns query-based draft and skips lemma fetch when no id is provided', async () => {
+    it('returns query-based draft and skips the lemma-by-id fetch when no id is provided', async () => {
         // Arrange
         const fetch = vi.fn();
         const event = createEvent({
@@ -113,19 +113,20 @@ describe('admin lemma preview load', () => {
         const result = await load(event);
 
         // Assert
-        expect(fetch).not.toHaveBeenCalled();
-        expect(result).toEqual({
-            draft: {
-                id: null,
-                title: 'From Query',
-                address: '',
-                summary: '',
-                body: '<p>body</p>',
-                slug: '',
-                bouwjaar: '1984',
-                geo_lat: '52.37',
-                geo_lng: '4.89',
-            },
+        expect(fetch).not.toHaveBeenCalledWith(
+            expect.stringMatching(/\/items\/emibazo_lemma\/\d/),
+            expect.anything(),
+        );
+        expect(result.draft).toEqual({
+            id: null,
+            title: 'From Query',
+            address: '',
+            summary: '',
+            body: '<p>body</p>',
+            slug: '',
+            bouwjaar: '1984',
+            geo_lat: '52.37',
+            geo_lng: '4.89',
         });
     });
 
@@ -154,7 +155,6 @@ describe('admin lemma preview load', () => {
         const result = await load(event);
 
         // Assert
-        expect(fetch).toHaveBeenCalledTimes(1);
         expect(fetch).toHaveBeenCalledWith(
             'https://fdnd-agency.directus.app/items/emibazo_lemma/123?fields=*',
             expect.objectContaining({
@@ -223,18 +223,16 @@ describe('admin lemma preview load', () => {
         const result = await load(event);
 
         // Assert
-        expect(result).toEqual({
-            draft: {
-                id: '55',
-                title: 'Fallback Title',
-                address: '',
-                summary: '',
-                body: '',
-                slug: '',
-                bouwjaar: '',
-                geo_lat: '',
-                geo_lng: '',
-            },
+        expect(result.draft).toEqual({
+            id: '55',
+            title: 'Fallback Title',
+            address: '',
+            summary: '',
+            body: '',
+            slug: '',
+            bouwjaar: '',
+            geo_lat: '',
+            geo_lng: '',
         });
     });
 

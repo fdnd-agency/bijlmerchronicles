@@ -27,6 +27,38 @@ async function fetchLemmaById(fetch, id) {
     return json.data ?? null;
 }
 
+// Haal alle lemma's en personen op zodat de preview dezelfde interne links
+// kan tonen als de echte wiki-pagina.
+async function fetchLinkTargets(fetch) {
+    try {
+        const [resLemmas, resPeople] = await Promise.all([
+            fetch(`${DIRECTUS_BASE}/items/emibazo_lemma`, {
+                headers: { Authorization: `Bearer ${TOKEN}` },
+            }),
+            fetch(`${DIRECTUS_BASE}/items/emibazo_persoon`, {
+                headers: { Authorization: `Bearer ${TOKEN}` },
+            }),
+        ]);
+
+        const jsonLemmas = resLemmas.ok ? await resLemmas.json() : null;
+        const jsonPeople = resPeople.ok ? await resPeople.json() : null;
+
+        return {
+            allLemmas: (jsonLemmas?.data ?? []).map((l) => ({
+                id: l.id,
+                slug: l.slug,
+                title: l.title,
+            })),
+            allPeople: (jsonPeople?.data ?? []).map((p) => ({
+                id: p.id,
+                name: p.name,
+            })),
+        };
+    } catch {
+        return { allLemmas: [], allPeople: [] };
+    }
+}
+
 function canAccessAdmin(user) {
     return user?.role === 2 || user?.role === 3;
 }
@@ -58,6 +90,8 @@ export async function load({ url, fetch, cookies }) {
         }
     }
 
+    const { allLemmas, allPeople } = await fetchLinkTargets(fetch);
+
     const draft = {
         id,
         title: url.searchParams.get('title') ?? baseLemma?.title ?? '',
@@ -72,5 +106,5 @@ export async function load({ url, fetch, cookies }) {
         geo_lng: url.searchParams.get('geo_lng') ?? '',
     };
 
-    return { draft };
+    return { draft, allLemmas, allPeople };
 }

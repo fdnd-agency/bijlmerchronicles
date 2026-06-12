@@ -395,7 +395,7 @@
                     cursor: pointer;
                     appearance: none;
                     -webkit-appearance: none;
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c5d9bf'/%3E%3C/svg%3E");
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c4aa7a'/%3E%3C/svg%3E");
                     background-repeat: no-repeat;
                     background-position: right 0.4rem center;
                     box-shadow: -2px -2px 0 var(--color-secondary);

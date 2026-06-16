@@ -20,7 +20,7 @@ export async function load({ fetch, cookies }) {
         }
     }
 
-    // Only admins (role 2) may access this page
+    // Only admins (role 2 and 3) may access this page
     if (!canAccessAdmin(user)) {
         throw redirect(302, '/');
     }

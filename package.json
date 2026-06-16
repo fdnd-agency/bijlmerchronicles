@@ -12,10 +12,12 @@
         "format:check": "prettier --check .",
         "lint": "eslint .  --ext .js,.svelte",
         "lint:fix": "eslint . --fix --ext .js,.svelte",
-        "test": "vitest"
+        "test": "vitest",
+        "test:e2e": "playwright test"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.2",
+        "@playwright/test": "^1.61.0",
         "@sveltejs/adapter-auto": "^6.1.0",
         "@sveltejs/adapter-netlify": "^5.2.4",
         "@sveltejs/enhanced-img": "^0.10.0",

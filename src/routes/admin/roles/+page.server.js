@@ -1,9 +1,9 @@
 import { redirect } from '@sveltejs/kit';
+import { DIRECTUS_TOKEN as TOKEN } from '$env/static/private';
 
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
-const TOKEN = 'KgmHEY4JMPOziWmiyxp03MuT4mT26bcs';
 
 // Role IDs in the backend: 1 = user, 2 = admin, 3 = moderator
 const VALID_ROLES = [1, 2, 3];

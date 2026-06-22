@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import argon2 from 'argon2';
+import { DIRECTUS_TOKEN } from '$env/static/private';
 
 export const prerender = false;
 
@@ -63,7 +64,7 @@ export const actions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer KgmHEY4JMPOziWmiyxp03MuT4mT26bcs',
+                    Authorization: `Bearer ${DIRECTUS_TOKEN}`,
                 },
                 body: JSON.stringify({
                     email,

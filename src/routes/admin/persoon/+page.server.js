@@ -1,9 +1,9 @@
 import { redirect } from '@sveltejs/kit';
+import { DIRECTUS_TOKEN as TOKEN } from '$env/static/private';
 
 export const prerender = false;
 
 const DIRECTUS_BASE = 'https://fdnd-agency.directus.app';
-const TOKEN = 'KgmHEY4JMPOziWmiyxp03MuT4mT26bcs';
 
 function canAccessAdmin(user) {
     return user?.role === 2 || user?.role === 3;
